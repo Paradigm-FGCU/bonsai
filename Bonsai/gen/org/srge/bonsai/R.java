@@ -31,7 +31,7 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_card=0x7f030000;
-        public static final int fragment_card_dummy=0x7f030001;
+        public static final int fragment_card=0x7f030001;
     }
     public static final class menu {
         public static final int card=0x7f070000;

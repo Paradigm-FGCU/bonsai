@@ -23,7 +23,7 @@ public class CardSectionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_card_dummy, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_card, container, false);
         TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
         dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
         return rootView;
