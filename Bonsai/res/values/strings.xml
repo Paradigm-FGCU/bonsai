@@ -6,8 +6,12 @@
     <string name="title_section1">Organic Chemistry 1</string>
     <string name="title_section2">Organic Chemistry 2</string>
     <string name="title_section3">Organic Chemistry 3</string>
-    <string name="question_text_view">Question</string>
     <string name="know_button">Know It!</string>
     <string name="dontknow_button">I\'m Dumb</string>
+    <string name="question_1">What is love?</string>
+    <string name="question_2">question2</string>
+    <string name="question_3">question3</string>
+    <string name="question_4">question4</string>
+    <string name="question_5">question5</string>
 
 </resources>

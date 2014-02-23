@@ -18,7 +18,8 @@ public class CardSectionFragment extends Fragment {
      */
 	private Button mKnowButton;
 	private Button mDontKnowButton;
-
+	private TextView mQuestionTextView;
+	
     public static final String ARG_SECTION_NUMBER = "section_number";
 
     public CardSectionFragment() {

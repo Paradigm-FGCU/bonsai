@@ -42,9 +42,13 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
-        public static final int dontknow_button=0x7f050007;
-        public static final int know_button=0x7f050006;
-        public static final int question_text_view=0x7f050005;
+        public static final int dontknow_button=0x7f050006;
+        public static final int know_button=0x7f050005;
+        public static final int question_1=0x7f050007;
+        public static final int question_2=0x7f050008;
+        public static final int question_3=0x7f050009;
+        public static final int question_4=0x7f05000a;
+        public static final int question_5=0x7f05000b;
         public static final int title_section1=0x7f050002;
         public static final int title_section2=0x7f050003;
         public static final int title_section3=0x7f050004;
