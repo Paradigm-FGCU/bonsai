@@ -18,7 +18,7 @@ public class CardSectionFragment extends Fragment {
      * fragment.
      */
 	private Button mKnowButton;
-	//private Button mDontKnowButton;
+	private Button mDontKnowButton;
 	
     public static final String ARG_SECTION_NUMBER = "section_number";
   
@@ -49,6 +49,22 @@ public class CardSectionFragment extends Fragment {
 
 			}
 		});
+        
+        
+        mDontKnowButton = (Button) rootView.findViewById(R.id.donotknow_button);
+        mDontKnowButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				TextView answerTextView = (TextView) rootView.findViewById(R.id.section_label);
+				answerTextView.setText("Answer");
+		        Toast.makeText(getActivity(), "You should be ashamed!", Toast.LENGTH_LONG).show();
+				
+			}
+		});
+    
+
         
         return rootView;
     }
