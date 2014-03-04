@@ -1,6 +1,7 @@
 package org.srge.bonsai;
 
 public class CardContent {
+	public static final String DatabaseName = "bonsai.sqlite3";
 	private int mQuestion;
 	private int mAnswer;
 	

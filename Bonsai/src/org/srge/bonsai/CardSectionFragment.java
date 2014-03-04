@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -20,6 +21,7 @@ public class CardSectionFragment extends Fragment {
 	//private Button mDontKnowButton;
 	
     public static final String ARG_SECTION_NUMBER = "section_number";
+  
 
     public CardSectionFragment() {
     }
@@ -43,6 +45,8 @@ public class CardSectionFragment extends Fragment {
 				//questionTextView.setText("testies1234");
 				TextView answerTextView = (TextView) rootView.findViewById(R.id.section_label);
 				answerTextView.setText("Answer");
+		        Toast.makeText(getActivity(), "Good Job", Toast.LENGTH_LONG).show();
+
 			}
 		});
         
