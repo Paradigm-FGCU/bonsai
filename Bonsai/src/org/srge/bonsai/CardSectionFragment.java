@@ -17,8 +17,7 @@ public class CardSectionFragment extends Fragment {
      * fragment.
      */
 	private Button mKnowButton;
-	private Button mDontKnowButton;
-	private TextView mQuestionTextView;
+	//private Button mDontKnowButton;
 	
     public static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -29,9 +28,9 @@ public class CardSectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
   	
-        View rootView = inflater.inflate(R.layout.fragment_card, container, false);
-        TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-        dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+        final View rootView = inflater.inflate(R.layout.fragment_card, container, false);
+        final TextView questionTextView = (TextView) rootView.findViewById(R.id.section_label);
+        questionTextView.setText("Question "+Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
         
            	
         mKnowButton = (Button) rootView.findViewById(R.id.know_button);
@@ -40,7 +39,10 @@ public class CardSectionFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				// need to use SQLite to fetch questions/answers
+				//questionTextView.setText("testies1234");
+				TextView answerTextView = (TextView) rootView.findViewById(R.id.section_label);
+				answerTextView.setText("Answer");
 			}
 		});
         
