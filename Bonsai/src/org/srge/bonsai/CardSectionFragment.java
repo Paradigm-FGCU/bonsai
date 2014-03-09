@@ -57,7 +57,7 @@ public class CardSectionFragment extends Fragment {
         Bundle savedInstanceState) {
   	
         final View rootView = inflater.inflate(R.layout.fragment_card, container, false);
-        final TextView questionTextView = (TextView) rootView.findViewById(R.id.section_label);
+        final TextView questionTextView = (TextView) rootView.findViewById(R.id.question_text_view);
         questionTextView.setText(defs[getArguments().getInt(ARG_SECTION_NUMBER)-1]);
         
            	
@@ -66,10 +66,8 @@ public class CardSectionFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				// need to use SQLite to fetch questions/answers
-				//questionTextView.setText("testies1234");
-				TextView answerTextView = (TextView) rootView.findViewById(R.id.section_label);
+				TextView answerTextView = (TextView) rootView.findViewById(R.id.question_text_view);
 		        answerTextView.setText(terms[getArguments().getInt(ARG_SECTION_NUMBER)-1]);
 		        Toast.makeText(getActivity(), "Good job, my friend!", Toast.LENGTH_SHORT).show();
 
@@ -82,8 +80,7 @@ public class CardSectionFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				TextView answerTextView = (TextView) rootView.findViewById(R.id.section_label);
+				TextView answerTextView = (TextView) rootView.findViewById(R.id.question_text_view);
 		        answerTextView.setText(terms[getArguments().getInt(ARG_SECTION_NUMBER)-1]);
 		        Toast.makeText(getActivity(), "You should be ashamed!", Toast.LENGTH_SHORT).show();
 				

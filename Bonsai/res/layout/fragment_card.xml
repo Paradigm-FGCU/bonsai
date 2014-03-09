@@ -16,10 +16,19 @@
         android:orientation="vertical" >
 
         <TextView
+            style="@android:style/TextAppearance.Large"
             android:id="@+id/question_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="24dp" />
+
+        <Button
+            android:id="@+id/know_button"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="24dp" />
+            android:text="@string/know_button" />
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"
@@ -27,21 +36,14 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal" >
-
-            <Button
-                style="?android:attr/buttonBarButtonStyle"
-                android:id="@+id/know_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/know_button" />
-
-            <Button
-                style="?android:attr/buttonBarButtonStyle"
-                android:id="@+id/donotknow_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dontknow_button" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/donotknow_button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dontknow_button" />
     </LinearLayout>
 
 </RelativeLayout>
