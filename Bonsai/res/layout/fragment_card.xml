@@ -22,18 +22,21 @@
             android:padding="24dp" />
 
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal" >
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/know_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/know_button" />
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/donotknow_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

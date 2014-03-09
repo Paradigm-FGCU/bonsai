@@ -8,10 +8,11 @@
     <string name="title_section3">Organic Chemistry 3</string>
     <string name="know_button">Know It!</string>
     <string name="dontknow_button">Don\'t Know It</string>
-    <string name="question_1">What is love?</string>
+    <string name="question_1">The branch of chemistry which deals with carbon compounds, including those with no relationship to life.</string>
     <string name="question_2">question2</string>
     <string name="question_3">question3</string>
     <string name="question_4">question4</string>
     <string name="question_5">question5</string>
+    <string name="answer_1">Organic Chemistry</string>
 
 </resources>

@@ -20,6 +20,32 @@ public class CardSectionFragment extends Fragment {
 	private Button mKnowButton;
 	private Button mDontKnowButton;
 	
+	private String[] defs = {"An atom or group of atoms arranged in a particular way that is primarily responsible for the chemical and physical properties of the molecule in which it is found. There are a total of 10 of these.",
+							"Unsaturated hydrocarbons containing at least one carbon-carbon triple bond. Noted by the suffix \"-yne\"",
+							"The reaction of alkanes, alkenes, or alcohols with excess oxygen yields carbon dioxide, water, and heat.",
+							"Flourine (F), Chlorine (Cl), Bromine (Br), and Iodine (I).",
+							"An element that has the capacity to share four electrons in order to achieve a more stable configuration.",
+							"Atomic Number = 6, Protons = 6, Electrons = 6, Atomic Weight = 12.0. Electrons in first energy level = 2; second energy level = 4.",
+							"Contain carbon-to-carbon double or triple bonds.",
+							"Contain only only carbon-to-carbon single bonds. The most chemically inert of all organic compounds.",
+							"Inter-atomic relationship created by the sharing of at least one pair of electrons.",
+							"The branch of chemistry which deals with carbon compounds, including those with no relationship to life."
+	};
+	
+	
+	private String[] terms = {"Functional Group",
+							  "Alkyne",
+							  "Hydrocarbon Combustion",
+							  "Halogens",
+							  "Carbon",
+							  "Atomic Structure of Carbon",
+							  "Unsaturated Hydrocarbon",
+							  "Saturated Hydrocarbond",
+							  "Covalent Bond",
+							  "Organic Chemistry"
+	};
+
+	
     public static final String ARG_SECTION_NUMBER = "section_number";
   
 
@@ -32,7 +58,7 @@ public class CardSectionFragment extends Fragment {
   	
         final View rootView = inflater.inflate(R.layout.fragment_card, container, false);
         final TextView questionTextView = (TextView) rootView.findViewById(R.id.section_label);
-        questionTextView.setText("Question "+Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+        questionTextView.setText(defs[getArguments().getInt(ARG_SECTION_NUMBER)-1]);
         
            	
         mKnowButton = (Button) rootView.findViewById(R.id.know_button);
@@ -44,8 +70,8 @@ public class CardSectionFragment extends Fragment {
 				// need to use SQLite to fetch questions/answers
 				//questionTextView.setText("testies1234");
 				TextView answerTextView = (TextView) rootView.findViewById(R.id.section_label);
-				answerTextView.setText("Answer");
-		        Toast.makeText(getActivity(), "Good Job", Toast.LENGTH_LONG).show();
+		        answerTextView.setText(terms[getArguments().getInt(ARG_SECTION_NUMBER)-1]);
+		        Toast.makeText(getActivity(), "Good job, my friend!", Toast.LENGTH_SHORT).show();
 
 			}
 		});
@@ -58,8 +84,8 @@ public class CardSectionFragment extends Fragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				TextView answerTextView = (TextView) rootView.findViewById(R.id.section_label);
-				answerTextView.setText("Answer");
-		        Toast.makeText(getActivity(), "You should be ashamed!", Toast.LENGTH_LONG).show();
+		        answerTextView.setText(terms[getArguments().getInt(ARG_SECTION_NUMBER)-1]);
+		        Toast.makeText(getActivity(), "You should be ashamed!", Toast.LENGTH_SHORT).show();
 				
 			}
 		});
