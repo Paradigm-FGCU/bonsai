@@ -6,15 +6,15 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/bonsai_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.srge.bonsai.CardActivity"
+            android:name="org.srge.bonsai.Activity_Main"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +22,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity 
+            android:name="org.srge.bonsai.Activity_Main_Menu"    
+            >
+        </activity>
+          <activity 
+            android:name="org.srge.bonsai.CardActivity"    
+            >
+        </activity>
+        <activity 
+            android:name="org.srge.bonsai.Activity_Multi_Menu"    
+            >
+        </activity>
+        <activity 
+            android:name="org.srge.bonsai.Activity_Multi"    
+            >
+        </activity>
+        
     </application>
 
 </manifest>
