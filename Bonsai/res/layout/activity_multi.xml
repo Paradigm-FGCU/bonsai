@@ -15,23 +15,32 @@
             android:id="@+id/radio0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/answer_0"
+            android:textColor="#ff0000ff" />
+        
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/answer_1"
             android:textColor="#ff0000ff" />
-
+        
         <RadioButton
             android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/answer_2"
+            android:textColor="#ff0000ff" />
+        
+        <RadioButton
+            android:id="@+id/radio3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/answer_3"
             android:textColor="#ff0000ff" />
 
-        <RadioButton
-            android:id="@+id/radio1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/answer_2"
-            android:textColor="#ff0000ff" />
+
     </RadioGroup>
 
     <TextView
@@ -42,7 +51,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="92dp"
         android:text="@string/question"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#ff0000ff"
         android:textSize="45sp" />
 
