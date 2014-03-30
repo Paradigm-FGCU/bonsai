@@ -1,22 +1,28 @@
 package org.srge.bonsai;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
-
-	public BonsaiDatabaseHelper(Context context, String name,
-			CursorFactory factory, int version) {
-		super(context, name, factory, version);
-		// TODO Auto-generated constructor stub
+	private static final String DB = "bonsai.sqlite";
+	private static final int VERSION = 1;
+	
+	public BonsaiDatabaseHelper(Context context) {
+		super(context, DB, null, VERSION);
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
-
+		db.execSQL("CREATE TABLE BONSAI (" + 
+				"DECK_ID INTEGER PRIMARY KEY AUTOINCREMENT, DECK_NAME TEXT)");
+		
+		db.execSQL("CREATE TABLE CARDS (" + 
+				"CARD_ID INTEGER PRIMARY KEY AUTOINCREMENT, TERM TEXT, DEFN TEXT, SEEN INTEGER," + 
+				"CORRECT INTEGER, ALT_DEFN1 TEXT, ALT_DEFN2 TEXT, ALT_DEFN3 TEXT," +
+				"DECK_ID INTEGER REFERENCES BONSAI(DECK_ID))");
 	}
 
 	@Override
@@ -24,5 +30,13 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public long insertDeck(String deck) {
+		ContentValues cv = new ContentValues();
+		cv.put("DECK_NAME", deck);
+		return getWritableDatabase().insert("BONSAI", null, cv);	
+	}
+	
+	
 
 }
