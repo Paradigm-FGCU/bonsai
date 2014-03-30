@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Activity_Main_Menu extends Activity {
+public class MainMenuActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -24,7 +24,7 @@ public class Activity_Main_Menu extends Activity {
 	final Button button_multi = (Button) findViewById(R.id.button_multi);
     button_multi.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
-        	Intent intent = new Intent(v.getContext(),Activity_Multi_Menu.class);
+        	Intent intent = new Intent(v.getContext(),MultiMenuActivity.class);
         	startActivityForResult(intent,0);
         }
     });
@@ -32,7 +32,7 @@ public class Activity_Main_Menu extends Activity {
 	final Button button_options = (Button) findViewById(R.id.button_options);
     button_options.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
-        	Intent intent = new Intent(v.getContext(),Activity_Main.class);
+        	Intent intent = new Intent(v.getContext(),SplashActivity.class);
         	startActivityForResult(intent,0);
         }
     });
