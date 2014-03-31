@@ -3,7 +3,6 @@ package org.srge.bonsai;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
@@ -35,6 +34,16 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		ContentValues cv = new ContentValues();
 		cv.put("DECK_NAME", deck);
 		return getWritableDatabase().insert("BONSAI", null, cv);	
+	}
+	
+	public long insertCard(String term, String defn, int seen, int correct,
+							String alt1, String alt2, String alt3) {
+		
+		
+		
+		
+		return correct;
+		
 	}
 	
 	

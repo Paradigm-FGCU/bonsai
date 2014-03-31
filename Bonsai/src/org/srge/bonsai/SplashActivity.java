@@ -1,6 +1,7 @@
 package org.srge.bonsai;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,12 +12,17 @@ public class SplashActivity extends Activity {
 	// Splash screen timer
 	// http://www.androidhive.info/2013/07/how-to-implement-android-splash-screen-2/
 	final static int SPLASH_TIME_OUT = 1000;
+	private BonsaiDatabaseHelper dbHelper;
+	private Context mAppContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_start_screen);
-
+		
+		mAppContext = this.getApplicationContext();
+		dbHelper = new BonsaiDatabaseHelper(mAppContext);
+		
 		new Handler().postDelayed(new Runnable() {
 
 			/*
