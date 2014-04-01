@@ -2,9 +2,44 @@
 <resources>
 
     <string name="app_name">Bonsai</string>
+    
     <string name="action_settings">Settings</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    
+    <string name="title_section">Card</string>
+    
+    <string name="know_button">Know It!</string>
+    
+    <string name="dontknow_button">Don\'t Know It.</string>
+	
+    <string name="start">Start</string>
 
+    <string name="main_menu">Main Menu</string>
+
+    <string name="flash_cards">Flash Cards</string>
+
+    <string name="multiple_choice_">"Multiple Choice "</string>
+
+    <string name="options">Options</string>
+
+    <string name="multiple_choice_menu">Multiple Choice Menu</string>
+
+    <string name="answer_0">state diagram</string>
+    <string name="answer_1">scenario</string>
+    <string name="answer_2">use case diagram</string>
+    <string name="answer_3">requirement</string>
+
+    <string name="question">is a realization of a use-case wherein a specific user executes the use case in a specific way.</string>
+
+    
+
+    <string name="submit">Submit</string>
+
+    
+
+    <string name="timed_quiz">Timed Quiz</string>
+
+    
+
+    <string name="togglebutton">ToggleButton</string>
+    
 </resources>
