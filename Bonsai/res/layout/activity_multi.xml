@@ -50,9 +50,10 @@
         android:layout_above="@+id/radioGroup1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="92dp"
+        android:gravity="center"
         android:text="@string/question"
         android:textColor="#ff0000ff"
-        android:textSize="45sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/button_multi_submit"
