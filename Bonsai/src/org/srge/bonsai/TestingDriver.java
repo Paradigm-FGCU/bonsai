@@ -1,32 +1,52 @@
 package org.srge.bonsai;
 
 import java.util.ArrayList;
+import android.util.Log;
 
 public class TestingDriver {
 	
 	private static ArrayList<CardDeck> deckList;
+	public static ArrayList<String> deckNames;
 	
 	TestingDriver(){
 		initializeCardDeck();
+		initializeDeckNames();
+		
+	}
+	
+	public static void initializeDeckNames(){
+		for(int i =0;i<deckList.size();i++){
+			deckNames.add(deckList.get(i).getDeckName());
+		}
 	}
 	
 	//initiallizes 3 decks for the deck list
 	public static void initializeCardDeck() {
+		deckList = new ArrayList<CardDeck>();
+		deckNames = new ArrayList<String>();
+		
 		CardDeck tempDeck1 = new CardDeck();
 		tempDeck1.setDeckName("My Test Deck 1");
 		initializeCards(tempDeck1);
 		
+		deckList.add(tempDeck1);
+		Log.w("in driver", deckList.get(0).getDeckName());
+		
 		CardDeck tempDeck2 = new CardDeck();
-		tempDeck1.setDeckName("My Test Deck 2");
+		tempDeck2.setDeckName("My Test Deck 2");
 		initializeCards(tempDeck2);
 		
+		deckList.add(tempDeck2);
+
+		Log.w("in driver", deckList.get(1).getDeckName() + " 2");
+		
 		CardDeck tempDeck3 = new CardDeck();
-		tempDeck1.setDeckName("My Test Deck 3");
+		tempDeck3.setDeckName("My Test Deck 3");
 		initializeCards(tempDeck3);
 		
-		deckList.add(tempDeck1);
-		deckList.add(tempDeck2);
 		deckList.add(tempDeck3);
+
+		Log.w("in driver", deckList.get(2).getDeckName() + " 3" );
 		
 		
 	}
@@ -43,6 +63,7 @@ public class TestingDriver {
 		templist.add(temp3);
 		templist.add(temp4);
 		tempDeck.setCardList(templist);
+		
 	}
 	
 	public static ArrayList<CardDeck> getDeckList(){

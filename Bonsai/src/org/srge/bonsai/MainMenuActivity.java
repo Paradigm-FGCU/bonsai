@@ -9,7 +9,7 @@ import android.widget.Button;
 public class MainMenuActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        new TestingDriver();
 	setContentView(R.layout.activity_main_menu);
 	
 	final Button button_flashcard = (Button) findViewById(R.id.button_flashcard);
@@ -32,7 +32,7 @@ public class MainMenuActivity extends Activity {
 	final Button button_options = (Button) findViewById(R.id.button_options);
     button_options.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
-        	Intent intent = new Intent(v.getContext(),SplashActivity.class);
+        	Intent intent = new Intent(v.getContext(),Activity_Options_Menu.class);
         	startActivityForResult(intent,0);
         }
     });

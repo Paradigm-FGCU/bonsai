@@ -14,13 +14,34 @@
         android:textColor="#ff0000ff"
         android:textSize="45sp" />
 
-    <Button
-        android:id="@+id/button1"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewMenu"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:text="@string/options_select_a_deck" />
+        android:layout_marginTop="24dp"
+        android:text="@string/options_current_deck"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/current_deck_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="16dp"
+        android:text="@string/options_no_deck_selected"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/button_change_decks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:text="@string/options_change_decks" />
 
 </RelativeLayout>

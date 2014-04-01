@@ -39,6 +39,14 @@
             android:name="org.srge.bonsai.MultiChoiceActivity"    
             >
         </activity>
+		<activity 
+            android:name="org.srge.bonsai.Activity_Options_Menu"    
+            >
+        </activity>
+        <activity 
+            android:name="org.srge.bonsai.Activity_Select_A_Deck"    
+            >
+        </activity>
         
     </application>
 

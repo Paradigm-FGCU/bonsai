@@ -41,6 +41,10 @@
 
     <string name="togglebutton">ToggleButton</string>
     
-     <string name="options_select_a_deck">Select A Deck</string>
+     <string name="options_change_decks">Change Decks</string>
     
+     <string name="options_current_deck">Current Deck:</string>
+     
+     <string name="options_no_deck_selected">No Deck Currently Selected</string>
+     
 </resources>
