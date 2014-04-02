@@ -47,4 +47,6 @@
      
      <string name="options_no_deck_selected">No Deck Currently Selected</string>
      
+     <string name="main_menu_review_mode">Review Mode</string>
+     
 </resources>

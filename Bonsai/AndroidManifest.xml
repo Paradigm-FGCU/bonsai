@@ -47,6 +47,10 @@
             android:name="org.srge.bonsai.Activity_Select_A_Deck"    
             >
         </activity>
+        <activity 
+            android:name="org.srge.bonsai.Activity_Review_Mode"    
+            >
+        </activity>
         
     </application>
 
