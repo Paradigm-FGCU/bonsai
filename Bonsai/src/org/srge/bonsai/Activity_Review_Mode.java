@@ -46,7 +46,7 @@ public class Activity_Review_Mode extends Activity{
         listDataChild = new HashMap<String,String>();
         ArrayList<CardContent> cardList = RunningInfo.getSelectedDeck().getCardList();
         // Adding child data
-        for(int i=0;i<cardList.size()-1;i++){
+        for(int i=0;i<cardList.size();i++){
         	listDataHeader.add(cardList.get(i).getQuestion());
         	listDataChild.put(listDataHeader.get(i), cardList.get(i).getAnswer());
         }

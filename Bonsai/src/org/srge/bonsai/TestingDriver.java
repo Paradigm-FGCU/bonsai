@@ -27,14 +27,14 @@ public class TestingDriver {
 		
 		CardDeck tempDeck1 = new CardDeck();
 		tempDeck1.setDeckName("My Test Deck 1");
-		initializeCards(tempDeck1);
+		initializeCards1(tempDeck1);
 		
 		deckList.add(tempDeck1);
 		Log.w("in driver", deckList.get(0).getDeckName());
 		
 		CardDeck tempDeck2 = new CardDeck();
 		tempDeck2.setDeckName("My Test Deck 2");
-		initializeCards(tempDeck2);
+		initializeCards2(tempDeck2);
 		
 		deckList.add(tempDeck2);
 
@@ -42,7 +42,7 @@ public class TestingDriver {
 		
 		CardDeck tempDeck3 = new CardDeck();
 		tempDeck3.setDeckName("My Test Deck 3");
-		initializeCards(tempDeck3);
+		initializeCards3(tempDeck3);
 		
 		deckList.add(tempDeck3);
 
@@ -51,17 +51,53 @@ public class TestingDriver {
 		
 	}
 	
-	private static void initializeCards(CardDeck tempDeck) {
-		CardContent temp1 = new CardContent("This is Question 1","Answer1", tempDeck);
-		CardContent temp2 = new CardContent("This is Question 2","Answer2", tempDeck);
-		CardContent temp3 = new CardContent("This is Question 3","Answer3", tempDeck);
-		CardContent temp4 = new CardContent("This is Question 4","Answer4", tempDeck);
+	private static void initializeCards1(CardDeck tempDeck) {
+		CardContent temp1 = new CardContent("Deck1: This is Question 1","Answer1", tempDeck);
+		CardContent temp2 = new CardContent("Deck1: This is Question 2","Answer2", tempDeck);
+		CardContent temp3 = new CardContent("Deck1: This is Question 3","Answer3", tempDeck);
+		CardContent temp4 = new CardContent("Deck1: This is Question 4","Answer4", tempDeck);
 		
 		ArrayList<CardContent> templist = new ArrayList();
 		templist.add(temp1);
 		templist.add(temp2);
 		templist.add(temp3);
 		templist.add(temp4);
+		tempDeck.setCardList(templist);
+		
+	}
+	
+	private static void initializeCards2(CardDeck tempDeck) {
+		CardContent temp1 = new CardContent("Deck2: This is Question 1","Answer1", tempDeck);
+		CardContent temp2 = new CardContent("Deck2: This is Question 2","Answer2", tempDeck);
+		CardContent temp3 = new CardContent("Deck2: This is Question 3","Answer3", tempDeck);
+		CardContent temp4 = new CardContent("Deck2: This is Question 4","Answer4", tempDeck);
+		CardContent temp5 = new CardContent("Deck2: This is Question 5","Answer5", tempDeck);
+		CardContent temp6 = new CardContent("Deck2: This is Question 6","Answer6", tempDeck);
+		
+		ArrayList<CardContent> templist = new ArrayList();
+		templist.add(temp1);
+		templist.add(temp2);
+		templist.add(temp3);
+		templist.add(temp4);
+		templist.add(temp5);
+		templist.add(temp6);
+		tempDeck.setCardList(templist);
+		
+	}
+	
+	private static void initializeCards3(CardDeck tempDeck) {
+		CardContent temp1 = new CardContent("Deck3: This is Question 1","Answer1", tempDeck);
+		CardContent temp2 = new CardContent("Deck3: This is Question 2","Answer2", tempDeck);
+		CardContent temp3 = new CardContent("Deck3: This is Question 3","Answer3", tempDeck);
+		CardContent temp4 = new CardContent("Deck3: This is Question 4","Answer4", tempDeck);
+		CardContent temp5 = new CardContent("Deck3: This is Question 5","Answer5", tempDeck);
+		
+		ArrayList<CardContent> templist = new ArrayList();
+		templist.add(temp1);
+		templist.add(temp2);
+		templist.add(temp3);
+		templist.add(temp4);
+		templist.add(temp5);
 		tempDeck.setCardList(templist);
 		
 	}
