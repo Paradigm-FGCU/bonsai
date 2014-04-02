@@ -1,6 +1,10 @@
 package org.srge.bonsai;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import org.srge.bonsai.CardActivity.Passing;
+import org.srge.bonsai.CardActivity.SectionsPagerAdapter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 
 
@@ -21,7 +26,7 @@ public class CardSectionFragment extends Fragment {
      */
 	private Button mKnowButton;
 	private Button mDontKnowButton;
-	
+	private SectionsPagerAdapter parent;
 	private ArrayList<String> defs;
 	/*private String[] defs = {"An atom or group of atoms arranged in a particular way that is primarily responsible for the chemical and physical properties of the molecule in which it is found. There are a total of 10 of these.",
 							"Unsaturated hydrocarbons containing at least one carbon-carbon triple bond. Noted by the suffix \"-yne\"",
@@ -53,15 +58,18 @@ public class CardSectionFragment extends Fragment {
   
 
     public CardSectionFragment() {
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
-    	
+    	Passing temp = (Passing)getArguments().getSerializable("parent");
+    	parent = temp.getParent();
         final View rootView = inflater.inflate(R.layout.fragment_card, container, false);
         final TextView questionTextView = (TextView) rootView.findViewById(R.id.question_text_view);
-        questionTextView.setText(RunningInfo.getSelectedDeck().getCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion());
+        questionTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion());
         
            	
         mKnowButton = (Button) rootView.findViewById(R.id.know_button);
@@ -71,7 +79,7 @@ public class CardSectionFragment extends Fragment {
 			public void onClick(View v) {
 				// need to use SQLite to fetch questions/answers
 				TextView answerTextView = (TextView) rootView.findViewById(R.id.question_text_view);
-		        answerTextView.setText(RunningInfo.getSelectedDeck().getCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
+		        answerTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
 		        Toast.makeText(getActivity(), "Good job, my friend!", Toast.LENGTH_SHORT).show();
 
 			}
@@ -84,9 +92,15 @@ public class CardSectionFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				TextView answerTextView = (TextView) rootView.findViewById(R.id.question_text_view);
-				answerTextView.setText(RunningInfo.getSelectedDeck().getCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
-		        Toast.makeText(getActivity(), "You should be ashamed!", Toast.LENGTH_SHORT).show();
-				
+				answerTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
+				if(RunningInfo.getFlashCardRepeat()){
+					RunningInfo.addCardByIndex(getArguments().getInt(ARG_SECTION_NUMBER)-1);
+			        Toast.makeText(getActivity(), "Card Added To End", Toast.LENGTH_SHORT).show();
+			        parent.notifyDataSetChanged();
+				}
+				else{
+					Toast.makeText(getActivity(), "Good Try", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
     
@@ -94,5 +108,5 @@ public class CardSectionFragment extends Fragment {
         
         return rootView;
     }
-	
+    
 }

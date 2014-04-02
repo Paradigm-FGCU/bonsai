@@ -1,7 +1,6 @@
 package org.srge.bonsai;
 
 import java.util.ArrayList;
-import android.util.Log;
 
 public class TestingDriver {
 	
@@ -30,23 +29,18 @@ public class TestingDriver {
 		initializeCards1(tempDeck1);
 		
 		deckList.add(tempDeck1);
-		Log.w("in driver", deckList.get(0).getDeckName());
 		
 		CardDeck tempDeck2 = new CardDeck();
 		tempDeck2.setDeckName("My Test Deck 2");
 		initializeCards2(tempDeck2);
 		
 		deckList.add(tempDeck2);
-
-		Log.w("in driver", deckList.get(1).getDeckName() + " 2");
 		
 		CardDeck tempDeck3 = new CardDeck();
 		tempDeck3.setDeckName("My Test Deck 3");
 		initializeCards3(tempDeck3);
 		
 		deckList.add(tempDeck3);
-
-		Log.w("in driver", deckList.get(2).getDeckName() + " 3" );
 		
 		
 	}

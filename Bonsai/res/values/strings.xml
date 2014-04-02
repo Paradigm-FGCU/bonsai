@@ -49,4 +49,8 @@
      
      <string name="main_menu_review_mode">Review Mode</string>
      
+     <string name="options_menu_switch_text">Repeat incorrectly answered cards</string>
+     <string name="options_Flash_Card_Mode">Flash Card Mode:</string>
+      <string name="options_change_quiz_settings">Change Quiz Settings</string>
+      
 </resources>

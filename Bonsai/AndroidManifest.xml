@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <application
@@ -49,6 +49,10 @@
         </activity>
         <activity 
             android:name="org.srge.bonsai.Activity_Review_Mode"    
+            >
+        </activity>
+        <activity 
+            android:name="org.srge.bonsai.QuizSettings"    
             >
         </activity>
         

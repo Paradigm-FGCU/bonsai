@@ -15,7 +15,7 @@
         android:textSize="45sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView_seekbar_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewMenu"
@@ -29,19 +29,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/textView_seekbar_value"
         android:layout_marginTop="16dp"
         android:text="@string/options_no_deck_selected"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Switch
+        android:id="@+id/repeatFlashCardToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="26dp"
+        android:minHeight="@dimen/testHeight"
+        android:minWidth="@dimen/testHeight"
+        android:text="@string/options_menu_switch_text" />
+
+    <Button
+        android:id="@+id/button_quiz_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_change_decks"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="@string/options_change_quiz_settings" />
 
     <Button
         android:id="@+id/button_change_decks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/current_deck_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="23dp"
         android:text="@string/options_change_decks" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_quiz_settings"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:gravity="center"
+        android:text="@string/options_Flash_Card_Mode"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

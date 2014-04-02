@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Switch;
 import android.widget.TextView;
-import android.util.Log;
 
 public class Activity_Options_Menu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,22 @@ public class Activity_Options_Menu extends Activity {
 			}
 		});
 		
+		final Switch mySwitch = (Switch)findViewById(R.id.repeatFlashCardToggle);
+		mySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			    RunningInfo.setFlashCardRepeat(isChecked);
+			}     
+		});
+		
+		final Button quizSettings = (Button)findViewById(R.id.button_quiz_settings);
+		quizSettings.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(),
+						QuizSettings.class);
+				startActivityForResult(intent, 0);
+			}
+		});
 	}
 	
 	protected void onResume(){
