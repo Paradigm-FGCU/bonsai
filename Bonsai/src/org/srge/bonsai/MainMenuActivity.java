@@ -18,7 +18,7 @@ public class MainMenuActivity extends Activity {
         public void onClick(View v) {
         	
         	if(RunningInfo.getSelectedDeck()!=null){
-        		Intent intent = new Intent(v.getContext(),Activity_Review_Mode.class);
+        		Intent intent = new Intent(v.getContext(),ReviewActivity.class);
             	startActivityForResult(intent,0);
         	}
         	else{
@@ -61,7 +61,7 @@ public class MainMenuActivity extends Activity {
 	final Button button_options = (Button) findViewById(R.id.button_options);
     button_options.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
-        	Intent intent = new Intent(v.getContext(),Activity_Options_Menu.class);
+        	Intent intent = new Intent(v.getContext(),OptionsActivity.class);
         	startActivityForResult(intent,0);
         }
     });

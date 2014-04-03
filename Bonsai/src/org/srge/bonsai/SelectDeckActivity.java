@@ -14,7 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
-public class Activity_Select_A_Deck extends ListActivity {
+public class SelectDeckActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

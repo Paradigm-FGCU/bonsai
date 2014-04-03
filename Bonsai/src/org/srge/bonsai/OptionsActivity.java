@@ -10,7 +10,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class Activity_Options_Menu extends Activity {
+public class OptionsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_options_menu);
@@ -27,7 +27,7 @@ public class Activity_Options_Menu extends Activity {
 		button_change_decks.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(),
-						Activity_Select_A_Deck.class);
+						SelectDeckActivity.class);
 				startActivityForResult(intent, 0);
 			}
 		});

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Activity_Review_Mode extends Activity{
+public class ReviewActivity extends Activity{
 	ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;

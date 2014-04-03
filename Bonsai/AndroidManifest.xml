@@ -40,15 +40,15 @@
             >
         </activity>
 		<activity 
-            android:name="org.srge.bonsai.Activity_Options_Menu"    
+            android:name="org.srge.bonsai.OptionsActivity"    
             >
         </activity>
         <activity 
-            android:name="org.srge.bonsai.Activity_Select_A_Deck"    
+            android:name="org.srge.bonsai.SelectDeckActivity"    
             >
         </activity>
         <activity 
-            android:name="org.srge.bonsai.Activity_Review_Mode"    
+            android:name="org.srge.bonsai.ReviewActivity"    
             >
         </activity>
         <activity 
