@@ -12,9 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
+import android.widget.ViewSwitcher;
 import android.util.Log;
 
 
@@ -28,32 +32,10 @@ public class CardSectionFragment extends Fragment {
 	private Button mDontKnowButton;
 	private SectionsPagerAdapter parent;
 	private ArrayList<String> defs;
-	/*private String[] defs = {"An atom or group of atoms arranged in a particular way that is primarily responsible for the chemical and physical properties of the molecule in which it is found. There are a total of 10 of these.",
-							"Unsaturated hydrocarbons containing at least one carbon-carbon triple bond. Noted by the suffix \"-yne\"",
-							"The reaction of alkanes, alkenes, or alcohols with excess oxygen yields carbon dioxide, water, and heat.",
-							"Flourine (F), Chlorine (Cl), Bromine (Br), and Iodine (I).",
-							"An element that has the capacity to share four electrons in order to achieve a more stable configuration.",
-							"Atomic Number = 6, Protons = 6, Electrons = 6, Atomic Weight = 12.0. Electrons in first energy level = 2; second energy level = 4.",
-							"Contain carbon-to-carbon double or triple bonds.",
-							"Contain only only carbon-to-carbon single bonds. The most chemically inert of all organic compounds.",
-							"Inter-atomic relationship created by the sharing of at least one pair of electrons.",
-							"The branch of chemistry which deals with carbon compounds, including those with no relationship to life."
-	};
-	*/
-	
-	private String[] terms = {"Functional Group",
-							  "Alkyne",
-							  "Hydrocarbon Combustion",
-							  "Halogens",
-							  "Carbon",
-							  "Atomic Structure of Carbon",
-							  "Unsaturated Hydrocarbon",
-							  "Saturated Hydrocarbond",
-							  "Covalent Bond",
-							  "Organic Chemistry"
-	};
+	private TextView answerTextView; 
+	private ImageView up_arrow;
+	private ImageView down_arrow;
 
-	
     public static final String ARG_SECTION_NUMBER = "section_number";
   
 
@@ -67,26 +49,66 @@ public class CardSectionFragment extends Fragment {
         Bundle savedInstanceState) {
     	Passing temp = (Passing)getArguments().getSerializable("parent");
     	parent = temp.getParent();
+    	
         final View rootView = inflater.inflate(R.layout.fragment_card, container, false);
         final TextView questionTextView = (TextView) rootView.findViewById(R.id.question_text_view);
         questionTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion());
-        
-           	
+        final ViewSwitcher viewFlipper = (ViewSwitcher)rootView.findViewById(R.id.viewFlipper);
+        answerTextView = (TextView) rootView.findViewById(R.id.question_text_view);
         mKnowButton = (Button) rootView.findViewById(R.id.know_button);
+        mDontKnowButton = (Button) rootView.findViewById(R.id.donotknow_button);
+        up_arrow = (ImageView)rootView.findViewById(R.id.up_arrow);
+        down_arrow = (ImageView)rootView.findViewById(R.id.down_arrow);
+        down_arrow.setVisibility(View.VISIBLE);
+        up_arrow.setVisibility(View.GONE);
+        mDontKnowButton.setVisibility(View.GONE);  
+    	mKnowButton.setVisibility(View.GONE);    
+        viewFlipper.setOnTouchListener(new OnSwipeTouchListener() {
+            public void onSwipeTop() {
+            	up_arrow.setVisibility(View.VISIBLE);
+            	down_arrow.setVisibility(View.GONE);
+            	mKnowButton.setVisibility(View.VISIBLE);
+            	mDontKnowButton.setVisibility(View.VISIBLE);
+            	answerTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
+              
+            }
+
+            public void onSwipeRight() {
+
+
+            }
+
+            public void onSwipeLeft() {
+
+
+
+            }
+
+            public void onSwipeBottom() {
+            	down_arrow.setVisibility(View.VISIBLE);
+                up_arrow.setVisibility(View.GONE);
+            	questionTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion());
+            	mDontKnowButton.setVisibility(View.GONE);  
+            	mKnowButton.setVisibility(View.GONE);  
+            }
+            	
+        });
+
+        
+        
         mKnowButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// need to use SQLite to fetch questions/answers
-				TextView answerTextView = (TextView) rootView.findViewById(R.id.question_text_view);
-		        answerTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
+				
 		        Toast.makeText(getActivity(), "Good job, my friend!", Toast.LENGTH_SHORT).show();
 
 			}
 		});
         
         
-        mDontKnowButton = (Button) rootView.findViewById(R.id.donotknow_button);
+        
         mDontKnowButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -108,5 +130,6 @@ public class CardSectionFragment extends Fragment {
         
         return rootView;
     }
+    
     
 }
