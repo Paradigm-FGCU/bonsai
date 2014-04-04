@@ -1,6 +1,5 @@
 package org.srge.bonsai;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.srge.bonsai.CardActivity.Passing;
@@ -12,14 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 import android.widget.ViewSwitcher;
-import android.util.Log;
 
 
 
