@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 	private static final String DB = "bonsai.sqlite";
@@ -45,7 +46,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		ArrayList<String> allDecks = new ArrayList<String>();
 		
 		Cursor crs = getReadableDatabase().query("DECKS", null, null,
-				null, null, null, "deckId" + " asc");
+				null, null, null, "DECK_ID" + " asc");
 
 		while(crs.moveToNext()){
 		    String uname = crs.getString(crs.getColumnIndex("DECK_NAME"));

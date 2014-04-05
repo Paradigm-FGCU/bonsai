@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -21,13 +22,14 @@ public class SelectDeckActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		mContext = this.getApplicationContext();
 		dbHelper = new BonsaiDatabaseHelper(mContext);
 		
 		
 		
 		setContentView(R.layout.activity_select_a_deck);
-		
+	    Log.v("log", "" + dbHelper.queryDecks());
+
 		ListView listView = getListView();
 		ArrayList<String> deckNames = TestingDriver.deckNames;
 		
