@@ -22,18 +22,20 @@ public class SelectDeckActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
 		mContext = this.getApplicationContext();
 		dbHelper = new BonsaiDatabaseHelper(mContext);
 		
 		
 		
 		setContentView(R.layout.activity_select_a_deck);
-	    Log.v("log", "" + dbHelper.queryDecks());
+	    //Log.v("log", "" + dbHelper.queryDecks());
 
 		ListView listView = getListView();
-		ArrayList<String> deckNames = TestingDriver.deckNames;
+		//ArrayList<String> deckNames = TestingDriver.deckNames;
 		
-		//dbHelper.
+		ArrayList<String> deckNames = dbHelper.queryDecks();
 	
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,deckNames));
 		
