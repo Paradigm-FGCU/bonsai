@@ -11,6 +11,10 @@ public class CardContent {
 	private int mNumberSeen;
 	private int mNumberCorrect;
 	
+	public CardContent() {
+		
+	}
+	
 	public CardContent(String question, String answer, CardDeck parentDeckIn) {
 		mQuestion = question;
 		mAnswer = answer;

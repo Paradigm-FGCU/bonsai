@@ -3,6 +3,7 @@ package org.srge.bonsai;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
+import android.content.Context;
 
 import android.os.Bundle;
 
@@ -15,14 +16,22 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 public class SelectDeckActivity extends ListActivity {
+	private BonsaiDatabaseHelper dbHelper;
+	private Context mContext;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		dbHelper = new BonsaiDatabaseHelper(mContext);
+		
+		
 		
 		setContentView(R.layout.activity_select_a_deck);
 		
 		ListView listView = getListView();
 		ArrayList<String> deckNames = TestingDriver.deckNames;
+		
+		//dbHelper.
 	
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,deckNames));
 		
