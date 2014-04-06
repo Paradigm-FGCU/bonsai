@@ -44,7 +44,7 @@ public class SelectDeckActivity extends ListActivity {
 			    Toast.makeText(getApplicationContext(),
 				temp, Toast.LENGTH_SHORT).show();
 
-			    CardDeck temp2 = new CardDeck("orgochem", dbHelper.getAllCardsFromDeck(position+1));
+			    DeckInfo temp2 = new DeckInfo("orgochem", dbHelper.getAllCardsFromDeck(position+1));
 			    RunningInfo.setSelectedDeck(temp2);
 			}
 		});

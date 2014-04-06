@@ -2,17 +2,17 @@ package org.srge.bonsai;
 
 import java.util.ArrayList;
 
-public class CardDeck {
+public class DeckInfo {
 	private String mdeckName;
-	private ArrayList<CardContent> cardList;
+	private ArrayList<CardInfo> cardList;
 	private double mQuizAverage;
 	private int mQuizCount;
 	
-	CardDeck(){
+	DeckInfo(){
 		
 	}
 	
-	CardDeck(String deckNameIn, ArrayList<CardContent> cardListIn){
+	DeckInfo(String deckNameIn, ArrayList<CardInfo> cardListIn){
 		mdeckName = deckNameIn;
 		cardList = cardListIn;
 	}
@@ -36,11 +36,11 @@ public class CardDeck {
 	/*
 	 * Setters and Getters
 	 */
-	public ArrayList<CardContent> getCardList(){
+	public ArrayList<CardInfo> getCardList(){
 		return cardList;
 	}
 	
-	public void setCardList(ArrayList<CardContent> cardListIn){
+	public void setCardList(ArrayList<CardInfo> cardListIn){
 		cardList = cardListIn;
 	}
 	

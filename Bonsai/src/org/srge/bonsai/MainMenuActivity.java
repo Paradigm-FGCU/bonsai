@@ -34,7 +34,7 @@ public class MainMenuActivity extends Activity {
         public void onClick(View v) {
         	
         	if(RunningInfo.getSelectedDeck()!=null){
-        		Intent intent = new Intent(v.getContext(),CardActivity.class);
+        		Intent intent = new Intent(v.getContext(),FlashActivity.class);
             	startActivityForResult(intent,0);
         	}
         	else{

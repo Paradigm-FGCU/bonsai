@@ -11,7 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
 
-public class CardActivity extends FragmentActivity {
+public class FlashActivity extends FragmentActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -68,9 +68,9 @@ public class CardActivity extends FragmentActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a DummySectionFragment (defined as a static inner class
             // below) with the page number as its lone argument.
-            Fragment fragment = new CardSectionFragment();
+            Fragment fragment = new FlashSectionFragment();
             Bundle args = new Bundle();
-            args.putInt(CardSectionFragment.ARG_SECTION_NUMBER, position + 1);
+            args.putInt(FlashSectionFragment.ARG_SECTION_NUMBER, position + 1);
             args.putSerializable("parent", new Passing(this));
             fragment.setArguments(args);
             return fragment;
@@ -95,12 +95,12 @@ public class CardActivity extends FragmentActivity {
     class Passing implements Serializable{
 
 		private static final long serialVersionUID = 1L;
-		private CardActivity.SectionsPagerAdapter parent;
+		private FlashActivity.SectionsPagerAdapter parent;
 		
-		Passing(CardActivity.SectionsPagerAdapter temp){
+		Passing(FlashActivity.SectionsPagerAdapter temp){
 			parent = temp;
 		}
-		public CardActivity.SectionsPagerAdapter getParent(){
+		public FlashActivity.SectionsPagerAdapter getParent(){
 			return parent;
 		}
 		

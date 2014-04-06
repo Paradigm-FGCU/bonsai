@@ -57,8 +57,8 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 
-	public ArrayList<CardContent> getAllCardsFromDeck(int id) {
-		ArrayList<CardContent> allCardsFromDeck = new ArrayList<CardContent>();
+	public ArrayList<CardInfo> getAllCardsFromDeck(int id) {
+		ArrayList<CardInfo> allCardsFromDeck = new ArrayList<CardInfo>();
 		
 		Cursor wrapped = getReadableDatabase().query("CARDS", null, // all
 																		// columns
@@ -76,14 +76,14 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 			    String TERM = wrapped.getString(wrapped.getColumnIndex("TERM"));
 				String DEFN = wrapped.getString(wrapped.getColumnIndex("DEFN"));
 				
-				allCardsFromDeck.add(new CardContent(TERM,DEFN, new CardDeck()));
+				allCardsFromDeck.add(new CardInfo(TERM,DEFN, new DeckInfo()));
 			}
 		
 		return allCardsFromDeck;
 	}
 	
-	public CardDeck getCardDeckFormat(String name, ArrayList<CardContent> cardarraylist) {
-		CardDeck cardDeckFormat = new CardDeck(name, cardarraylist);
+	public DeckInfo getCardDeckFormat(String name, ArrayList<CardInfo> cardarraylist) {
+		DeckInfo cardDeckFormat = new DeckInfo(name, cardarraylist);
 		
 		// add stats later;
 		
@@ -115,8 +115,8 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
         }
         
  
-        public CardContent getCard() {
-            CardContent card = new CardContent();
+        public CardInfo getCard() {
+            CardInfo card = new CardInfo();
             card.setId((int) getInt(getColumnIndex("CARD_ID")));
             card.setQuestion(getString(getColumnIndex("TERM")));
             return card;
