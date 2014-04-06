@@ -2,48 +2,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context=".CardSectionFragment" >
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical" >
-
+        
         <TextView
-            style="@android:style/TextAppearance.Large"
-            android:id="@+id/question_text_view"
+        android:id="@+id/question_text_view"
+        style="@android:style/TextAppearance.Large"
+        android:layout_width="match_parent"
+        android:layout_height="301dp"
+        android:padding="24dp" />
+
+    <TextView
+        android:id="@+id/section_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
+        <ViewSwitcher
+            android:id="@+id/viewFlipper"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="24dp" />
+            android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/know_button"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/know_button" />
+            <LinearLayout
+                android:id="@+id/Container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:orientation="vertical" >
 
-        <LinearLayout
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal" >
-        </LinearLayout>
+                <Button
+                    android:id="@+id/know_button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:text="@string/know_button" />
 
-        <Button
-            android:id="@+id/donotknow_button"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dontknow_button" />
-    </LinearLayout>
+                <Button
+                    android:id="@+id/donotknow_button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="95dp"
+                    android:text="@string/dontknow_button" />
+
+                <ImageView
+                    android:id="@+id/down_arrow"
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/down_arrow" />
+
+            </LinearLayout>
+
+        </ViewSwitcher>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/up_arrow"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/up_arrow" />
 
 </RelativeLayout>

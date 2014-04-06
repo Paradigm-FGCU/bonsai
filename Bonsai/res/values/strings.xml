@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Bonsai</string>
@@ -7,9 +6,9 @@
     
     <string name="title_section">Card</string>
     
-    <string name="know_button">Know It!</string>
+    <string name="know_button">Knew It!</string>
     
-    <string name="dontknow_button">Don\'t Know It.</string>
+    <string name="dontknow_button">Didn\'t Know It.</string>
 	
     <string name="start">Start</string>
 
@@ -30,7 +29,7 @@
 
     <string name="question">is a realization of a use-case wherein a specific user executes the use case in a specific way.</string>
 
-    
+    <string name="Options">Options</string>
 
     <string name="submit">Submit</string>
 
@@ -42,4 +41,16 @@
 
     <string name="togglebutton">ToggleButton</string>
     
+     <string name="options_change_decks">Change Decks</string>
+    
+     <string name="options_current_deck">Current Deck:</string>
+     
+     <string name="options_no_deck_selected">No Deck Currently Selected</string>
+     
+     <string name="main_menu_review_mode">Review Mode</string>
+     
+     <string name="options_menu_switch_text">Repeat incorrectly answered cards</string>
+     <string name="options_Flash_Card_Mode">Flash Card Mode:</string>
+      <string name="options_change_quiz_settings">Change Quiz Settings</string>
+      
 </resources>

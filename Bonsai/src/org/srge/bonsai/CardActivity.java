@@ -1,5 +1,6 @@
 package org.srge.bonsai;
 
+import java.io.Serializable;
 import java.util.Locale;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -70,6 +71,7 @@ public class CardActivity extends FragmentActivity {
             Fragment fragment = new CardSectionFragment();
             Bundle args = new Bundle();
             args.putInt(CardSectionFragment.ARG_SECTION_NUMBER, position + 1);
+            args.putSerializable("parent", new Passing(this));
             fragment.setArguments(args);
             return fragment;
         }
@@ -77,7 +79,7 @@ public class CardActivity extends FragmentActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 10;
+            return RunningInfo.getWorkingCardList().size();
         }
 
         @Override
@@ -88,6 +90,20 @@ public class CardActivity extends FragmentActivity {
 
             //return null;
         }
+    }
+    
+    class Passing implements Serializable{
+
+		private static final long serialVersionUID = 1L;
+		private CardActivity.SectionsPagerAdapter parent;
+		
+		Passing(CardActivity.SectionsPagerAdapter temp){
+			parent = temp;
+		}
+		public CardActivity.SectionsPagerAdapter getParent(){
+			return parent;
+		}
+		
     }
 
 }
