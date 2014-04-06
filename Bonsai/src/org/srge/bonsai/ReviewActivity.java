@@ -44,7 +44,7 @@ public class ReviewActivity extends Activity{
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String,String>();
-        ArrayList<CardContent> cardList = RunningInfo.getSelectedDeck().getCardList();
+        ArrayList<CardInfo> cardList = RunningInfo.getSelectedDeck().getCardList();
         // Adding child data
         for(int i=0;i<cardList.size();i++){
         	listDataHeader.add(cardList.get(i).getQuestion());

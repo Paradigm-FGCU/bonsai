@@ -2,22 +2,22 @@ package org.srge.bonsai;
 
 import java.util.ArrayList;
 
-public class CardContent {
+public class CardInfo {
 	public static final String DatabaseName = "bonsai.sqlite3";
 	private String mQuestion;
 	private String mAnswer;
 	private ArrayList<String> mFakeAnswers;
-	private CardDeck parentDeck;
+	private DeckInfo parentDeck;
 	private int mNumberSeen;
 	private int mNumberCorrect;
 	
-	public CardContent(String question, String answer, CardDeck parentDeckIn) {
+	public CardInfo(String question, String answer, DeckInfo parentDeckIn) {
 		mQuestion = question;
 		mAnswer = answer;
 		parentDeck = parentDeckIn; 
 	}
 	
-	public CardContent(String question, String answer,ArrayList<String> fakeAnswers,CardDeck parentDeckIn) {
+	public CardInfo(String question, String answer,ArrayList<String> fakeAnswers,DeckInfo parentDeckIn) {
 		mQuestion = question;
 		mAnswer = answer;
 		parentDeck = parentDeckIn; 
@@ -73,7 +73,7 @@ public class CardContent {
 		this.mNumberSeen++;
 	}
 	
-	public CardDeck getParentDeck(){
+	public DeckInfo getParentDeck(){
 		return parentDeck;
 	}
 }

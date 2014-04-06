@@ -9,15 +9,15 @@ import java.util.Queue;
 //then sorts into priority queue based on how many times it was incorrect
 //return newly made deck
 public class CardSort {
-	private static ArrayList<CardContent> incorrect_list;
+	private static ArrayList<CardInfo> incorrect_list;
 	static PriorityQueue<Object> pq = new PriorityQueue<Object>();
 	
     Comparator<Object> comparator = new CardComparator();
-    ArrayList<CardContent> cardList = RunningInfo.getSelectedDeck().getCardList();
+    ArrayList<CardInfo> cardList = RunningInfo.getSelectedDeck().getCardList();
     PriorityQueue<Object> queue = new PriorityQueue<Object>(cardList.size(), comparator);
 
 	
-	public static ArrayList<CardContent> add_incorrect_list(int card_number) {
+	public static ArrayList<CardInfo> add_incorrect_list(int card_number) {
 		RunningInfo.getWorkingCardList().get(card_number);
 		incorrect_list.add(RunningInfo.getWorkingCardList().get(card_number));	
 		pq.offer(RunningInfo.getWorkingCardList().get(card_number));

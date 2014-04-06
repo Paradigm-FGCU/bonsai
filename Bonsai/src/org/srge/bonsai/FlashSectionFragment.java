@@ -3,8 +3,11 @@ package org.srge.bonsai;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import org.srge.bonsai.CardActivity.Passing;
-import org.srge.bonsai.CardActivity.SectionsPagerAdapter;
+import org.srge.bonsai.FlashActivity.Passing;
+import org.srge.bonsai.FlashActivity.SectionsPagerAdapter;
+import org.srge.bonsai.R;
+import org.srge.bonsai.R.id;
+import org.srge.bonsai.R.layout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,7 +26,7 @@ import android.util.Log;
 
 
 
-public class CardSectionFragment extends Fragment {
+public class FlashSectionFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -39,7 +42,7 @@ public class CardSectionFragment extends Fragment {
     public static final String ARG_SECTION_NUMBER = "section_number";
   
 
-    public CardSectionFragment() {
+    public FlashSectionFragment() {
 
     }
 
