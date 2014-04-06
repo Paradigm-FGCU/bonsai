@@ -3,11 +3,13 @@ package org.srge.bonsai;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
+import android.content.Context;
 
 import android.os.Bundle;
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -15,14 +17,22 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 public class SelectDeckActivity extends ListActivity {
+	private BonsaiDatabaseHelper dbHelper;
+	private Context mContext;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.activity_select_a_deck);
 		
+		mContext = this.getApplicationContext();
+		dbHelper = new BonsaiDatabaseHelper(mContext);
+				
+		setContentView(R.layout.activity_select_a_deck);
+
 		ListView listView = getListView();
-		ArrayList<String> deckNames = TestingDriver.deckNames;
+		
+		//ArrayList<String> deckNames = TestingDriver.deckNames;
+		ArrayList<String> deckNames = dbHelper.getDecksList();
 	
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,deckNames));
 		
@@ -33,7 +43,9 @@ public class SelectDeckActivity extends ListActivity {
 				String temp = "New active deck is: " + ((TextView) view).getText().toString();
 			    Toast.makeText(getApplicationContext(),
 				temp, Toast.LENGTH_SHORT).show();
-			    RunningInfo.setSelectedDeck(TestingDriver.getDeckList().get(position));
+
+			    DeckInfo temp2 = new DeckInfo("orgochem", dbHelper.getAllCardsFromDeck(position+1));
+			    RunningInfo.setSelectedDeck(temp2);
 			}
 		});
 		
