@@ -117,7 +117,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
         
  
         public CardInfo getCard() {
-            CardInfo card = new CardInfo();
+            CardInfo card = new CardInfo(null, null, null, null);
             card.setId((int) getInt(getColumnIndex("CARD_ID")));
             card.setQuestion(getString(getColumnIndex("TERM")));
             return card;

@@ -4,10 +4,6 @@ import java.io.Serializable;
 import java.util.Locale;
 
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
-import org.srge.bonsai.R.menu;
-import org.srge.bonsai.R.string;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
