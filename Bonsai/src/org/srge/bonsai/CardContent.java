@@ -3,13 +3,13 @@ package org.srge.bonsai;
 import java.util.ArrayList;
 
 public class CardContent {
-	public static final String DatabaseName = "bonsai.sqlite3";
 	private String mQuestion;
 	private String mAnswer;
 	private ArrayList<String> mFakeAnswers;
 	private CardDeck parentDeck;
 	private int mNumberSeen;
 	private int mNumberCorrect;
+	private int mId;
 	
 	public CardContent() {
 		
@@ -79,6 +79,11 @@ public class CardContent {
 	
 	public CardDeck getParentDeck(){
 		return parentDeck;
+	}
+
+	public void setId(int id) {
+		this.mId = id;
+		
 	}
 }
 

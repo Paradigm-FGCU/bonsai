@@ -26,16 +26,13 @@ public class SelectDeckActivity extends ListActivity {
 		
 		mContext = this.getApplicationContext();
 		dbHelper = new BonsaiDatabaseHelper(mContext);
-		
-		
-		
+				
 		setContentView(R.layout.activity_select_a_deck);
-	    //Log.v("log", "" + dbHelper.queryDecks());
 
 		ListView listView = getListView();
-		//ArrayList<String> deckNames = TestingDriver.deckNames;
 		
-		ArrayList<String> deckNames = dbHelper.queryDecks();
+		//ArrayList<String> deckNames = TestingDriver.deckNames;
+		ArrayList<String> deckNames = dbHelper.getDecksList();
 	
 		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,deckNames));
 		
@@ -46,7 +43,9 @@ public class SelectDeckActivity extends ListActivity {
 				String temp = "New active deck is: " + ((TextView) view).getText().toString();
 			    Toast.makeText(getApplicationContext(),
 				temp, Toast.LENGTH_SHORT).show();
-			    RunningInfo.setSelectedDeck(TestingDriver.getDeckList().get(position));
+
+			    CardDeck temp2 = new CardDeck("orgochem", dbHelper.getAllCardsFromDeck(position+1));
+			    RunningInfo.setSelectedDeck(temp2);
 			}
 		});
 		

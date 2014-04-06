@@ -3,7 +3,6 @@ package org.srge.bonsai;
 import java.util.ArrayList;
 
 public class CardDeck {
-	public static final String DatabaseName = "bonsai.sqlite3";
 	private String mdeckName;
 	private ArrayList<CardContent> cardList;
 	private double mQuizAverage;

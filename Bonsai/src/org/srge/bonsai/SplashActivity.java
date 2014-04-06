@@ -43,11 +43,11 @@ public class SplashActivity extends Activity {
 		mAppContext = this.getApplicationContext();
 		dbHelper = new BonsaiDatabaseHelper(mAppContext);
 		
-		dbHelper.insertDeck("Organic Chemistry");
+		//dbHelper.insertDeck("Organic Chemistry");
 		
-		for(int i=0; i<defs.length-1; i++) {
-			dbHelper.insertCard(1, terms[i], defs[i], 0, 0, null, null, null);
-		}
+		//for(int i=0; i<defs.length-1; i++) {
+		//	dbHelper.insertCard(1, terms[i], defs[i], 0, 0, null, null, null);
+		//}
 
 		dbHelper.close();
 		

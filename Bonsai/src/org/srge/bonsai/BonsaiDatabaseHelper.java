@@ -42,7 +42,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	
-	public ArrayList<String> queryDecks() {
+	public ArrayList<String> getDecksList() {
 		ArrayList<String> allDecks = new ArrayList<String>();
 		
 		Cursor crs = getReadableDatabase().query("DECKS", null, null,
@@ -57,16 +57,37 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 
-	public CardCursor queryCard(long id) {
+	public ArrayList<CardContent> getAllCardsFromDeck(int id) {
+		ArrayList<CardContent> allCardsFromDeck = new ArrayList<CardContent>();
+		
 		Cursor wrapped = getReadableDatabase().query("CARDS", null, // all
 																		// columns
-				"DECK_ID" + " = ?", // look for a run ID
+				"DECK_ID" + " = ?", // look for a  ID
 				new String[] { String.valueOf(id) }, // with this value
 				null, // group by
 				null, // order by
 				null, // having
-				"1"); // limit 1 row
-		return new CardCursor(wrapped);
+				null); // limit 1 row
+		
+		
+
+
+			while(wrapped.moveToNext()){
+			    String TERM = wrapped.getString(wrapped.getColumnIndex("TERM"));
+				String DEFN = wrapped.getString(wrapped.getColumnIndex("DEFN"));
+				
+				allCardsFromDeck.add(new CardContent(TERM,DEFN, new CardDeck()));
+			}
+		
+		return allCardsFromDeck;
+	}
+	
+	public CardDeck getCardDeckFormat(String name, ArrayList<CardContent> cardarraylist) {
+		CardDeck cardDeckFormat = new CardDeck(name, cardarraylist);
+		
+		// add stats later;
+		
+		return cardDeckFormat;
 	}
 
 	public long insertCard(int deckId, String term, String defn, int seen,
@@ -86,6 +107,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 
 	}
 	
+	
     public static class CardCursor extends CursorWrapper {
         
         public CardCursor(Cursor c) {
@@ -94,10 +116,9 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
         
  
         public CardContent getCard() {
-
             CardContent card = new CardContent();
-            //card.setId(getLong(getColumnIndex(COLUMN_RUN_ID)));
-            //card.setStartDate(new Date(getLong(getColumnIndex(COLUMN_RUN_START_DATE))));
+            card.setId((int) getInt(getColumnIndex("CARD_ID")));
+            card.setQuestion(getString(getColumnIndex("TERM")));
             return card;
         }
     }
