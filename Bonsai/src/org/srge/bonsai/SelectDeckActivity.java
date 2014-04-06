@@ -43,7 +43,7 @@ public class SelectDeckActivity extends ListActivity {
 				String temp = "New active deck is: " + ((TextView) view).getText().toString();
 			    Toast.makeText(getApplicationContext(),
 				temp, Toast.LENGTH_SHORT).show();
-
+			    RunningInfo.setSelectedDeck(TestingDriver.getDeckList().get(position));
 			    DeckInfo temp2 = new DeckInfo("orgochem", dbHelper.getAllCardsFromDeck(position+1));
 			    RunningInfo.setSelectedDeck(temp2);
 			}
