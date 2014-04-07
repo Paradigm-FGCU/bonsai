@@ -33,15 +33,14 @@ public class CustomListAdapter extends ArrayAdapter {
             LayoutInflater vi = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mView = vi.inflate(id, null);
         }
-        Log.w("custom list adapter", "1");
-        TextView text = (TextView) mView.findViewById(R.layout.list_item);
-        Log.w("custom list adapter", "2");
+
+        TextView text = (TextView) mView.findViewById(R.id.textView);
+
 
         if(text!=null && items.get(position) != null )
         {
             text.setTextColor(Color.WHITE);
             text.setText(items.get(position));
-
 
         }
 

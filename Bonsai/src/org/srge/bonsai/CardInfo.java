@@ -3,8 +3,8 @@ package org.srge.bonsai;
 import java.util.ArrayList;
 
 public class CardInfo {
-	private String mQuestion;
-	private String mAnswer;
+	private String mDefinition;
+	private String mTerm;
 	private ArrayList<String> mFakeAnswers;
 	private DeckInfo parentDeck;
 	private int mNumberSeen;
@@ -12,14 +12,14 @@ public class CardInfo {
 	private int mId;
 	
 	public CardInfo(String question, String answer, DeckInfo parentDeckIn) {
-		mQuestion = question;
-		mAnswer = answer;
+		mDefinition = question;
+		mTerm = answer;
 		parentDeck = parentDeckIn; 
 	}
 	
-	public CardInfo(String question, String answer,ArrayList<String> fakeAnswers,DeckInfo parentDeckIn) {
-		mQuestion = question;
-		mAnswer = answer;
+	public CardInfo(String definition, String term,ArrayList<String> fakeAnswers,DeckInfo parentDeckIn) {
+		mDefinition = definition;
+		mTerm = term;
 		parentDeck = parentDeckIn; 
 		mFakeAnswers = fakeAnswers;
 	}
@@ -29,19 +29,19 @@ public class CardInfo {
 	}
 
 	public String getQuestion() {
-		return mQuestion;
+		return mDefinition;
 	}
 
 	public void setQuestion(String question) {
-		mQuestion = question;
+		mDefinition = question;
 	}
 
 	public String getAnswer() {
-		return mAnswer;
+		return mTerm;
 	}
 
 	public void setAnswer(String answer) {
-		mAnswer = answer;
+		mTerm = answer;
 	}
 	
 	public ArrayList<String> getFakeAnswers() {

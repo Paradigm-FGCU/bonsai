@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textViewMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/main_menu"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ff0000ff"
-        android:textSize="45sp" />
-  
+    android:layout_height="match_parent"
+    android:background="@drawable/background" >
+  	
+    
     <Button
         android:id="@+id/button_flashcard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_multi"
         android:layout_centerHorizontal="true"
-        android:text="@string/flash_cards" />
+        android:text="@string/flash_cards"
+        android:background="@drawable/blue_button_9_patch"
+        android:textColor="#FFFFFF"  />
     
     <Button
         android:id="@+id/button_multi"
@@ -28,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/multiple_choice_" />
+        android:text="@string/multiple_choice_"
+        android:background="@drawable/blue_button_9_patch"
+        android:textColor="#FFFFFF"  />
 
     <Button
         android:id="@+id/button_options"
@@ -36,7 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/button_multi"
-        android:text="@string/options" />
+        android:text="@string/options" 
+        android:background="@drawable/blue_button_9_patch"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/button_Review_Mode"
@@ -44,6 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_flashcard"
         android:layout_centerHorizontal="true"
-        android:text="@string/main_menu_review_mode" />
+        android:text="@string/main_menu_review_mode"
+        android:background="@drawable/blue_button_9_patch"
+        android:textColor="#FFFFFF" 
+        />
 
 </RelativeLayout>

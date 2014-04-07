@@ -46,10 +46,10 @@ public class TestingDriver {
 	}
 	
 	private static void initializeCards1(DeckInfo tempDeck) {
-		CardInfo temp1 = new CardInfo("Deck1: This is Question 1","Answer1", tempDeck);
-		CardInfo temp2 = new CardInfo("Deck1: This is Question 2","Answer2", tempDeck);
-		CardInfo temp3 = new CardInfo("Deck1: This is Question 3","Answer3", tempDeck);
-		CardInfo temp4 = new CardInfo("Deck1: This is Question 4","Answer4", tempDeck);
+		CardInfo temp1 = new CardInfo("Deck1: This is Term 1","Definition 1", tempDeck);
+		CardInfo temp2 = new CardInfo("Deck1: This is Term 2","Definition 2", tempDeck);
+		CardInfo temp3 = new CardInfo("Deck1: This is Term 3","Definition 3", tempDeck);
+		CardInfo temp4 = new CardInfo("Deck1: This is Term 4","Definition 4", tempDeck);
 		
 		ArrayList<CardInfo> templist = new ArrayList();
 		templist.add(temp1);
@@ -61,12 +61,12 @@ public class TestingDriver {
 	}
 	
 	private static void initializeCards2(DeckInfo tempDeck) {
-		CardInfo temp1 = new CardInfo("Deck2: This is Question 1","Answer1", tempDeck);
-		CardInfo temp2 = new CardInfo("Deck2: This is Question 2","Answer2", tempDeck);
-		CardInfo temp3 = new CardInfo("Deck2: This is Question 3","Answer3", tempDeck);
-		CardInfo temp4 = new CardInfo("Deck2: This is Question 4","Answer4", tempDeck);
-		CardInfo temp5 = new CardInfo("Deck2: This is Question 5","Answer5", tempDeck);
-		CardInfo temp6 = new CardInfo("Deck2: This is Question 6","Answer6", tempDeck);
+		CardInfo temp1 = new CardInfo("Deck2: This is Term 1","Definition 1", tempDeck);
+		CardInfo temp2 = new CardInfo("Deck2: This is Term 2","Definition 2", tempDeck);
+		CardInfo temp3 = new CardInfo("Deck2: This is Term 3","Definition 3", tempDeck);
+		CardInfo temp4 = new CardInfo("Deck2: This is Term 4","Definition 4", tempDeck);
+		CardInfo temp5 = new CardInfo("Deck2: This is Term 5","Definition 5", tempDeck);
+		CardInfo temp6 = new CardInfo("Deck2: This is Term 6","Definition 6", tempDeck);
 		
 		ArrayList<CardInfo> templist = new ArrayList();
 		templist.add(temp1);
@@ -80,11 +80,11 @@ public class TestingDriver {
 	}
 	
 	private static void initializeCards3(DeckInfo tempDeck) {
-		CardInfo temp1 = new CardInfo("Deck3: This is Question 1","Answer1", tempDeck);
-		CardInfo temp2 = new CardInfo("Deck3: This is Question 2","Answer2", tempDeck);
-		CardInfo temp3 = new CardInfo("Deck3: This is Question 3","Answer3", tempDeck);
-		CardInfo temp4 = new CardInfo("Deck3: This is Question 4","Answer4", tempDeck);
-		CardInfo temp5 = new CardInfo("Deck3: This is Question 5","Answer5", tempDeck);
+		CardInfo temp1 = new CardInfo("Deck3: This is Term 1","Definition 1", tempDeck);
+		CardInfo temp2 = new CardInfo("Deck3: This is Term 2","Definition 2", tempDeck);
+		CardInfo temp3 = new CardInfo("Deck3: This is Term 3","Definition 3", tempDeck);
+		CardInfo temp4 = new CardInfo("Deck3: This is Term 4","Definition 4", tempDeck);
+		CardInfo temp5 = new CardInfo("Deck3: This is Term 5","Definition 5", tempDeck);
 		
 		ArrayList<CardInfo> templist = new ArrayList();
 		templist.add(temp1);

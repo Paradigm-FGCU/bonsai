@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <TextView
-        android:id="@+id/textViewMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/Options"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ff0000ff"
-        android:textSize="45sp" />
+    android:layout_height="match_parent"
+    android:background="@drawable/background" >
 
     <TextView
         android:id="@+id/textView_seekbar_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewMenu"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:text="@string/options_current_deck"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/current_deck_text"
@@ -31,20 +22,21 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView_seekbar_value"
         android:layout_marginTop="16dp"
-        android:text="@string/options_no_deck_selected"
         android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="@string/options_no_deck_selected"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
 
     <Switch
         android:id="@+id/repeatFlashCardToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="26dp"
         android:minHeight="@dimen/testHeight"
         android:minWidth="@dimen/testHeight"
-        android:text="@string/options_menu_switch_text" />
+        android:text="@string/options_menu_switch_text"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/button_quiz_settings"
@@ -53,7 +45,9 @@
         android:layout_below="@+id/button_change_decks"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
-        android:text="@string/options_change_quiz_settings" />
+        android:background="@drawable/blue_button_9_patch"
+        android:text="@string/options_change_quiz_settings"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/button_change_decks"
@@ -62,7 +56,9 @@
         android:layout_below="@+id/current_deck_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
-        android:text="@string/options_change_decks" />
+        android:background="@drawable/blue_button_9_patch"
+        android:text="@string/options_change_decks"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/textView2"
@@ -73,6 +69,8 @@
         android:layout_marginTop="45dp"
         android:gravity="center"
         android:text="@string/options_Flash_Card_Mode"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
 </RelativeLayout>
