@@ -11,25 +11,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.support.v7.widget.ShareActionProvider;
 import android.widget.Toast;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 
 public class MainMenuActivity extends ActionBarActivity  {
-	private ShareActionProvider mShareActionProvider;
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
-
-		// Inflate the menu items for use in the action bar
+	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	 // Set up ShareActionProvider's default share intent
-	    MenuItem shareItem = menu.findItem(R.id.resources);
-	    mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
-	    mShareActionProvider.setShareIntent(getDefaultIntent());
-	    
 	    inflater.inflate(R.menu.action_bar_menu, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
@@ -43,12 +32,6 @@ public class MainMenuActivity extends ActionBarActivity  {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
-	}
-	
-	private Intent getDefaultIntent() {
-	    Intent intent = new Intent(Intent.ACTION_SEND);
-	    intent.setType("image/*");
-	    return intent;
 	}
 	
 	protected void onCreate(Bundle savedInstanceState) {
