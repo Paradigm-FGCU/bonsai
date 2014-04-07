@@ -27,7 +27,8 @@ public class MainMenuActivity extends ActionBarActivity  {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.resources:
-	            
+	        	Intent intent = new Intent(this.findViewById(android.R.id.content).getContext(),PeriodicTable.class);
+            	startActivityForResult(intent,0);
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -39,8 +40,8 @@ public class MainMenuActivity extends ActionBarActivity  {
         new TestingDriver();
 	setContentView(R.layout.activity_main_menu);
 	
-	android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-	
+	ActionBar ab = getActionBar();
+    ab.setTitle("Bonsai: Main Menu");
 	
 	final Button button_ReviewMode = (Button) findViewById(R.id.button_Review_Mode);
 	button_ReviewMode.setOnClickListener(new View.OnClickListener() {

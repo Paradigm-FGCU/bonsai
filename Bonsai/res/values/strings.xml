@@ -54,5 +54,10 @@
       <string name="options_change_quiz_settings">Change Quiz Settings</string>
       
        <string name="resources">Additional Resources</string>
+       
+       <string name="card_order">Card Order</string>
+       <string name="in_order">In Order</string>
+       <string name="random">Random</string>
+       <string name="hardest_first">Hardest First</string>
       
 </resources>
