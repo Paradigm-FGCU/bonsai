@@ -1,4 +1,8 @@
-package org.srge.bonsai;
+package org.bonsai.activities;
+
+import org.srge.bonsai.R;
+import org.srge.bonsai.R.id;
+import org.srge.bonsai.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

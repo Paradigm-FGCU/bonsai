@@ -1,4 +1,11 @@
-package org.srge.bonsai;
+package org.bonsai.activities;
+
+import org.bonsai.util.CActionBarActivity;
+import org.srge.bonsai.R;
+import org.srge.bonsai.R.id;
+import org.srge.bonsai.R.layout;
+import org.srge.card.RunningInfo;
+import org.srge.card.TestingDriver;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -14,26 +21,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.support.v7.app.ActionBarActivity;
 
-public class MainMenuActivity extends ActionBarActivity  {
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    // Inflate the menu items for use in the action bar
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.action_bar_menu, menu);
-	    return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-	        case R.id.resources:
-	        	Intent intent = new Intent(this.findViewById(android.R.id.content).getContext(),PeriodicTable.class);
-            	startActivityForResult(intent,0);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
+public class MainMenuActivity extends CActionBarActivity  {
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

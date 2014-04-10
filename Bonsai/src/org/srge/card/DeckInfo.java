@@ -1,4 +1,4 @@
-package org.srge.bonsai;
+package org.srge.card;
 
 import java.util.ArrayList;
 

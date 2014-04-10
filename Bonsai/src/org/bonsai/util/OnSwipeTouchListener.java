@@ -1,4 +1,4 @@
-package org.srge.bonsai;
+package org.bonsai.util;
 
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;

@@ -59,5 +59,6 @@
        <string name="in_order">In Order</string>
        <string name="random">Random</string>
        <string name="hardest_first">Hardest First</string>
+       <string name="loading...">Loading&#8230;</string>
       
 </resources>

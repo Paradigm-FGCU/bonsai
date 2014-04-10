@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        android:gravity="center_vertical" >
+        android:gravity="top" >
 
         <SeekBar
             android:id="@+id/seekBar_quiz_time"
@@ -18,34 +18,17 @@
             android:layout_below="@+id/textView_seekbar_value"
             android:layout_marginTop="46dp" />
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="21dp"
-            android:text="@string/timed_quiz" />
-
         <TextView
             android:id="@+id/textView_seekbar_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/switch1"
+            android:layout_below="@+id/timed_quiz_switch"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
             android:gravity="center"
             android:text="@string/options"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="29dp"
-            android:text="@string/in_order" />
 
         <TextView
             android:id="@+id/textView1"
@@ -57,22 +40,46 @@
             android:text="@string/card_order"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="24sp" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
+        
+	<RadioGroup
+        android:id="@+id/radioOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true">
+        
+	    <RadioButton
+            android:id="@+id/radio_inorder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/radioButton1"
-            android:layout_below="@+id/radioButton2"
+            
+            android:layout_marginTop="29dp"
+            android:text="@string/in_order" />
+	    
+        <RadioButton
+            android:id="@+id/radio_hardest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
             android:text="@string/hardest_first" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radio_random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/radioButton1"
-            android:layout_below="@+id/radioButton1"
+
             android:text="@string/random" />
+         </RadioGroup>
+
+        <Switch
+            android:id="@+id/timed_quiz_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="24dp"
+            android:text="@string/timed_quiz" 
+            android:paddingLeft="10dip"/>
 
     </RelativeLayout>
 

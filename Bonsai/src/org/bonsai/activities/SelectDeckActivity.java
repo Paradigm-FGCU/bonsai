@@ -1,6 +1,14 @@
-package org.srge.bonsai;
+package org.bonsai.activities;
 
 import java.util.ArrayList;
+
+import org.bonsai.util.CActionBarActivity;
+import org.bonsai.util.CustomListAdapter;
+import org.srge.bonsai.R;
+import org.srge.bonsai.R.layout;
+import org.srge.card.BonsaiDatabaseHelper;
+import org.srge.card.RunningInfo;
+import org.srge.card.TestingDriver;
 
 import android.app.ActionBar;
 import android.app.ListActivity;
@@ -18,32 +26,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 
 
-public class SelectDeckActivity extends ActionBarActivity {
+public class SelectDeckActivity extends CActionBarActivity {
 	private BonsaiDatabaseHelper dbHelper;
 	private Context mContext;
 	private CustomListAdapter listAdapter;
 	private ArrayList<String> deckNames;
 	private ListView mListView;
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    // Inflate the menu items for use in the action bar
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.action_bar_menu, menu);
-	    return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-	        case R.id.resources:
-	        	Intent intent = new Intent(this.findViewById(android.R.id.content).getContext(),PeriodicTable.class);
-            	startActivityForResult(intent,0);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

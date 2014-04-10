@@ -1,4 +1,11 @@
-package org.srge.bonsai;
+package org.bonsai.activities;
+
+import org.bonsai.util.CActionBarActivity;
+import org.srge.bonsai.R;
+import org.srge.bonsai.R.id;
+import org.srge.bonsai.R.layout;
+import org.srge.bonsai.R.string;
+import org.srge.card.RunningInfo;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -9,32 +16,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class OptionsActivity extends ActionBarActivity {
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    // Inflate the menu items for use in the action bar
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.action_bar_menu, menu);
-	    return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-	        case R.id.resources:
-	        	Intent intent = new Intent(this.findViewById(android.R.id.content).getContext(),PeriodicTable.class);
-            	startActivityForResult(intent,0);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
+public class OptionsActivity extends CActionBarActivity {
+	
+	
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +49,10 @@ public class OptionsActivity extends ActionBarActivity {
 			}
 		});
 		
+		
+		
 		final Switch mySwitch = (Switch)findViewById(R.id.repeatFlashCardToggle);
+		mySwitch.setChecked(RunningInfo.getFlashCardRepeat());
 		mySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

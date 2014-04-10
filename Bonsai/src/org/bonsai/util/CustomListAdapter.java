@@ -1,6 +1,9 @@
-package org.srge.bonsai;
+package org.bonsai.util;
 
 import java.util.List;
+
+import org.srge.bonsai.R;
+import org.srge.bonsai.R.id;
 
 import android.content.Context;
 import android.util.Log;

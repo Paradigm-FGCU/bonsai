@@ -1,4 +1,6 @@
-package org.srge.bonsai;
+package org.bonsai.activities;
+
+import org.srge.bonsai.R;
 
 import android.app.ActionBar;
 import android.app.Activity;

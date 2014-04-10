@@ -1,13 +1,22 @@
-package org.srge.bonsai;
+package org.bonsai.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ReviewActivity extends Activity{
+import org.bonsai.util.CActionBarActivity;
+import org.bonsai.util.ExpandableListAdapter;
+import org.srge.bonsai.R;
+import org.srge.bonsai.R.id;
+import org.srge.bonsai.R.layout;
+import org.srge.card.CardInfo;
+import org.srge.card.RunningInfo;
+
+public class ReviewActivity extends CActionBarActivity{
 	ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;

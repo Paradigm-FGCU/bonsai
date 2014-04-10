@@ -2,12 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@drawable/background">
 
     <ExpandableListView
         android:id="@+id/reviewModeEListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ExpandableListView>
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:groupIndicator="@drawable/list_arrows" >
 
+    </ExpandableListView>
+    
 </LinearLayout>

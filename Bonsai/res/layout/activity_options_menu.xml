@@ -36,7 +36,8 @@
         android:minHeight="@dimen/testHeight"
         android:minWidth="@dimen/testHeight"
         android:text="@string/options_menu_switch_text"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF" 
+        android:paddingLeft="10dip"/>
 
     <Button
         android:id="@+id/button_quiz_settings"
