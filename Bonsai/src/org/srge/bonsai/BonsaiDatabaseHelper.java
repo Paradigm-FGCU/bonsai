@@ -61,6 +61,19 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		
 	}
 	
+	public String getDeckName(int pos) {
+		
+		Cursor crs = getReadableDatabase().query("DECKS", null, null,
+				null, null, null, "DECK_ID" + "= " + pos);
+
+		crs.moveToNext();
+		
+		String deckName = crs.getString(crs.getColumnIndex("DECK_NAME"));
+		
+
+		return deckName;
+		
+	}
 
 	public ArrayList<CardInfo> getAllCardsFromDeck(int id) {
 		ArrayList<CardInfo> allCardsFromDeck = new ArrayList<CardInfo>();
