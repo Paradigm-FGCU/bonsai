@@ -66,7 +66,7 @@ public class MainMenuActivity extends CActionBarActivity  {
     button_multi.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
         	if(RunningInfo.getSelectedDeck()!=null){
-	        	Intent intent = new Intent(v.getContext(),MultiMenuActivity.class);
+	        	Intent intent = new Intent(v.getContext(),MultiChoiceActivity.class);
 	        	startActivityForResult(intent,0);
 	        }
 	    	else{

@@ -1,129 +1,93 @@
 package org.bonsai.activities;
 
-import java.io.Serializable;
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.bonsai.activities.MultiChoiceActivity.Passing;
-import org.bonsai.activities.MultiChoiceActivity.SectionsPagerAdapter;
+import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
-import org.srge.bonsai.R.menu;
-import org.srge.bonsai.R.string;
+import org.srge.card.CardInfo;
 import org.srge.card.RunningInfo;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
-public class MultiChoiceActivity extends FragmentActivity {
+public class MultiChoiceActivity extends CActionBarActivity {
+	//List<MultiInfo> quesList;
+	ArrayList<CardInfo> cards = RunningInfo.getWorkingCardList();
+	int score = 0;
+	int qid = 0;
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-     * will keep every loaded fragment in memory. If this becomes too memory
-     * intensive, it may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    SectionsPagerAdapter mSectionsPagerAdapter;
+	//MultiInfo currentQ;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    ViewPager mViewPager;
+	TextView txtQuestion;
+	RadioButton rda, rdb, rdc;
+	Button butNext;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi);
-
-
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the app.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.card, menu);
-        return true;
-    }
-
-
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a DummySectionFragment (defined as a static inner class
-            // below) with the page number as its lone argument.
-            Fragment fragment = new FlashSectionFragment();
-            Bundle args = new Bundle();
-            args.putInt(MultiSectionFragment.ARG_SECTION_NUMBER, position + 1);
-            args.putSerializable("parent", new Passing(this));
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return RunningInfo.getWorkingCardList().size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
-            position++;
-            return getString(R.string.title_section).toUpperCase(l)+" "+position;
-
-            //return null;
-        }
-    }
-    
-    class Passing implements Serializable{
-
-		private static final long serialVersionUID = 1L;
-		private  MultiChoiceActivity.SectionsPagerAdapter parent;
-		
-		Passing(MultiChoiceActivity.SectionsPagerAdapter temp){
-			parent = temp;
-		}
-		public MultiChoiceActivity.SectionsPagerAdapter getParent(){
-			return parent;
-		}
-		
-    }
-
-}
-
-
-
-/*
-extends Activity {
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_multi);
+		
+		
+		//quesList = RunningInfo.getMuiltiList();
+		
+		
+		//currentQ = quesList.get(qid);
+		txtQuestion = (TextView) findViewById(R.id.textView_Multi_Question);
+		rda = (RadioButton) findViewById(R.id.radio_Multi0);
+		rdb = (RadioButton) findViewById(R.id.radio_Multi1);
+		rdc = (RadioButton) findViewById(R.id.radio_Multi2);
+		butNext = (Button) findViewById(R.id.button_multi);
+		setQuestionView();
+
+		butNext.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup grp = (RadioGroup) findViewById(R.id.radioMulti);
+				RadioButton answer = (RadioButton) findViewById(grp
+						.getCheckedRadioButtonId());
+				//Log.e("yourans", cards.get(qid).getAnswer() + " " + answer.getText());
+
+				if (cards.get(qid).getAnswer().equals(answer.getText())) {
+					score++;
+					//Log.e("score", "Your score" + score);
+				}
+				
+				if (qid < (cards.size())) {
+					setQuestionView();
+				} else {
+					 Intent intent = new Intent(MultiChoiceActivity.this,ResultActivity.class); Bundle b = new Bundle();
+					 b.putInt("score", score); //Your score
+					 intent.putExtras(b); //Put your score to your next Intent
+					 startActivity(intent); 
+					 finish();
+				}
+			}
+		});
+		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_multi, menu);
+		return true;
+	}
+
+	private void setQuestionView() {
+		txtQuestion.setText(cards.get(qid).getQuestion());
+		rda.setText("currentQ.getOPTA()"+qid);
+		rdb.setText("currentQ.getOPTB()"+qid);
+		rdc.setText("currentQ.getOPTC()"+score);
+		qid++;
 	}
 }
-*/
+

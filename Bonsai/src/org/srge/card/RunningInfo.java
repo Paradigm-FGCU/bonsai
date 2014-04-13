@@ -17,6 +17,7 @@ public class RunningInfo {
 	//... ==2, random
 	private static int cardOrder;
 	
+	
 	public static boolean updateCardOrder(int in){
 		cardOrder = in;
 		if(workingCardList==null) return false;
