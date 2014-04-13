@@ -13,7 +13,13 @@ public class SplashActivity extends Activity {
 	public BonsaiDatabaseHelper dbHelper;
 	private Context mAppContext;
 
-	private String[] defs = {
+	
+	/**
+	* FIRST DEMO DECK
+	* ORGANIC CHEMISTRY
+	* DO NOT MESS WITH THIS PLEASE
+	*/
+	private String[] chemDefs = {
 			"An atom or group of atoms arranged in a particular way that is primarily responsible for the chemical and physical properties of the molecule in which it is found. There are a total of 10 of these.",
 			"Unsaturated hydrocarbons containing at least one carbon-carbon triple bond. Noted by the suffix \"-yne\"",
 			"The reaction of alkanes, alkenes, or alcohols with excess oxygen yields carbon dioxide, water, and heat.",
@@ -25,13 +31,31 @@ public class SplashActivity extends Activity {
 			"Inter-atomic relationship created by the sharing of at least one pair of electrons.",
 			"The branch of chemistry which deals with carbon compounds, including those with no relationship to life." };
 
-	private String[] terms = { "Functional Group", "Alkyne",
+	private String[] chemTerms = { "Functional Group", "Alkyne",
 			"Hydrocarbon Combustion", "Halogens", "Carbon",
 			"Atomic Structure of Carbon", "Unsaturated Hydrocarbon",
 			"Saturated Hydrocarbond", "Covalent Bond", "Organic Chemistry" };
 
+	/**
+	* SECOND DEMO DECK
+	* BIOLOGY
+	* DO NOT MESS WITH THIS PLEASE
+	*/
+	
+	private String[] bioDefs = {};
+	
+	private String[] bioTerms = {};
 	
 	
+	/**
+	* THIRD DEMO DECK
+	* SOFTWARE SPECS
+	* DO NOT MESS WITH THIS PLEASE
+	*/
+	
+	private String[] softDefs = {};
+	
+	private String[] softTerms = {};
 	
 	
 	
@@ -43,12 +67,20 @@ public class SplashActivity extends Activity {
 		mAppContext = this.getApplicationContext();
 		dbHelper = new BonsaiDatabaseHelper(mAppContext);
 		
-		//dbHelper.insertDeck("Organic Chemistry");
 		
-		//for(int i=0; i<defs.length-1; i++) {
-		//	dbHelper.insertCard(1, terms[i], defs[i], 0, 0, null, null, null);
-		//}
+		
+		/*
+		 * MAKE DATABASE ENTRIES IF DECKS LIST
+		 * DOES NOT EXIST...
+		 */
+		if (dbHelper.getDecksList() == null) {
+			dbHelper.insertDeck("Organic Chemistry");
 
+			for (int i = 0; i < chemDefs.length - 1; i++) {
+				dbHelper.insertCard(1, chemTerms[i], chemDefs[i], 0, 0, null,
+						null, null);
+			}
+		}
 		dbHelper.close();
 		
 		new Handler().postDelayed(new Runnable() {
