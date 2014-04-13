@@ -13,7 +13,7 @@ public class DeckInfo {
 		
 	}
 	
-	DeckInfo(String deckNameIn, ArrayList<CardInfo> cardListIn){
+	public DeckInfo(String deckNameIn, ArrayList<CardInfo> cardListIn){
 		mdeckName = deckNameIn;
 		cardList = cardListIn;
 	}

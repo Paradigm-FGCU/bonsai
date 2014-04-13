@@ -7,6 +7,7 @@ import org.bonsai.util.CustomListAdapter;
 import org.srge.bonsai.R;
 import org.srge.bonsai.R.layout;
 import org.srge.card.BonsaiDatabaseHelper;
+import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
 import org.srge.card.TestingDriver;
 
@@ -47,8 +48,8 @@ public class SelectDeckActivity extends CActionBarActivity {
 		setContentView(R.layout.activity_select_a_deck);
 
 		ListView listView = getListView();
-		deckNames = TestingDriver.deckNames;
-		//ArrayList<String> deckNames = dbHelper.getDecksList();
+		//deckNames = TestingDriver.deckNames;
+		deckNames = dbHelper.getDecksList();
 
 
 		
@@ -66,8 +67,8 @@ public class SelectDeckActivity extends CActionBarActivity {
 
 			    RunningInfo.setSelectedDeck(TestingDriver.getDeckList().get(position));
 
-			    //DeckInfo temp2 = new DeckInfo("orgochem", dbHelper.getAllCardsFromDeck(position+1));
-			    //RunningInfo.setSelectedDeck(temp2);
+			    DeckInfo tempDeck = new DeckInfo(dbHelper.getDeckName(position), dbHelper.getAllCardsFromDeck(position+1));
+			    RunningInfo.setSelectedDeck(tempDeck);
 			}
 		});
 		
