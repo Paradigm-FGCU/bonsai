@@ -41,12 +41,23 @@ public class SplashActivity extends Activity {
 	* BIOLOGY
 	* DO NOT MESS WITH THIS PLEASE
 	*/
-	
-	private String[] bioDefs = {};
-	
-	private String[] bioTerms = {};
-	
-	
+
+	private String[] bioDefs = {
+			"Mitotic phase during which daughter chromosomes move toward the poles of the spindle",
+			"Formation of new blood vessels; one mechanism by which cancer spreads",
+			"Programmed cell death involving a cascade of specific cellular events leading to death and destruction of the cells",
+			"Reproduction that requires only one parent and does not and does not involve gametes",
+			"Short, radiating fibers produced by the centosomes in animal cells",
+			"Splitting of a parent cell into two daughter cells; serves as an asexual form of reproduction in bacteria",
+			"Malignant tumor whose nondiffentiated cells exhibit loss of contact inhibition",
+			"Development of Cancer",
+			"Repeating sequence of events in eukaryotes that involves cell growth and nuclear division; consists of the stages G1 and M",
+			"Structure across a dividing plant cell that signals the location of new plasma membranes and cell walls" };
+
+	private String[] bioTerms = { "Anaphase", "Angiogenesis", "Apoptosis",
+			"Asexual reproduction", "Aster", "Binary Fission", "Cancer",
+			"Carcinogenesis", "Cell Cycle", "Cell Plate" };
+
 	/**
 	* THIRD DEMO DECK
 	* SOFTWARE SPECS
@@ -74,10 +85,17 @@ public class SplashActivity extends Activity {
 		 * DOES NOT EXIST...
 		 */
 		if (dbHelper.getDecksList() == null) {
-			dbHelper.insertDeck("Organic Chemistry");
 
+			dbHelper.insertDeck("Organic Chemistry");
 			for (int i = 0; i < chemDefs.length - 1; i++) {
 				dbHelper.insertCard(1, chemTerms[i], chemDefs[i], 0, 0, null,
+						null, null);
+			}
+			
+			
+			dbHelper.insertDeck("Biology");
+			for (int i = 0; i < bioDefs.length - 1; i++) {
+				dbHelper.insertCard(2, bioTerms[i], bioDefs[i], 0, 0, null,
 						null, null);
 			}
 		}

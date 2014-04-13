@@ -54,7 +54,11 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		    allDecks.add(uname);
 		}
 		
+		if(crs.getCount()<=0)
+			return null;
+		
 		return allDecks;
+		
 	}
 	
 
