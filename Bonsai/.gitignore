@@ -26,3 +26,4 @@ proguard/
 .metadata/
 ../.metadata/
 gen/org/srge/bonsai/R.java
+/project.properties
