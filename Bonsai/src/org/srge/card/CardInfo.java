@@ -11,17 +11,23 @@ public class CardInfo {
 	private int mNumberCorrect;
 	private int mId;
 	
-	public CardInfo(String question, String answer, DeckInfo parentDeckIn) {
+	public CardInfo(int id, String question, String answer, DeckInfo parentDeckIn) {
+		mId=id;
 		mDefinition = question;
 		mTerm = answer;
 		parentDeck = parentDeckIn; 
 	}
 	
-	public CardInfo(String definition, String term,ArrayList<String> fakeAnswers,DeckInfo parentDeckIn) {
+	public CardInfo(int id, String definition, String term,ArrayList<String> fakeAnswers,DeckInfo parentDeckIn) {
+		mId=id;
 		mDefinition = definition;
 		mTerm = term;
 		parentDeck = parentDeckIn; 
 		mFakeAnswers = fakeAnswers;
+	}
+	
+	public CardInfo() {
+
 	}
 	
 	public void setId(int id) {

@@ -3,7 +3,6 @@ package org.bonsai.activities;
 import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
-import org.srge.card.TestingDriver;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -16,7 +15,6 @@ public class MainMenuActivity extends CActionBarActivity  {
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new TestingDriver();
 	setContentView(R.layout.activity_main_menu);
 	
 	ActionBar ab = getActionBar();

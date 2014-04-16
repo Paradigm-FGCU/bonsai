@@ -40,69 +40,68 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		return getWritableDatabase().insert("DECKS", null, cv);
 	}
 
-	
 	public ArrayList<String> getDecksList() {
 		ArrayList<String> allDecks = new ArrayList<String>();
-		
-		Cursor crs = getReadableDatabase().query("DECKS", null, null,
-				null, null, null, "DECK_ID" + " asc");
 
-		while(crs.moveToNext()){
-		    String uname = crs.getString(crs.getColumnIndex("DECK_NAME"));
-		    allDecks.add(uname);
+		Cursor crs = getReadableDatabase().query("DECKS", null, null, null,
+				null, null, "DECK_ID" + " asc");
+
+		while (crs.moveToNext()) {
+			String uname = crs.getString(crs.getColumnIndex("DECK_NAME"));
+			allDecks.add(uname);
 		}
-		
-		if(crs.getCount()<=0)
+
+		if (crs.getCount() <= 0)
 			return null;
-		
+
 		return allDecks;
-		
+
 	}
-	
+
 	public String getDeckName(int pos) {
-		
-		Cursor crs = getReadableDatabase().query("DECKS", null, null,
-				null, null, null, "DECK_ID" + "= " + pos);
+
+		Cursor crs = getReadableDatabase().query("DECKS", null, null, null,
+				null, null, "DECK_ID" + "= " + pos);
 
 		crs.moveToNext();
-		
+
 		String deckName = crs.getString(crs.getColumnIndex("DECK_NAME"));
-		
 
 		return deckName;
-		
+
 	}
 
 	public ArrayList<CardInfo> getAllCardsFromDeck(int id) {
 		ArrayList<CardInfo> allCardsFromDeck = new ArrayList<CardInfo>();
-		
+
 		Cursor wrapped = getReadableDatabase().query("CARDS", null, // all
-																		// columns
-				"DECK_ID" + " = ?", // look for a  ID
+																	// columns
+				"DECK_ID" + " = ?", // look for a ID
 				new String[] { String.valueOf(id) }, // with this value
 				null, // group by
 				null, // order by
 				null, // having
 				null); // limit 1 row
-		
-		
 
-
-			while(wrapped.moveToNext()){
-			    String TERM = wrapped.getString(wrapped.getColumnIndex("TERM"));
+		if (wrapped.moveToFirst()) {
+			do {
+				int ID = Integer.parseInt(wrapped.getString(wrapped.getColumnIndex("CARD_ID")));
+				String TERM = wrapped.getString(wrapped.getColumnIndex("TERM"));
 				String DEFN = wrapped.getString(wrapped.getColumnIndex("DEFN"));
-				
-				allCardsFromDeck.add(new CardInfo(TERM,DEFN, new DeckInfo()));
-			}
-		
+
+				allCardsFromDeck.add(new CardInfo(ID, TERM, DEFN, new DeckInfo()));
+			} while (wrapped.moveToNext());
+		}
+
 		return allCardsFromDeck;
 	}
-	
-	public DeckInfo getCardDeckFormat(String name, ArrayList<CardInfo> cardarraylist) {
+
+	public DeckInfo getCardDeckFormat(String name,
+			ArrayList<CardInfo> cardarraylist) {
 		DeckInfo cardDeckFormat = new DeckInfo(name, cardarraylist);
-		
+
 		// add stats later;
-		
+
 		return cardDeckFormat;
 	}
 
@@ -122,21 +121,19 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		return getWritableDatabase().insert("CARDS", null, cv);
 
 	}
-	
-	
-    public static class CardCursor extends CursorWrapper {
-        
-        public CardCursor(Cursor c) {
-            super(c);
-        }
-        
- 
-        public CardInfo getCard() {
-            CardInfo card = new CardInfo(null, null, null, null);
-            card.setId((int) getInt(getColumnIndex("CARD_ID")));
-            card.setQuestion(getString(getColumnIndex("TERM")));
-            return card;
-        }
-    }
-	
+
+	public static class CardCursor extends CursorWrapper {
+
+		public CardCursor(Cursor c) {
+			super(c);
+		}
+
+		public CardInfo getCard() {
+			CardInfo card = new CardInfo();
+			card.setId((int) getInt(getColumnIndex("CARD_ID")));
+			card.setQuestion(getString(getColumnIndex("TERM")));
+			return card;
+		}
+	}
+
 }

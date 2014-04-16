@@ -8,7 +8,6 @@ import org.srge.bonsai.R;
 import org.srge.card.BonsaiDatabaseHelper;
 import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
-import org.srge.card.TestingDriver;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -57,8 +56,6 @@ public class SelectDeckActivity extends CActionBarActivity {
 				String temp = "New active deck is: " + deckNames.get(position);
 			    Toast.makeText(getApplicationContext(),
 				temp, Toast.LENGTH_SHORT).show();
-
-			    RunningInfo.setSelectedDeck(TestingDriver.getDeckList().get(position));
 
 			    DeckInfo tempDeck = new DeckInfo(dbHelper.getDeckName(position), dbHelper.getAllCardsFromDeck(position+1));
 			    RunningInfo.setSelectedDeck(tempDeck);
