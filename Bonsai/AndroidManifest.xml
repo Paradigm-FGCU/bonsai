@@ -30,7 +30,8 @@
             >
         </activity>
           <activity 
-            android:name="org.bonsai.activities.FlashActivity"    
+            android:name="org.bonsai.activities.FlashActivity"  
+          
             >
         </activity>
         <activity 

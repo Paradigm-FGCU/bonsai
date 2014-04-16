@@ -3,6 +3,7 @@ package org.bonsai.activities;
 import java.io.Serializable;
 import java.util.Locale;
 
+import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
 import org.srge.bonsai.R.id;
 import org.srge.bonsai.R.layout;
@@ -16,10 +17,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 
 
-public class FlashActivity extends FragmentActivity {
+public class FlashActivity extends CActionBarActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -41,7 +43,8 @@ public class FlashActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
 
-
+        android.app.ActionBar temp = getActionBar();
+        temp.setTitle("Bonsai: Flash Card Mode");
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the app.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
