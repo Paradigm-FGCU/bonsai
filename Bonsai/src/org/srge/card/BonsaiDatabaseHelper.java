@@ -139,6 +139,15 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 
 	}
 	
+	public boolean deleteCard(String rowId) {
+	    return getWritableDatabase().delete("CARDS", "CARD_ID" + "=" + rowId, null) > 0;
+	}
+	
+	
+/*	public void editCard(String rowId) {
+		getWritableDatabase().update(table, values, whereClause, whereArgs);
+	}*/
+	
 	
 	public static class CardCursor extends CursorWrapper {
 
