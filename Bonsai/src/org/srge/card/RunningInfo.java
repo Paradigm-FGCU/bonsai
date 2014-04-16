@@ -45,7 +45,22 @@ public class RunningInfo {
 	}
 
 
-
+	public static void questionAnswered(boolean correct, int id){
+		
+		if(correct){
+			getCardById(id).answeredCorrect();
+		}
+		else{
+			getCardById(id).answeredIncorrect();
+		}
+	}
+	
+	public static CardInfo getCardById(int id){
+		for(int i=0;i<selectedDeck.getCardList().size();i++){
+			if(selectedDeck.getCardList().get(i).getId()==id) return selectedDeck.getCardList().get(i);
+		}
+		return null;
+	}
 
 	public static ArrayList<CardInfo> getWorkingCardList() {
 		return workingCardList;

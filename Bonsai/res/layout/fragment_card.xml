@@ -23,7 +23,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginBottom="15dp" >
+            android:layout_marginBottom="35dp" >
 
             <RelativeLayout
                 android:id="@+id/Container"
@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_above="@+id/down_arrow"
-                    android:padding="24dp"
+                    android:gravity="center"
                     android:textColor="#000000" />
 
                 <ImageView
