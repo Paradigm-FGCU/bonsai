@@ -2,26 +2,22 @@ package org.bonsai.activities;
 
 import org.bonsai.util.LoadingPhrases;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.layout;
 import org.srge.card.BonsaiDatabaseHelper;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class SplashActivity extends Activity {
 
 	// Splash screen timer
-	static int SPLASH_TIME_OUT = 4100;
+	//static int SPLASH_TIME_OUT = 4100;
+	static int SPLASH_TIME_OUT = 1100;
 	//if its the first time they are seeing the splash screen
 	static boolean first = true;
 	
@@ -134,7 +130,6 @@ public class SplashActivity extends Activity {
 			new Handler().postDelayed(new Runnable() {@Override public void run() {
 					ProgressBar myProgressBar = (ProgressBar)findViewById(R.id.splash_progress_bar);
 					myProgressBar.setProgress(progress);
-					Log.w("from loop", "" + mover_temp);
 					if(progress==30 || progress==70){
 						loading_message.setText(LoadingPhrases.generatePhrase(loading_message.getText()));
 					}
@@ -163,7 +158,6 @@ public class SplashActivity extends Activity {
 			public void run() {
 				// This method will be executed once the timer is over
 				// Start your app main activity
-				Log.w("in second handler","here");
 				Intent i = new Intent(SplashActivity.this,
 						MainMenuActivity.class);
 				startActivity(i);

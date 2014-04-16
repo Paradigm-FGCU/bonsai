@@ -2,8 +2,6 @@ package org.bonsai.util;
 
 import org.bonsai.activities.PeriodicTable;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.menu;
 
 import android.content.Intent;
 import android.os.Bundle;

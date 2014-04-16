@@ -3,23 +3,20 @@ package org.bonsai.activities;
 import java.io.Serializable;
 import java.util.Locale;
 
+import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
-import org.srge.bonsai.R.menu;
-import org.srge.bonsai.R.string;
 import org.srge.card.RunningInfo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
 
-public class FlashActivity extends FragmentActivity {
+public class FlashActivity extends CActionBarActivity {
+
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -41,7 +38,8 @@ public class FlashActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
 
-
+        android.app.ActionBar temp = getActionBar();
+        temp.setTitle("Bonsai: Flash Card Mode");
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the app.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -56,6 +54,7 @@ public class FlashActivity extends FragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.card, menu);
+        getMenuInflater().inflate(R.menu.action_bar_menu, menu);
         return true;
     }
 

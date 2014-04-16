@@ -2,24 +2,15 @@ package org.bonsai.activities;
 
 import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
 import org.srge.card.RunningInfo;
 import org.srge.card.TestingDriver;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.support.v7.app.ActionBarActivity;
 
 public class MainMenuActivity extends CActionBarActivity  {
 	

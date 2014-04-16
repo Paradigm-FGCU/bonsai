@@ -27,6 +27,10 @@ public class CardInfo {
 	public void setId(int id) {
 		mId = id;
 	}
+	
+	public int getId(){
+		return this.mId;
+	}
 
 	public String getQuestion() {
 		return mDefinition;

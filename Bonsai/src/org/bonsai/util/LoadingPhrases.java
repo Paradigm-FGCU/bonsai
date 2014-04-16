@@ -10,9 +10,12 @@ public class LoadingPhrases {
 								"Discovering fire",
 								"Watching paint dry",
 								"Chopping down a bonsai tree",
-								"Finding licks to the center of a tootsie pop"
+								"Finding licks to the center of a tootsie pop",
+								"Uncompressing ZIP files",
+								"Positioning satellites"
+								//"Sealing Air Locks",
 								};
-	
+								
 	
 
 	

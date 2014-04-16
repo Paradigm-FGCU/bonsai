@@ -1,14 +1,9 @@
 package org.bonsai.activities;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import org.bonsai.activities.FlashActivity.Passing;
 import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
 import org.bonsai.util.OnSwipeTouchListener;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
 import org.srge.card.RunningInfo;
 
 import android.os.Bundle;
@@ -17,14 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 import android.widget.ViewSwitcher;
-import android.util.Log;
 
 
 public class FlashSectionFragment extends Fragment {
@@ -32,13 +24,13 @@ public class FlashSectionFragment extends Fragment {
      * The fragment argument representing the section number for this
      * fragment.
      */
-	private Button mKnowButton;
-	private Button mDontKnowButton;
+	private ImageView mKnowButton;
+	private ImageView mDontKnowButton;
 	private SectionsPagerAdapter parent;
-	private ArrayList<String> defs;
-	private TextView answerTextView; 
-	private ImageView up_arrow;
-	private ImageView down_arrow;
+	private TextView definitionTextView; 
+	private TextView termTextView; 
+	//private ImageView up_arrow;
+	//private ImageView down_arrow;
 
     public static final String ARG_SECTION_NUMBER = "section_number";
   
@@ -53,47 +45,33 @@ public class FlashSectionFragment extends Fragment {
         Bundle savedInstanceState) {
     	Passing temp = (Passing)getArguments().getSerializable("parent");
     	parent = temp.getParent();
-    	
+
         final View rootView = inflater.inflate(R.layout.fragment_card, container, false);
-        final TextView questionTextView = (TextView) rootView.findViewById(R.id.question_text_view);
-        questionTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion());
+
         final ViewSwitcher viewFlipper = (ViewSwitcher)rootView.findViewById(R.id.viewFlipper);
-        answerTextView = (TextView) rootView.findViewById(R.id.question_text_view);
-        mKnowButton = (Button) rootView.findViewById(R.id.know_button);
-        mDontKnowButton = (Button) rootView.findViewById(R.id.donotknow_button);
-        up_arrow = (ImageView)rootView.findViewById(R.id.up_arrow);
-        down_arrow = (ImageView)rootView.findViewById(R.id.down_arrow);
-        down_arrow.setVisibility(View.VISIBLE);
-        up_arrow.setVisibility(View.GONE);
-        mDontKnowButton.setVisibility(View.GONE);  
-    	mKnowButton.setVisibility(View.GONE);    
+
+        
+        TextView termTextView = (TextView)(((RelativeLayout)viewFlipper.getChildAt(0)).getChildAt(0));
+        
+        TextView definitionTextView = (TextView)(((RelativeLayout)viewFlipper.getChildAt(1)).getChildAt(1));
+
+        definitionTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
+        termTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion());
+    
+        mKnowButton = (ImageView)((RelativeLayout)((RelativeLayout)(viewFlipper.getChildAt(1))).getChildAt(2)).getChildAt(0);
+        mDontKnowButton = (ImageView)((RelativeLayout)((RelativeLayout)(viewFlipper.getChildAt(1))).getChildAt(2)).getChildAt(1);
+        
         viewFlipper.setOnTouchListener(new OnSwipeTouchListener() {
             public void onSwipeTop() {
-            	up_arrow.setVisibility(View.VISIBLE);
-            	down_arrow.setVisibility(View.GONE);
-            	mKnowButton.setVisibility(View.VISIBLE);
-            	mDontKnowButton.setVisibility(View.VISIBLE);
-            	answerTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
-              
-            }
+            	if(viewFlipper.getNextView().getId()==R.id.Container2) viewFlipper.showNext();}
 
             public void onSwipeRight() {
-
-
             }
-
             public void onSwipeLeft() {
-
-
-
             }
 
             public void onSwipeBottom() {
-            	down_arrow.setVisibility(View.VISIBLE);
-                up_arrow.setVisibility(View.GONE);
-            	questionTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion());
-            	mDontKnowButton.setVisibility(View.GONE);  
-            	mKnowButton.setVisibility(View.GONE);  
+            	if(viewFlipper.getCurrentView().getId()==R.id.Container2) viewFlipper.showNext();
             }
             	
         });
@@ -117,8 +95,6 @@ public class FlashSectionFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				TextView answerTextView = (TextView) rootView.findViewById(R.id.question_text_view);
-				answerTextView.setText(RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer());
 				if(RunningInfo.getFlashCardRepeat()){
 					RunningInfo.addCardByIndex(getArguments().getInt(ARG_SECTION_NUMBER)-1);
 			        Toast.makeText(getActivity(), "Card Added To End", Toast.LENGTH_SHORT).show();

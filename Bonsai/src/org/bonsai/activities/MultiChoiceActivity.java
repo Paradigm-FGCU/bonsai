@@ -9,8 +9,8 @@ import org.srge.bonsai.R;
 import org.srge.card.CardInfo;
 import org.srge.card.RunningInfo;
 
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;

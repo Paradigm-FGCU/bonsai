@@ -1,9 +1,5 @@
 package org.bonsai.activities;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.ExpandableListView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,10 +7,11 @@ import java.util.List;
 import org.bonsai.util.CActionBarActivity;
 import org.bonsai.util.ExpandableListAdapter;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
 import org.srge.card.CardInfo;
 import org.srge.card.RunningInfo;
+
+import android.os.Bundle;
+import android.widget.ExpandableListView;
 
 public class ReviewActivity extends CActionBarActivity{
 	ExpandableListAdapter listAdapter;

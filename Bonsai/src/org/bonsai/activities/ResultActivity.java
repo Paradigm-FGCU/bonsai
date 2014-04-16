@@ -5,7 +5,6 @@ import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.widget.RatingBar;
 import android.widget.TextView;

@@ -1,10 +1,8 @@
 package org.srge.card;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Queue;
 //on click listener in CardSectionFragment adds current card to incorrect list
 //then sorts into priority queue based on how many times it was incorrect
 //return newly made deck

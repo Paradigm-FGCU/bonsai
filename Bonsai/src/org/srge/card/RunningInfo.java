@@ -2,7 +2,6 @@ package org.srge.card;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class RunningInfo {
 	//Static class used to find running info during the program
@@ -45,7 +44,24 @@ public class RunningInfo {
 	}
 
 
-
+	public static boolean questionAnswered(boolean correct, int id){
+		CardInfo temp = getCardById(id);
+		if(temp == null) return false;
+		if(correct){
+			temp.answeredCorrect();
+		}
+		else{
+			temp.answeredIncorrect();
+		}
+		return true;
+	}
+	
+	public static CardInfo getCardById(int id){
+		for(int i=0;i<selectedDeck.getCardList().size();i++){
+			if(selectedDeck.getCardList().get(i).getId()==id) return selectedDeck.getCardList().get(i);
+		}
+		return null;
+	}
 
 	public static ArrayList<CardInfo> getWorkingCardList() {
 		return workingCardList;
