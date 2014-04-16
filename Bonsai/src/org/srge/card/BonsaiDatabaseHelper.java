@@ -122,6 +122,24 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 
 	}
 
+	public ArrayList<String> getFakeAns(int cardId) {
+		ArrayList<String> fake = new ArrayList<String>();
+		
+		Cursor crs = getReadableDatabase().query("CARDS", null, null, null,
+				null, null, "CARD_ID" + "= " + cardId);
+
+		crs.moveToNext();
+
+		fake.add(crs.getString(crs.getColumnIndex("ALT_DEFN1")));
+		fake.add(crs.getString(crs.getColumnIndex("ALT_DEFN2")));
+		fake.add(crs.getString(crs.getColumnIndex("ALT_DEFN3")));
+
+
+		return fake;
+
+	}
+	
+	
 	public static class CardCursor extends CursorWrapper {
 
 		public CardCursor(Cursor c) {

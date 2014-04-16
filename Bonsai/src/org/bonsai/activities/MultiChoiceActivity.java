@@ -6,9 +6,11 @@ import java.util.Random;
 
 import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
+import org.srge.card.BonsaiDatabaseHelper;
 import org.srge.card.CardInfo;
 import org.srge.card.RunningInfo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,8 +26,8 @@ public class MultiChoiceActivity extends CActionBarActivity {
 	//ArrayList<CardInfo> cards = RunningInfo.getSelectedDeck().getCardList();
 	int score = 0;
 	int qid = 0;
-	
-
+	Context mContext;
+	BonsaiDatabaseHelper dbHelper;
 	TextView txtQuestion;
 	RadioButton rda, rdb, rdc, rdd;
 	Button butNext;
@@ -35,6 +37,9 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_multi);
 		
+		mContext = this.getApplicationContext();
+		dbHelper = new BonsaiDatabaseHelper(mContext);
+
 		
 		//quesList = RunningInfo.getMuiltiList();
 		
@@ -91,22 +96,9 @@ public class MultiChoiceActivity extends CActionBarActivity {
 
 	private void setQuestionView() {
 		//Create array List with Answers
-		ArrayList<String> text =new ArrayList<String>(4);
+		ArrayList<String> text = new ArrayList<String>(4);
 		
-		
-		/*
-		//Add Fake Answer
-		ArrayList<String> fake = cards.get(qid).getFakeAnswers();
-		for(String f:fake){
-			text.add(f);
-		}
-		*/
-		
-		//remove
-		for(int i = 0;i<3;i++){
-			text.add("fake answer"+i);
-		}
-		
+		text.addAll(dbHelper.getFakeAns(qid));
 		text.add(cards.get(qid).getAnswer());
 		
 		//Randomize Radio Text Array
