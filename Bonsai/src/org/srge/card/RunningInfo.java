@@ -45,14 +45,16 @@ public class RunningInfo {
 	}
 
 
-	public static void questionAnswered(boolean correct, int id){
-		
+	public static boolean questionAnswered(boolean correct, int id){
+		CardInfo temp = getCardById(id);
+		if(temp == null) return false;
 		if(correct){
-			getCardById(id).answeredCorrect();
+			temp.answeredCorrect();
 		}
 		else{
-			getCardById(id).answeredIncorrect();
+			temp.answeredIncorrect();
 		}
+		return true;
 	}
 	
 	public static CardInfo getCardById(int id){
