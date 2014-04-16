@@ -50,6 +50,13 @@
                 android:layout_height="wrap_content"
                 android:text="RadioButton"
                 tools:ignore="HardcodedText" />
+
+            <RadioButton
+                android:id="@+id/radio_Multi3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RadioButton"
+                tools:ignore="HardcodedText" />
         </RadioGroup>
 
         <Button
