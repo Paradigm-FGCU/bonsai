@@ -108,16 +108,16 @@ public class SplashActivity extends Activity {
 		if (dbHelper.getDecksList() == null) {
 
 			dbHelper.insertDeck("Organic Chemistry");
-			for (int i = 0; i < chemDefs.length - 1; i++) {
-				dbHelper.insertCard(1, chemTerms[i], chemDefs[i], 0, 0, null,
-						null, null);
+			for (int i = 0; i < chemDefs.length; i++) {
+				dbHelper.insertCard(1, chemTerms[i], chemDefs[i], 0, 0, "Fake Answer 1",
+						"Fake Answer 2", "Fake Answer 3");
 			}
 			
 			
 			dbHelper.insertDeck("Biology");
-			for (int i = 0; i < bioDefs.length - 1; i++) {
-				dbHelper.insertCard(2, bioTerms[i], bioDefs[i], 0, 0, null,
-						null, null);
+			for (int i = 0; i < bioDefs.length; i++) {
+				dbHelper.insertCard(2, bioTerms[i], bioDefs[i], 0, 0, "Fake Answer 1",
+						"Fake Answer 2", "Fake Answer 3");
 			}
 		}
 		dbHelper.close();
