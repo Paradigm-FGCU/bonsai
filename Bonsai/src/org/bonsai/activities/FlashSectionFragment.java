@@ -1,14 +1,9 @@
 package org.bonsai.activities;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import org.bonsai.activities.FlashActivity.Passing;
 import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
 import org.bonsai.util.OnSwipeTouchListener;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
 import org.srge.card.RunningInfo;
 
 import android.os.Bundle;
@@ -17,15 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 import android.widget.ViewSwitcher;
-import android.util.Log;
 
 
 public class FlashSectionFragment extends Fragment {

@@ -5,7 +5,6 @@ import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.widget.RatingBar;
 import android.widget.TextView;

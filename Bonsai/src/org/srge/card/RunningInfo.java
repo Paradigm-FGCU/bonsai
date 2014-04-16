@@ -2,7 +2,6 @@ package org.srge.card;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class RunningInfo {
 	//Static class used to find running info during the program

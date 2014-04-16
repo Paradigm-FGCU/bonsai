@@ -2,19 +2,14 @@ package org.bonsai.activities;
 
 import org.bonsai.util.LoadingPhrases;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.layout;
 import org.srge.card.BonsaiDatabaseHelper;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 

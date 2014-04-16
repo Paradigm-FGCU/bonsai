@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 	private static final String DB = "bonsai.sqlite";

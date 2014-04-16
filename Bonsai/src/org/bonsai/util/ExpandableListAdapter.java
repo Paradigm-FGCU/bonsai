@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
 
 import android.content.Context;
 import android.graphics.Typeface;

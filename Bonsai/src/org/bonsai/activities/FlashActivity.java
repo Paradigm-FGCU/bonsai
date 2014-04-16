@@ -5,24 +5,14 @@ import java.util.Locale;
 
 import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
-import org.srge.bonsai.R.id;
-import org.srge.bonsai.R.layout;
-import org.srge.bonsai.R.menu;
-import org.srge.bonsai.R.string;
 import org.srge.card.RunningInfo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 
 public class FlashActivity extends CActionBarActivity {
