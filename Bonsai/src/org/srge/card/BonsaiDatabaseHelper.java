@@ -1,4 +1,3 @@
-
 package org.srge.card;
 
 import java.util.ArrayList;
