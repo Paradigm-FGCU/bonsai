@@ -6,7 +6,6 @@ import org.srge.card.RunningInfo;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class ResultActivity extends CActionBarActivity {
@@ -22,11 +21,20 @@ public class ResultActivity extends CActionBarActivity {
 		// get score
 		Bundle b = getIntent().getExtras();
 		int score = b.getInt("score");
-
+		boolean[] quizResults = b.getBooleanArray("quizResults");
 		// display score
-		int deckSize = RunningInfo.getWorkingCardList().size();
+		int deckSize = RunningInfo.getWorkingCardList().size();	
+		//ArrayList<CardInfo> cards = RunningInfo.getWorkingCardList();
+		
 		scoreText.setText("Score: " + score + " out of " + deckSize);
-
+		String result="Quiz Results: \n\n";
+		for(int i =0;i<quizResults.length;i++){
+			//int per = cards.get(i).getNumberSeen() / cards.get(i).getNumberCorrect();
+			result = result +(" Question:"+(i+1)+" "+quizResults[i]+ "\n");
+				
+		}
+		t.setText(result);
+		/*
 		// Score Based Text
 		int percentScore = (score / deckSize) * 100;
 		if (percentScore == 100)
@@ -39,12 +47,14 @@ public class ResultActivity extends CActionBarActivity {
 			t.setText("Hmmmm.. maybe you have been reading a lot, but try to understand");
 		else if (percentScore >= 60)
 			t.setText("Opps, try again, keep learning");
-		else if (percentScore == 0)
-			t.setText("Kill Yourself: Your a Failure in LIFE");
-		else
+		else if (percentScore >= 10)
 			t.setText("Try Again, Maybe this time open the book :(");
-	}
+		else
+			t.setText("Kill Yourself: Your a Failure in LIFE");
+	
 
+	*/
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

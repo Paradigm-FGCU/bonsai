@@ -33,7 +33,8 @@ public class MultiChoiceActivity extends CActionBarActivity {
 	RadioButton rda, rdb, rdc, rdd;
 	Button butNext;
 	ActionBar aBar;
-
+	boolean[] quizResults = new boolean[cards.size()];
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,9 +75,11 @@ public class MultiChoiceActivity extends CActionBarActivity {
 				if (cards.get(qid).getAnswer().equals(answer.getText())) {
 					score++;
 					cards.get(qid).answeredCorrect();
+					quizResults[qid]=true;
 				}
 				else{
 					cards.get(qid).answeredIncorrect();
+					quizResults[qid]=false;
 				}
 				
 				if ((qid != (cards.size()-1))) {
@@ -85,6 +88,8 @@ public class MultiChoiceActivity extends CActionBarActivity {
 				} else {
 					 Intent intent = new Intent(MultiChoiceActivity.this,ResultActivity.class); Bundle b = new Bundle();
 					 b.putInt("score", score); //Your score
+					 //intent.putExtras(b); //Put your score to your next Intent
+					 b.putBooleanArray("quizResults",quizResults);
 					 intent.putExtras(b); //Put your score to your next Intent
 					 startActivity(intent); 
 					 finish();
