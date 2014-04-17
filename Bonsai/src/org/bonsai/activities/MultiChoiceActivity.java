@@ -10,10 +10,10 @@ import org.srge.card.BonsaiDatabaseHelper;
 import org.srge.card.CardInfo;
 import org.srge.card.RunningInfo;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -29,8 +29,10 @@ public class MultiChoiceActivity extends CActionBarActivity {
 	Context mContext;
 	BonsaiDatabaseHelper dbHelper;
 	TextView txtQuestion;
+	TextView txtQuestionCount;
 	RadioButton rda, rdb, rdc, rdd;
 	Button butNext;
+	ActionBar aBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +48,17 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		
 		//currentQ = quesList.get(qid);
 		txtQuestion = (TextView) findViewById(R.id.textView_Multi_Question);
+		txtQuestionCount = (TextView) findViewById(R.id.quiz_Question_Count);
+		aBar = getActionBar();
 		rda = (RadioButton) findViewById(R.id.radio_Multi0);
 		rdb = (RadioButton) findViewById(R.id.radio_Multi1);
 		rdc = (RadioButton) findViewById(R.id.radio_Multi2);
 		rdd = (RadioButton) findViewById(R.id.radio_Multi3);
 		butNext = (Button) findViewById(R.id.button_multi);
 		setQuestionView();
+		
+		//Sets Action Bar Title
+		aBar.setTitle("Bonsai: " + RunningInfo.getSelectedDeck().getDeckName() + " Quiz");
 		
 		butNext.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -86,13 +93,6 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		});
 		
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_multi, menu);
-		return true;
-	}
 
 	private void setQuestionView() {
 		//Create array List with Answers
@@ -110,7 +110,9 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		rda.setText(text.get(0));
 		rdb.setText(text.get(1));
 		rdc.setText(text.get(2));
-		rdd.setText(text.get(3));		
+		rdd.setText(text.get(3));
+		
+		txtQuestionCount.setText("Q: " + (qid+1) + "/" + cards.size());
 	}
 }
 

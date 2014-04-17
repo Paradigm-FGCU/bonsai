@@ -2,17 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MultiChoiceActivity" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/sheet_background"
         android:orientation="vertical"
         tools:ignore="UselessParent" >
+
+        <TextView
+            android:id="@+id/quiz_Question_Count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quiz: Biology"
+            tools:ignore="HardcodedText"
+            android:layout_marginLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/textView_Multi_Question"
@@ -20,14 +33,19 @@
             android:layout_height="wrap_content"
             android:text="large_text"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            tools:ignore="HardcodedText" />
+            android:textColor="#000000"
+            tools:ignore="HardcodedText"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp" />
 
         <RadioGroup
             android:id="@+id/radioMulti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.04"
-            tools:ignore="InefficientWeight" >
+            tools:ignore="InefficientWeight"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp" >
 
             <RadioButton
                 android:id="@+id/radio_Multi0"
@@ -35,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="RadioButton"
+                android:textColor="#000000"
                 tools:ignore="HardcodedText" />
 
             <RadioButton
@@ -42,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="RadioButton"
+                android:textColor="#000000"
                 tools:ignore="HardcodedText" />
 
             <RadioButton
@@ -49,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="RadioButton"
+                android:textColor="#000000"
                 tools:ignore="HardcodedText" />
 
             <RadioButton
@@ -56,15 +77,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="RadioButton"
+                android:textColor="#000000"
                 tools:ignore="HardcodedText" />
+
         </RadioGroup>
 
         <Button
             android:id="@+id/button_multi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next"
-            tools:ignore="HardcodedText" />
+            android:background="@drawable/blue_button_9_patch"
+            android:text="Submit"
+            tools:ignore="HardcodedText" 
+            android:layout_marginRight="60dp"
+   			android:layout_marginLeft="60dp"/>
+
     </LinearLayout>
 
 </RelativeLayout>
