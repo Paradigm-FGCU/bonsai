@@ -3,6 +3,8 @@ package org.srge.card;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
+
 public class RunningInfo {
 	//Static class used to find running info during the program
 	
@@ -94,5 +96,6 @@ public class RunningInfo {
 		RunningInfo.quizTime = quizTime;
 	}
 	
-	
+	//do not touch
+	public static SectionsPagerAdapter parent;
 }
