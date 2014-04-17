@@ -3,7 +3,7 @@ package org.bonsai.activities;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import org.bonsai.activities.FlashActivity.Passing;
+//import org.bonsai.activities.FlashActivity.Passing;
 import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
 import org.bonsai.util.OnSwipeTouchListener;
 import org.srge.bonsai.R;
@@ -38,8 +38,6 @@ public class FlashSectionFragment extends Fragment {
 	private SectionsPagerAdapter parent;
 	private TextView definitionTextView; 
 	private TextView termTextView; 
-	//private ImageView up_arrow;
-	//private ImageView down_arrow;
 
     public static final String ARG_SECTION_NUMBER = "section_number";
   
@@ -48,17 +46,21 @@ public class FlashSectionFragment extends Fragment {
 
     }
 
+    @Override
+	public void onCreate(Bundle savedInstanceState) {
+    	super.onCreate(savedInstanceState);
+    	parent = RunningInfo.parent;
+    	
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
-    	Passing temp = (Passing)getArguments().getSerializable("parent");
-    	parent = temp.getParent();
 
         final View rootView = inflater.inflate(R.layout.fragment_card, container, false);
 
         final ViewSwitcher viewFlipper = (ViewSwitcher)rootView.findViewById(R.id.viewFlipper);
-
+        
         
         TextView termTextView = (TextView)(((RelativeLayout)viewFlipper.getChildAt(0)).getChildAt(0));
         
@@ -69,6 +71,11 @@ public class FlashSectionFragment extends Fragment {
     
         mKnowButton = (ImageView)((RelativeLayout)((RelativeLayout)(viewFlipper.getChildAt(1))).getChildAt(2)).getChildAt(0);
         mDontKnowButton = (ImageView)((RelativeLayout)((RelativeLayout)(viewFlipper.getChildAt(1))).getChildAt(2)).getChildAt(1);
+        
+        if(parent.answered.get(getArguments().getInt(ARG_SECTION_NUMBER)-1)[0]){
+        	mKnowButton.setVisibility(View.GONE);
+        	mDontKnowButton.setVisibility(View.GONE);
+        }
         
         viewFlipper.setOnTouchListener(new OnSwipeTouchListener() {
             public void onSwipeTop() {
@@ -92,9 +99,11 @@ public class FlashSectionFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// need to use SQLite to fetch questions/answers
-				
-		        Toast.makeText(getActivity(), "Good job, my friend!", Toast.LENGTH_SHORT).show();
-
+				mKnowButton.setVisibility(View.GONE);
+	        	mDontKnowButton.setVisibility(View.GONE);
+		        Toast.makeText(getActivity(), "Good job, my friend!\n Statictics Updated", Toast.LENGTH_SHORT).show();
+		        parent.answered.get(getArguments().getInt(ARG_SECTION_NUMBER)-1)[0] = true;
+		        RunningInfo.questionAnswered(true, RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getId());
 			}
 		});
         
@@ -104,14 +113,20 @@ public class FlashSectionFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
+				mKnowButton.setVisibility(View.GONE);
+	        	mDontKnowButton.setVisibility(View.GONE);
+				parent.answered.get(getArguments().getInt(ARG_SECTION_NUMBER)-1)[0] = true;
+				RunningInfo.questionAnswered(false, RunningInfo.getWorkingCardList().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getId());
 				if(RunningInfo.getFlashCardRepeat()){
+					parent.answered.add(new boolean[1]);
 					RunningInfo.addCardByIndex(getArguments().getInt(ARG_SECTION_NUMBER)-1);
-			        Toast.makeText(getActivity(), "Card Added To End", Toast.LENGTH_SHORT).show();
+			        Toast.makeText(getActivity(), "Card Added To End\n Statictics Updated", Toast.LENGTH_SHORT).show();
 			        parent.notifyDataSetChanged();
 				}
 				else{
-					Toast.makeText(getActivity(), "Good Try", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "Statictics Updated", Toast.LENGTH_SHORT).show();
 				}
+				
 			}
 		});
     
