@@ -3,6 +3,8 @@ package org.srge.card;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.bonsai.activities.EditDeckActivity;
+import org.bonsai.activities.FlashActivity;
 import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
 
 public class RunningInfo {
@@ -97,5 +99,6 @@ public class RunningInfo {
 	}
 	
 	//do not touch
-	public static SectionsPagerAdapter parent;
+	public static FlashActivity.SectionsPagerAdapter parent;
+	public static EditDeckActivity.SectionsPagerAdapter parent2;
 }
