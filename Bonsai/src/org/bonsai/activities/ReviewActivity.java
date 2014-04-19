@@ -13,42 +13,45 @@ import org.srge.card.RunningInfo;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 
-public class ReviewActivity extends CActionBarActivity{
+public class ReviewActivity extends CActionBarActivity {
 	ExpandableListAdapter listAdapter;
-    ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String,String> listDataChild;
-		@Override
+	ExpandableListView expListView;
+	List<String> listDataHeader;
+	HashMap<String, String> listDataChild;
+
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
-			
-		setContentView(R.layout.activity_result);
-		// get the explistview
-        expListView = (ExpandableListView) findViewById(R.id.textResult);
- 
-        // preparing list data
-        prepareListData();
- 
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
- 
-        // setting list adapter
-        expListView.setAdapter(listAdapter);
-    }
- 
-    /*
-     * Preparing the list data
-     */
-    private void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String,String>();
-        ArrayList<CardInfo> cardList = RunningInfo.getSelectedDeck().getCardList();
-        // Adding child data
-        for(int i=0;i<cardList.size();i++){
-        	listDataHeader.add(cardList.get(i).getQuestion());
-        	listDataChild.put(listDataHeader.get(i), cardList.get(i).getAnswer());
-        }
-        
-    }
-		
+
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_review_mode);
+		// get the listview
+		expListView = (ExpandableListView) findViewById(R.id.reviewModeEListView);
+
+		// preparing list data
+		prepareListData();
+
+		listAdapter = new ExpandableListAdapter(this, listDataHeader,
+				listDataChild);
+
+		// setting list adapter
+		expListView.setAdapter(listAdapter);
+	}
+
+	/*
+	 * Preparing the list data
+	 */
+	private void prepareListData() {
+		listDataHeader = new ArrayList<String>();
+		listDataChild = new HashMap<String, String>();
+		ArrayList<CardInfo> cardList = RunningInfo.getSelectedDeck()
+				.getCardList();
+		// Adding child data
+		for (int i = 0; i < cardList.size(); i++) {
+			listDataHeader.add(cardList.get(i).getQuestion());
+			listDataChild.put(listDataHeader.get(i), cardList.get(i)
+					.getAnswer());
+		}
+
+	}
+
 }
-		
-		
