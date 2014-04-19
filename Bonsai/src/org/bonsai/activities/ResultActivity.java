@@ -1,8 +1,9 @@
 package org.bonsai.activities;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import org.bonsai.util.CActionBarActivity;
+import org.bonsai.util.ExpandableListAdapter;
 import org.srge.bonsai.R;
 import org.srge.card.CardInfo;
 import org.srge.card.DeckInfo;
@@ -10,18 +11,28 @@ import org.srge.card.RunningInfo;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 public class ResultActivity extends CActionBarActivity {
+	ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String,String> listDataChild;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_result);
 		
-		// get text view
+		// get XML components
 		TextView scoreText = (TextView) findViewById(R.id.text_score);
-		TextView t = (TextView) findViewById(R.id.textResult);
+		expListView = (ExpandableListView) findViewById(R.id.textResult);
+		 
+	   
 		
+		// preparing Results data
+				
 		//Get Vars
 		int deckSize = RunningInfo.getWorkingCardList().size();	
 		ArrayList<CardInfo> cards = RunningInfo.getWorkingCardList();
@@ -30,56 +41,82 @@ public class ResultActivity extends CActionBarActivity {
 		// get score
 		Bundle b = getIntent().getExtras();
 		int score = b.getInt("score");
-		
+		//quiz results
 		boolean[] quizResults = b.getBooleanArray("quizResults");
 		int pScore= (score / deckSize) * 100;
-		
+		//get Selected Answers
+		String[] selectedAns = b.getStringArray("selectedAns");
 		
 		//Get/Set Quiz Average
+		double dDeckSize =deckSize;
+		double dScore=score;
 		deck.reaverageQuiz(pScore);
 		double quizAve = deck.getQuizAverage()*100;
-		double quizPercent = score/deckSize * 100;
-		// display score
-		scoreText.setText("Score: " + score + " out of " + deckSize+ " - " + quizPercent +"%");
+		double quizPercent = (dScore/dDeckSize) *100;
 		
-		String result="Quiz Results: \n"+"Average Quiz Score: "+ quizAve+"%\n";
 		
+		//Format score	
+		String scoreT = String.format("Score: %d out of %d  %3.0f%%\n\nQuiz Results: \nAverage Quiz Score: %3.0f%%\n", score,deckSize, quizPercent,quizAve);
+		
+		
+		//Format ListView Info
+		listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String,String>();
+        ArrayList<CardInfo> cardList = RunningInfo.getSelectedDeck().getCardList();
 		
 		for(int i =0;i<quizResults.length;i++){
-				
+			int qNum = i+1;
 			String cardCorrectness;
-			int cardCorrectPercent= cards.get(i).getNumberCorrect()/cards.get(i).getNumberSeen()*100;
+			double cardCorrectPercent;
 			
-			if (quizResults[i])
-				cardCorrectness=": Correct ";
+			 // Adding child data
+	             
+			
+			
+			//Calculate past correct Ave for card
+			double nSeen = cards.get(i).getNumberSeen();
+			double nCorrect =cards.get(i).getNumberCorrect();
+			if(nSeen >0)
+				cardCorrectPercent= (nCorrect/nSeen)*100;
 			else
-				cardCorrectness=": InCorrect ";
+				cardCorrectPercent=nCorrect*100;
 			
-			result = result +(" Question_"+(i+1)+cardCorrectness+cardCorrectPercent+"%\n");
-				
+			//Get current result text
+			if (quizResults[i])
+				cardCorrectness="Correct";
+			else
+				cardCorrectness="InCorrect";
+			
+			
+			String parText =String.format("Q%3d:%-14sAvg: %3.0f%%",qNum,cardCorrectness,cardCorrectPercent);
+			
+			String childText = String.format("Term:\n%s\n\n",cardList.get(i).getQuestion());
+			if(!cardList.get(i).getAnswer().equals(selectedAns[i])){
+				childText += String.format("Your Answer:\n%s\n\n",selectedAns[i]);
+			}
+			childText += String.format("Correct Answer:\n%s\n\n",cardList.get(i).getAnswer());
+			
+			//input to Parent Child Arraylists
+			listDataHeader.add(parText);
+        	listDataChild.put(listDataHeader.get(i), childText);
+			
+			
 		}
-		t.setText(result);
-		/*
-		// Score Based Text
-		int percentScore = (score / deckSize) * 100;
-		if (percentScore == 100)
-			t.setText("EXCELLENT 100%");
-		else if (percentScore >= 90)
-			t.setText("So close to perfection");
-		else if (percentScore >= 80)
-			t.setText("Good BUT not good enough");
-		else if (percentScore >= 70)
-			t.setText("Hmmmm.. maybe you have been reading a lot, but try to understand");
-		else if (percentScore >= 60)
-			t.setText("Opps, try again, keep learning");
-		else if (percentScore >= 10)
-			t.setText("Try Again, Maybe this time open the book :(");
-		else
-			t.setText("Kill Yourself: Your a Failure in LIFE");
-	
+		
+		
+		// OutPut to XML
 
-	*/
+		// Display Score
+		scoreText.setText(scoreT);
+
+		// Display to list View Results
+		listAdapter = new ExpandableListAdapter(this, listDataHeader,
+				listDataChild);
+
+		// setting list adapter
+		expListView.setAdapter(listAdapter);
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
