@@ -3,7 +3,7 @@ package org.srge.card;
 import java.util.ArrayList;
 
 public class DeckInfo {
-	public static final String DatabaseName = "bonsai.sqlite3";
+	private int mDeckId;
 	private String mdeckName;
 	private ArrayList<CardInfo> cardList;
 	private double mQuizAverage;
@@ -13,7 +13,10 @@ public class DeckInfo {
 		
 	}
 	
-	public DeckInfo(String deckNameIn, ArrayList<CardInfo> cardListIn){
+	public DeckInfo(int deckId, String deckNameIn, ArrayList<CardInfo> cardListIn, double qAverage, int qCount){
+		mDeckId = deckId;
+		mQuizAverage = qAverage;
+		mQuizCount = qCount;
 		mdeckName = deckNameIn;
 		cardList = cardListIn;
 	}
@@ -68,6 +71,11 @@ public class DeckInfo {
 	public void setDeckName(String mdeckName) {
 		this.mdeckName = mdeckName;
 	}
+
+	public int getDeckId() {
+		return mDeckId;
+	}
+
 	
 	
 }

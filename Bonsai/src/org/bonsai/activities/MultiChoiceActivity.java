@@ -106,14 +106,14 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		ArrayList<String> text = new ArrayList<String>(4);
 		
 		text.addAll(dbHelper.getFakeAns(qid));
-		text.add(cards.get(qid).getAnswer());
+		text.add(cards.get(qid).getQuestion());
 		
 		//Randomize Radio Text Array
 		long seed = System.nanoTime();
 		Collections.shuffle(text, new Random(seed));
 		
 		//Set Text For Activity
-		txtQuestion.setText(cards.get(qid).getQuestion());
+		txtQuestion.setText(cards.get(qid).getAnswer());
 		rda.setText(text.get(0));
 		rdb.setText(text.get(1));
 		rdc.setText(text.get(2));

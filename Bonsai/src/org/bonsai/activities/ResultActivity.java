@@ -5,20 +5,26 @@ import java.util.*;
 import org.bonsai.util.CActionBarActivity;
 import org.bonsai.util.ExpandableListAdapter;
 import org.srge.bonsai.R;
+import org.srge.card.BonsaiDatabaseHelper;
 import org.srge.card.CardInfo;
 import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 public class ResultActivity extends CActionBarActivity {
+
 	ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String,String> listDataChild;
+	private BonsaiDatabaseHelper dbHelper;
+	private Context mContext;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +57,19 @@ public class ResultActivity extends CActionBarActivity {
 		double dDeckSize =deckSize;
 		double dScore=score;
 		deck.reaverageQuiz(pScore);
+				
+		
 		double quizAve = deck.getQuizAverage()*100;
+
 		double quizPercent = (dScore/dDeckSize) *100;
+
+		//DATABASE
+		mContext = this.getApplicationContext();
+		dbHelper = new BonsaiDatabaseHelper(mContext);
+		dbHelper.updateDeckStats(deck.getDeckId(), deck.getQuizAverage(), deck.getQuizCount());
+		dbHelper.close();
+		
+
 		
 		
 		//Format score	
@@ -80,6 +97,9 @@ public class ResultActivity extends CActionBarActivity {
 				cardCorrectPercent= (nCorrect/nSeen)*100;
 			else
 				cardCorrectPercent=nCorrect*100;
+
+				cardCorrectness=": Incorrect ";
+
 			
 			//Get current result text
 			if (quizResults[i])
