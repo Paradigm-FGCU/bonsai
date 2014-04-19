@@ -60,5 +60,9 @@
        <string name="random">Random</string>
        <string name="hardest_first">Hardest First</string>
        <string name="loading...">Loading&#8230;</string>
+       <string name="Deck_Name">Deck Name:</string>
+       <string name="Term">Term:</string>
+       <string name="Definition">Definition:</string>
+       <string name="Edit_Deck">Edit Deck</string>
       
 </resources>

@@ -1,7 +1,11 @@
 package org.bonsai.activities;
 
+import java.util.ArrayList;
+
 import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
+import org.srge.card.CardInfo;
+import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
 
 import android.os.Bundle;
@@ -13,24 +17,45 @@ public class ResultActivity extends CActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_result);
-		// get score object
-		TextView scoreText = (TextView) findViewById(R.id.text_score);
-
+		
 		// get text view
+		TextView scoreText = (TextView) findViewById(R.id.text_score);
 		TextView t = (TextView) findViewById(R.id.textResult);
+		
+		//Get Vars
+		int deckSize = RunningInfo.getWorkingCardList().size();	
+		ArrayList<CardInfo> cards = RunningInfo.getWorkingCardList();
+		DeckInfo deck = RunningInfo.getSelectedDeck();
+		
 		// get score
 		Bundle b = getIntent().getExtras();
 		int score = b.getInt("score");
-		boolean[] quizResults = b.getBooleanArray("quizResults");
-		// display score
-		int deckSize = RunningInfo.getWorkingCardList().size();	
-		//ArrayList<CardInfo> cards = RunningInfo.getWorkingCardList();
 		
-		scoreText.setText("Score: " + score + " out of " + deckSize);
-		String result="Quiz Results: \n\n";
+		boolean[] quizResults = b.getBooleanArray("quizResults");
+		int pScore= (score / deckSize) * 100;
+		
+		
+		//Get/Set Quiz Average
+		deck.reaverageQuiz(pScore);
+		double quizAve = deck.getQuizAverage()*100;
+		double quizPercent = score/deckSize * 100;
+		// display score
+		scoreText.setText("Score: " + score + " out of " + deckSize+ " - " + quizPercent +"%");
+		
+		String result="Quiz Results: \n"+"Average Quiz Score: "+ quizAve+"%\n";
+		
+		
 		for(int i =0;i<quizResults.length;i++){
-			//int per = cards.get(i).getNumberSeen() / cards.get(i).getNumberCorrect();
-			result = result +(" Question:"+(i+1)+" "+quizResults[i]+ "\n");
+				
+			String cardCorrectness;
+			int cardCorrectPercent= cards.get(i).getNumberCorrect()/cards.get(i).getNumberSeen()*100;
+			
+			if (quizResults[i])
+				cardCorrectness=": Correct ";
+			else
+				cardCorrectness=": InCorrect ";
+			
+			result = result +(" Question_"+(i+1)+cardCorrectness+cardCorrectPercent+"%\n");
 				
 		}
 		t.setText(result);

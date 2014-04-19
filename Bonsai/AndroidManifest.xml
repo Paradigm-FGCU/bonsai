@@ -59,6 +59,10 @@
             >
         </activity>
         <activity 
+            android:name="org.bonsai.activities.EditDeckActivity"    
+            >
+        </activity>
+        <activity 
             android:name="org.bonsai.activities.PeriodicTable"
             android:screenOrientation = "landscape"    
             >

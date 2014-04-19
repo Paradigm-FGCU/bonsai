@@ -72,5 +72,20 @@ public class MainMenuActivity extends CActionBarActivity  {
         	startActivityForResult(intent,0);
         }
     });
+    
+    
+    final Button button_edit_deck = (Button) findViewById(R.id.button_edit_deck);
+    button_edit_deck.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View v) {
+        	if(RunningInfo.getSelectedDeck()!=null){
+        		Intent intent = new Intent(v.getContext(),EditDeckActivity.class);
+	        	startActivityForResult(intent,0);
+	        }
+	    	else{
+	    		Toast.makeText(getApplicationContext(),
+	    				"Please Select A Deck", Toast.LENGTH_SHORT).show();
+	    	}
+        }
+    });
 	}
 }
