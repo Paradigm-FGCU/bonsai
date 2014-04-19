@@ -34,6 +34,7 @@ public class MultiChoiceActivity extends CActionBarActivity {
 	Button butNext;
 	ActionBar aBar;
 	boolean[] quizResults = new boolean[cards.size()];
+	String[] selectedAns = new String[cards.size()];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class MultiChoiceActivity extends CActionBarActivity {
 				RadioButton answer = (RadioButton) findViewById(grp
 						.getCheckedRadioButtonId());
 				
-				
+				selectedAns[qid] = (String) answer.getText();
 				//Update cards score and # of times seen
 				if (cards.get(qid).getAnswer().equals(answer.getText())) {
 					score++;
@@ -90,6 +91,7 @@ public class MultiChoiceActivity extends CActionBarActivity {
 					 b.putInt("score", score); //Your score
 					 //intent.putExtras(b); //Put your score to your next Intent
 					 b.putBooleanArray("quizResults",quizResults);
+					 b.putStringArray("selectedAns",selectedAns);
 					 intent.putExtras(b); //Put your score to your next Intent
 					 startActivity(intent); 
 					 finish();

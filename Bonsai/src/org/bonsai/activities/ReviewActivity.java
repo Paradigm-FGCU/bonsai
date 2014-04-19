@@ -21,11 +21,9 @@ public class ReviewActivity extends CActionBarActivity{
 		@Override
 	public void onCreate(Bundle savedInstanceState) {
 			
-			
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_review_mode);
-		// get the listview
-        expListView = (ExpandableListView) findViewById(R.id.reviewModeEListView);
+		setContentView(R.layout.activity_result);
+		// get the explistview
+        expListView = (ExpandableListView) findViewById(R.id.textResult);
  
         // preparing list data
         prepareListData();
