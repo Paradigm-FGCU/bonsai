@@ -22,6 +22,7 @@ public class ResultActivity extends CActionBarActivity {
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String,String> listDataChild;
+    
 	private BonsaiDatabaseHelper dbHelper;
 	private Context mContext;
 
@@ -35,9 +36,7 @@ public class ResultActivity extends CActionBarActivity {
 		TextView scoreText = (TextView) findViewById(R.id.text_score);
 		expListView = (ExpandableListView) findViewById(R.id.textResult);
 		 
-	   
-		
-		// preparing Results data
+	   // preparing Results data
 				
 		//Get Vars
 		int deckSize = RunningInfo.getWorkingCardList().size();	
@@ -49,29 +48,18 @@ public class ResultActivity extends CActionBarActivity {
 		int score = b.getInt("score");
 		//quiz results
 		boolean[] quizResults = b.getBooleanArray("quizResults");
-		int pScore= (score / deckSize) * 100;
 		//get Selected Answers
 		String[] selectedAns = b.getStringArray("selectedAns");
 		
 		//Get/Set Quiz Average
 		double dDeckSize =deckSize;
 		double dScore=score;
-		deck.reaverageQuiz(pScore);
+		double quizPercent = (dScore/dDeckSize) *100;
+		deck.reaverageQuiz(quizPercent);
 				
 		
-		double quizAve = deck.getQuizAverage()*100;
+		double quizAve = deck.getQuizAverage();
 
-		double quizPercent = (dScore/dDeckSize) *100;
-
-		//DATABASE
-		mContext = this.getApplicationContext();
-		dbHelper = new BonsaiDatabaseHelper(mContext);
-		dbHelper.updateDeckStats(deck.getDeckId(), deck.getQuizAverage(), deck.getQuizCount());
-		dbHelper.close();
-		
-
-		
-		
 		//Format score	
 		String scoreT = String.format("Score: %d out of %d  %3.0f%%\n\nQuiz Results: \nAverage Quiz Score: %3.0f%%\n", score,deckSize, quizPercent,quizAve);
 		
@@ -79,7 +67,7 @@ public class ResultActivity extends CActionBarActivity {
 		//Format ListView Info
 		listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String,String>();
-        ArrayList<CardInfo> cardList = RunningInfo.getSelectedDeck().getCardList();
+        
 		
 		for(int i =0;i<quizResults.length;i++){
 			int qNum = i+1;
@@ -110,11 +98,11 @@ public class ResultActivity extends CActionBarActivity {
 			
 			String parText =String.format("Q%3d:%-14sAvg: %3.0f%%",qNum,cardCorrectness,cardCorrectPercent);
 			
-			String childText = String.format("Term:\n%s\n\n",cardList.get(i).getQuestion());
-			if(!cardList.get(i).getAnswer().equals(selectedAns[i])){
+			String childText = String.format("Term:\n%s\n\n",cards.get(i).getQuestion());
+			if(!cards.get(i).getAnswer().equals(selectedAns[i])){
 				childText += String.format("Your Answer:\n%s\n\n",selectedAns[i]);
 			}
-			childText += String.format("Correct Answer:\n%s\n\n",cardList.get(i).getAnswer());
+			childText += String.format("Correct Answer:\n%s\n\n",cards.get(i).getAnswer());
 			
 			//input to Parent Child Arraylists
 			listDataHeader.add(parText);
@@ -135,6 +123,12 @@ public class ResultActivity extends CActionBarActivity {
 
 		// setting list adapter
 		expListView.setAdapter(listAdapter);
+		
+		//DATABASE
+				mContext = this.getApplicationContext();
+				dbHelper = new BonsaiDatabaseHelper(mContext);
+				dbHelper.updateDeckStats(deck.getDeckId(), deck.getQuizAverage(), deck.getQuizCount());
+				dbHelper.close();
 	}
 	
 	@Override

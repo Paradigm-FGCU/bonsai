@@ -87,9 +87,9 @@ public class MultiChoiceActivity extends CActionBarActivity {
 					qid++;
 					setQuestionView();
 				} else {
-					 Intent intent = new Intent(MultiChoiceActivity.this,ResultActivity.class); Bundle b = new Bundle();
+					 Intent intent = new Intent(MultiChoiceActivity.this,ResultActivity.class); 
+					 Bundle b = new Bundle();
 					 b.putInt("score", score); //Your score
-					 //intent.putExtras(b); //Put your score to your next Intent
 					 b.putBooleanArray("quizResults",quizResults);
 					 b.putStringArray("selectedAns",selectedAns);
 					 intent.putExtras(b); //Put your score to your next Intent
@@ -106,14 +106,14 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		ArrayList<String> text = new ArrayList<String>(4);
 		
 		text.addAll(dbHelper.getFakeAns(qid));
-		text.add(cards.get(qid).getQuestion());
+		text.add(cards.get(qid).getAnswer());
 		
 		//Randomize Radio Text Array
 		long seed = System.nanoTime();
 		Collections.shuffle(text, new Random(seed));
 		
 		//Set Text For Activity
-		txtQuestion.setText(cards.get(qid).getAnswer());
+		txtQuestion.setText(cards.get(qid).getQuestion());
 		rda.setText(text.get(0));
 		rdb.setText(text.get(1));
 		rdc.setText(text.get(2));

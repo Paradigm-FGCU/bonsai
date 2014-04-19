@@ -27,14 +27,16 @@ public class DeckInfo {
 	
 	//Takes in a new quiz grade and weighted averages it with the old grade
 	public void reaverageQuiz(double quizAverageIn){
+		
 		if(mQuizCount!=0){
-			mQuizAverage = (mQuizAverage*mQuizCount)+quizAverageIn;
-			mQuizCount++;
+			double count = mQuizCount;
+			mQuizAverage = ((mQuizAverage*count)+quizAverageIn)/(count+1);
 		}
 		else{
-			mQuizAverage = quizAverageIn;
-			mQuizCount++;
+			mQuizAverage = quizAverageIn;		
 		}
+		
+		mQuizCount++;
 	}
 	
 	/*
