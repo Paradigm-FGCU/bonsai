@@ -4,15 +4,20 @@ import java.util.ArrayList;
 
 import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
+import org.srge.card.BonsaiDatabaseHelper;
 import org.srge.card.CardInfo;
 import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
 public class ResultActivity extends CActionBarActivity {
+	private BonsaiDatabaseHelper dbHelper;
+	private Context mContext;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,8 +42,17 @@ public class ResultActivity extends CActionBarActivity {
 		
 		//Get/Set Quiz Average
 		deck.reaverageQuiz(pScore);
+				
+		
 		double quizAve = deck.getQuizAverage()*100;
 		double quizPercent = score/deckSize * 100;
+		
+		//DATABASE
+		mContext = this.getApplicationContext();
+		dbHelper = new BonsaiDatabaseHelper(mContext);
+		dbHelper.updateDeckStats(deck.getDeckId(), deck.getQuizAverage(), deck.getQuizCount());
+		dbHelper.close();
+		
 		// display score
 		scoreText.setText("Score: " + score + " out of " + deckSize+ " - " + quizPercent +"%");
 		
@@ -53,7 +67,7 @@ public class ResultActivity extends CActionBarActivity {
 			if (quizResults[i])
 				cardCorrectness=": Correct ";
 			else
-				cardCorrectness=": InCorrect ";
+				cardCorrectness=": Incorrect ";
 			
 			result = result +(" Question_"+(i+1)+cardCorrectness+cardCorrectPercent+"%\n");
 				

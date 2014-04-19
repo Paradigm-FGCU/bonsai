@@ -20,7 +20,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE DECKS ("
-				+ "DECK_ID INTEGER PRIMARY KEY AUTOINCREMENT, DECK_NAME TEXT, DECK_STATS INTEGER)");
+				+ "DECK_ID INTEGER PRIMARY KEY AUTOINCREMENT, DECK_NAME TEXT, DECK_QAVERAGE REAL, DECK_QCOUNT INTEGER)");
 
 		db.execSQL("CREATE TABLE CARDS ("
 				+ "CARD_ID INTEGER PRIMARY KEY AUTOINCREMENT, TERM TEXT, DEFN TEXT, SEEN INTEGER,"
@@ -70,6 +70,42 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		return deckName;
 
 	}
+	
+	public double getDeckAverage(int pos) {
+
+		Cursor crs = getReadableDatabase().query("DECKS", null, null, null,
+				null, null, "DECK_ID" + "= " + pos);
+
+		crs.moveToNext();
+
+		double deckAverage = crs.getDouble(crs.getColumnIndex("DECK_QAVERAGE"));
+
+		return deckAverage;
+
+	}
+	
+	public int getDeckCount(int pos) {
+
+		Cursor crs = getReadableDatabase().query("DECKS", null, null, null,
+				null, null, "DECK_ID" + "= " + pos);
+
+		crs.moveToNext();
+
+		int deckCount = crs.getInt(crs.getColumnIndex("DECK_QCOUNT"));
+
+		return deckCount;
+
+	}
+	
+	public long updateDeckStats(int deckId, double qAverage, int qCount) {
+
+		ContentValues cv = new ContentValues();
+		cv.put("DECK_QAVERAGE", qAverage);
+		cv.put("DECK_QCOUNT", qCount);
+
+		return getWritableDatabase().update("DECKS", cv, "DECK_ID = "+ deckId, null);
+
+	}
 
 	public ArrayList<CardInfo> getAllCardsFromDeck(int id) {
 		ArrayList<CardInfo> allCardsFromDeck = new ArrayList<CardInfo>();
@@ -96,14 +132,6 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		return allCardsFromDeck;
 	}
 
-	public DeckInfo getCardDeckFormat(String name,
-			ArrayList<CardInfo> cardarraylist) {
-		DeckInfo cardDeckFormat = new DeckInfo(name, cardarraylist);
-
-		// add stats later;
-
-		return cardDeckFormat;
-	}
 
 	public long insertCard(int deckId, String term, String defn, int seen,
 			int correct, String alt1, String alt2, String alt3) {
@@ -112,8 +140,8 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		cv.put("DECK_ID", deckId);
 		cv.put("TERM", term);
 		cv.put("DEFN", defn);
-		cv.put("SEEN", 0);
-		cv.put("CORRECT", 0);
+		cv.put("SEEN", seen);
+		cv.put("CORRECT", correct);
 		cv.put("ALT_DEFN1", alt1);
 		cv.put("ALT_DEFN2", alt2);
 		cv.put("ALT_DEFN3", alt3);

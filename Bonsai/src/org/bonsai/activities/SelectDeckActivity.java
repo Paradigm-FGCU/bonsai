@@ -57,8 +57,9 @@ public class SelectDeckActivity extends CActionBarActivity {
 			    Toast.makeText(getApplicationContext(),
 				temp, Toast.LENGTH_SHORT).show();
 
-			    DeckInfo tempDeck = new DeckInfo(dbHelper.getDeckName(position), dbHelper.getAllCardsFromDeck(position+1));
-			    RunningInfo.setSelectedDeck(tempDeck);
+			    DeckInfo selectedDeck = new DeckInfo(position+1, dbHelper.getDeckName(position), dbHelper.getAllCardsFromDeck(position+1),
+			    		dbHelper.getDeckAverage(position+1), dbHelper.getDeckCount(position+1));
+			    RunningInfo.setSelectedDeck(selectedDeck);
 			}
 		});
 		
