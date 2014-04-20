@@ -20,7 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
-public class ReviewActivity extends Activity{
+public class ReviewActivity extends CActionBarActivity{
 	ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
@@ -33,37 +33,18 @@ public class ReviewActivity extends Activity{
 		setContentView(R.layout.activity_review_mode);
 		// get the listview
 		expListView = (ExpandableListView) findViewById(R.id.resultsEListView);
-
+		
+		getActionBar().setTitle("Bonsai: Review Mode");
 		// preparing list data
 		prepareListData();
 
-		listAdapter = new ExpandableListAdapter(this, listDataHeader,
-				listDataChild);
+		listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
 		// setting list adapter
 		expListView.setAdapter(listAdapter);
     }
 		
-		@Override
-		public boolean onCreateOptionsMenu(Menu menu) {
-		    // Inflate the menu items for use in the action bar
-		    MenuInflater inflater = getMenuInflater();
-		    inflater.inflate(R.menu.action_bar_menu, menu);
-		    return super.onCreateOptionsMenu(menu);
-		}
-		
-		@Override
-		public boolean onOptionsItemSelected(MenuItem item) {
-		    // Handle presses on the action bar items
-		    switch (item.getItemId()) {
-		        case R.id.resources:
-		        	Intent intent = new Intent(this.findViewById(android.R.id.content).getContext(),PeriodicTable.class);
-	            	startActivityForResult(intent,0);
-		            return true;
-		        default:
-		            return super.onOptionsItemSelected(item);
-		    }
-		}
+	
     /*
      * Preparing the list data
      */
