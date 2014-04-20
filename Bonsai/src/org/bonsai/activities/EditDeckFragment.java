@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -46,19 +47,17 @@ public class EditDeckFragment extends Fragment{
     	
     }
     
-    @Override
-    public void onResume(){
-    	super.onResume();
-    	setText();
-    }
-    
     public void setText(){
+    	Log.w("settext","1");
     	String term = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion();
         String definition = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer();
+        Log.w("settext","2");
         if(term == null) term = "";
         if(definition ==null) definition = "";
+        Log.w("settext","3");
         setDefinition(definition);
         setTerm(term);
+        Log.w("settext","4");
     }
     
     public void setTerm(String term){
@@ -79,11 +78,12 @@ public class EditDeckFragment extends Fragment{
         final View rootView = inflater.inflate(R.layout.fragment_edit_card, container, false);
         deck = parent.activityParent.getDeck();
         
-        termEditText = (EditText)rootView.findViewById(R.id.editable_term);
-        definitionEditText = (EditText)rootView.findViewById(R.id.editable_definition);
+        RelativeLayout layout = (RelativeLayout)rootView.findViewById(R.id.layout);
         
-        
-        
+        termEditText = (EditText)layout.getChildAt(1);
+        definitionEditText = (EditText)layout.getChildAt(3);
+
+        setText();
         
         final Button button_delete_card = (Button) rootView.findViewById(R.id.button_delete_card);
         button_delete_card.setOnClickListener(new View.OnClickListener() {

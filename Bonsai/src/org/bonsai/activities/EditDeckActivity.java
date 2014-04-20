@@ -103,11 +103,16 @@ public class EditDeckActivity extends CActionBarActivity{
     		if(newList.get(i).getId()==id) break;
     		i++;
     	}
-    	newList.remove(i);
-    	mSectionsPagerAdapter.notifyDataSetChanged();
+    	//newList.remove(i);
+    	//mSectionsPagerAdapter.notifyDataSetChanged();
+    	mSectionsPagerAdapter.setPrimaryItem(mViewPager, 0, mSectionsPagerAdapter.getItem(0));
+    	/*
     	mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mSectionsPagerAdapter.activityParent = this;
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        */
+        
+        
     }
     
     public void updateCard(CardInfo temp,int index){

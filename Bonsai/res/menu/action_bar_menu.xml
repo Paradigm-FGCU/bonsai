@@ -4,7 +4,7 @@
     
     
     <item android:id="@+id/resources"
-          android:icon="@drawable/Hydrogen_Tile_small"
+          android:icon="@drawable/small_tile"
           android:title="@string/resources"
           yourapp:showAsAction="ifRoom"/>
 

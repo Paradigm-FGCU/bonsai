@@ -58,27 +58,6 @@ public class FlashActivity extends CActionBarActivity {
         
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.card, menu);
-        getMenuInflater().inflate(R.menu.action_bar_menu, menu);
-        return true;
-    }
-
-    
-    @Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-	        case R.id.resources:
-	        	Intent intent = new Intent(FlashActivity.this,PeriodicTable.class);
-            	startActivityForResult(intent,0);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.

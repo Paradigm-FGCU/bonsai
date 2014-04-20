@@ -5,6 +5,7 @@
     android:layout_height="fill_parent" >
 	    
 	    <RelativeLayout
+	        android:id="@+id/layout"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:gravity="center_vertical" >
@@ -66,7 +67,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignBaseline="@+id/button_delete_card"
 	        android:layout_alignBottom="@+id/button_delete_card"
-	        android:layout_marginLeft="20dp"
+	        android:layout_marginLeft="22dp"
 	        android:layout_toRightOf="@+id/button_delete_card"
 	        android:background="@drawable/blue_button_9_patch"
 	        android:text="Save Card" />
