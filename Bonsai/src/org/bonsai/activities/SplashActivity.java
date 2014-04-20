@@ -1,5 +1,7 @@
 package org.bonsai.activities;
 
+import java.util.ArrayList;
+
 import org.bonsai.util.LoadingPhrases;
 import org.srge.bonsai.R;
 import org.srge.card.BonsaiDatabaseHelper;
@@ -16,28 +18,26 @@ import android.widget.TextView;
 public class SplashActivity extends Activity {
 
 	// Splash screen timer
-	//static int SPLASH_TIME_OUT = 4100;
+	// static int SPLASH_TIME_OUT = 4100;
 	static int SPLASH_TIME_OUT = 1100;
-	//if its the first time they are seeing the splash screen
+	// if its the first time they are seeing the splash screen
 	static boolean first = true;
-	
-	//number of moves it will take for the progress bar to get to 100%
-	//larger number = smoother moving
+
+	// number of moves it will take for the progress bar to get to 100%
+	// larger number = smoother moving
 	static int number_of_moves = 50;
 	static int progress_timer;
 	static int mover_temp;
-	
+
 	public BonsaiDatabaseHelper dbHelper;
 	private Context mAppContext;
 	ProgressBar progressBar;
 	int progress;
 	TextView loading_message;
-	
+
 	/**
-	* FIRST DEMO DECK
-	* ORGANIC CHEMISTRY
-	* DO NOT MESS WITH THIS PLEASE
-	*/
+	 * FIRST DEMO DECK ORGANIC CHEMISTRY DO NOT MESS WITH THIS PLEASE
+	 */
 	private String[] chemDefs = {
 			"An atom or group of atoms arranged in a particular way that is primarily responsible for the chemical and physical properties of the molecule in which it is found. There are a total of 10 of these.",
 			"Unsaturated hydrocarbons containing at least one carbon-carbon triple bond. Noted by the suffix \"-yne\"",
@@ -55,11 +55,21 @@ public class SplashActivity extends Activity {
 			"Atomic Structure of Carbon", "Unsaturated Hydrocarbon",
 			"Saturated Hydrocarbond", "Covalent Bond", "Organic Chemistry" };
 
+	private String[][] chemFakes = {
+			{ "Non-polar grouping", "Covalent", "Enthalpy" },
+			{ "Hemiacetals", "Aldehyde", "Carbonyl" },
+			{ "Acetal", "Ketone", "HCI" },
+			{ "Aldehyde", "Carbon-nitrogen", "Tetramine" },
+			{ "Halogen", "Carbon-nitrogen", "Cyanohydrin" },
+			{ "Halogen", "Hydrazone", "Aromatic" },
+			{ "HCN", "Alkense", "Halide" },
+			{ "Carboxlyic", "Acyl Chloride", "Amide" },
+			{ "Cyclic Anhydride", "NAOH", "Amide" },
+			{ "Nitrile", "Aromatic", "Thiol" } };
+
 	/**
-	* SECOND DEMO DECK
-	* BIOLOGY
-	* DO NOT MESS WITH THIS PLEASE
-	*/
+	 * SECOND DEMO DECK BIOLOGY DO NOT MESS WITH THIS PLEASE
+	 */
 
 	private String[] bioDefs = {
 			"Mitotic phase during which daughter chromosomes move toward the poles of the spindle",
@@ -77,76 +87,73 @@ public class SplashActivity extends Activity {
 			"Asexual reproduction", "Aster", "Binary Fission", "Cancer",
 			"Carcinogenesis", "Cell Cycle", "Cell Plate" };
 
-	/**
-	* THIRD DEMO DECK
-	* SOFTWARE SPECS
-	* DO NOT MESS WITH THIS PLEASE
-	*/
-	
-	private String[] softDefs = {};
-	
-	private String[] softTerms = {};
-	
+	private String[][] bioFakes = {
+			{ "Viruses", "Prokaryotes", "Eurokaryotes" },
+			{ "Thalpoid", "Tetraploid", "Two Diploids" },
+			{ "Binary Fission", "Translocation", "Diffusion" },
+			{ "Bacillus", "Cereus", "Mesoplodon" },
+			{ "Starch", "Transpiration", "Glycolysis" },
+			{ "Halogen", "Hydrazone", "Cyanohydrin" },
+			{ "Humidty", "Temperate", "Tempurature" },
+			{ "Blood pressure", "Atrial contractions", "Heart valve force" },
+			{ "Cyclic Anhydride", "NAOH", "Amide" },
+			{ "Ectothermic organisms", "Keystone species",
+					"r-selected organisms" } };
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_start_screen);
-		
-		loading_message = (TextView)findViewById(R.id.loading_message);
-		progressBar = (ProgressBar)findViewById(R.id.splash_progress_bar);
 
-		
+		loading_message = (TextView) findViewById(R.id.loading_message);
+		progressBar = (ProgressBar) findViewById(R.id.splash_progress_bar);
+
 		mAppContext = this.getApplicationContext();
 		dbHelper = new BonsaiDatabaseHelper(mAppContext);
-		
-		
-		
+
 		/*
-		 * MAKE DATABASE ENTRIES IF DECKS LIST
-		 * DOES NOT EXIST...
+		 * MAKE DATABASE ENTRIES IF DECKS LIST DOES NOT EXIST...
 		 */
 		if (dbHelper.getDecksList() == null) {
 
 			dbHelper.insertDeck("Organic Chemistry");
 			for (int i = 0; i < chemDefs.length; i++) {
-				dbHelper.insertCard(1, chemTerms[i], chemDefs[i], 0, 0, "Fake Answer 1",
-						"Fake Answer 2", "Fake Answer 3");
+				dbHelper.insertCard(1, chemTerms[i], chemDefs[i], 0, 0,
+						chemFakes[i][0], chemFakes[i][1], chemFakes[i][2]);
 			}
-			
-			
+
 			dbHelper.insertDeck("Biology");
 			for (int i = 0; i < bioDefs.length; i++) {
-				dbHelper.insertCard(2, bioTerms[i], bioDefs[i], 0, 0, "Fake Answer 1",
-						"Fake Answer 2", "Fake Answer 3");
+				dbHelper.insertCard(2, bioTerms[i], bioDefs[i], 0, 0,
+						bioFakes[i][0], bioFakes[i][1], bioFakes[i][2]);
 			}
 		}
 		dbHelper.close();
-		
-		//creates the loading bar movements
+
+		// creates the loading bar movements
 		progress = 0;
 		progress_timer = 0;
 		mover_temp = 0;
-		while(mover_temp<=number_of_moves){
-			new Handler().postDelayed(new Runnable() {@Override public void run() {
-					ProgressBar myProgressBar = (ProgressBar)findViewById(R.id.splash_progress_bar);
+		while (mover_temp <= number_of_moves) {
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					ProgressBar myProgressBar = (ProgressBar) findViewById(R.id.splash_progress_bar);
 					myProgressBar.setProgress(progress);
-					if(progress==30 || progress==70){
-						loading_message.setText(LoadingPhrases.generatePhrase(loading_message.getText()));
+					if (progress == 30 || progress == 70) {
+						loading_message.setText(LoadingPhrases
+								.generatePhrase(loading_message.getText()));
 					}
-					progress = progress + (100/number_of_moves);
-					}}, progress_timer);
+					progress = progress + (100 / number_of_moves);
+				}
+			}, progress_timer);
 			mover_temp = mover_temp + 1;
-			progress_timer = progress_timer + (SPLASH_TIME_OUT-100)/number_of_moves;
+			progress_timer = progress_timer + (SPLASH_TIME_OUT - 100)
+					/ number_of_moves;
 		}
 
-			
+		// dbHelper.close();
 
-	
-
-		//dbHelper.close();
-		
-
-		
 		new Handler().postDelayed(new Runnable() {
 
 			/*
@@ -167,17 +174,17 @@ public class SplashActivity extends Activity {
 			}
 		}, SPLASH_TIME_OUT);
 	}
-	
+
 	protected void onResume() {
 		super.onResume();
-		if(!first){
+		if (!first) {
 			progressBar.setVisibility(View.GONE);
-			TextView loading = (TextView)findViewById(R.id.loading_message);
+			TextView loading = (TextView) findViewById(R.id.loading_message);
 			loading.setVisibility(View.GONE);
 		}
 	}
-	
-	protected void onPause(){
+
+	protected void onPause() {
 		super.onPause();
 		first = false;
 		SPLASH_TIME_OUT = 1500;

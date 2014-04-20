@@ -1,7 +1,6 @@
 package org.bonsai.activities;
 
 import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
-import org.bonsai.util.OnSwipeTouchListener;
 import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
 
@@ -9,14 +8,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewSwitcher;
 
 public class EditDeckFragment extends Fragment{
 

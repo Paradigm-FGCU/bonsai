@@ -1,9 +1,7 @@
 package org.bonsai.activities;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
-import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
 import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
@@ -14,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;

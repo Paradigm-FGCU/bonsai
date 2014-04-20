@@ -5,7 +5,6 @@ import java.util.Collections;
 
 import org.bonsai.activities.EditDeckActivity;
 import org.bonsai.activities.FlashActivity;
-import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
 
 public class RunningInfo {
 	//Static class used to find running info during the program
