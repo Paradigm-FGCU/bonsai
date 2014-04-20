@@ -104,9 +104,45 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		cv.put("DECK_QCOUNT", qCount);
 
 		return getWritableDatabase().update("DECKS", cv, "DECK_ID = "+ deckId, null);
-
+		
 	}
 
+	public long updateDeckName(DeckInfo deck) {
+		
+		
+		ContentValues cv = new ContentValues();
+		cv.put("DECK_NAME", deck.getDeckName());
+		
+		return getWritableDatabase().update("DECKS", cv, "DECK_ID = "+ deck.getDeckId(), null);
+	}
+	
+	public void updateAllCards(DeckInfo deck) {
+		ArrayList<CardInfo> cardList = deck.getCardList();
+		
+		for(CardInfo card:cardList) {
+			updateCard(deck.getDeckId(), card.getAnswer(), card.getQuestion(), card.getNumberSeen(), card.getNumberCorrect(), 
+					card.getFakeAnswers());
+		}
+		
+	}
+
+	public long updateCard(int deckId, String term, String defn, int seen,
+			int correct, ArrayList<String> fakeAns) {
+
+		ContentValues cv = new ContentValues();
+		cv.put("DECK_ID", deckId);
+		cv.put("TERM", term);
+		cv.put("DEFN", defn);
+		cv.put("SEEN", seen);
+		cv.put("CORRECT", correct);
+		cv.put("ALT_DEFN1", fakeAns.get(0));
+		cv.put("ALT_DEFN2", fakeAns.get(1));
+		cv.put("ALT_DEFN3", fakeAns.get(2));
+
+		return getWritableDatabase().update("CARDS", cv, "DECK_ID = "+ deckId, null);
+
+	}
+	
 	public ArrayList<CardInfo> getAllCardsFromDeck(int id) {
 		ArrayList<CardInfo> allCardsFromDeck = new ArrayList<CardInfo>();
 
