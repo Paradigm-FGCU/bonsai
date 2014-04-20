@@ -5,25 +5,24 @@ import java.util.ArrayList;
 public class CardInfo {
 	private String mDefinition;
 	private String mTerm;
-	private ArrayList<String> mFakeAnswers;
+	private ArrayList<String> mFakeAnswers = new ArrayList<String>(3);
 	private DeckInfo parentDeck;
 	private int mNumberSeen;
 	private int mNumberCorrect;
 	private int mId;
+	private String mAlt1, mAlt2, mAlt3;
 	
-	public CardInfo(int id, String question, String answer, DeckInfo parentDeckIn) {
+	public CardInfo(int id, String question, String answer, String alt1, String alt2, String alt3, DeckInfo parentDeckIn) {
 		mId=id;
 		mDefinition = question;
 		mTerm = answer;
-		parentDeck = parentDeckIn; 
-	}
-	
-	public CardInfo(int id, String definition, String term,ArrayList<String> fakeAnswers,DeckInfo parentDeckIn) {
-		mId=id;
-		mDefinition = definition;
-		mTerm = term;
-		parentDeck = parentDeckIn; 
-		mFakeAnswers = fakeAnswers;
+		parentDeck = parentDeckIn;
+		mAlt1 = alt1;
+		mAlt2 = alt2;
+		mAlt3 = alt3;
+		mFakeAnswers.add(mAlt1);
+		mFakeAnswers.add(mAlt2);
+		mFakeAnswers.add(mAlt3);
 	}
 	
 	public CardInfo() {
@@ -55,6 +54,7 @@ public class CardInfo {
 	}
 	
 	public ArrayList<String> getFakeAnswers() {
+		
 		return mFakeAnswers;
 	}
 

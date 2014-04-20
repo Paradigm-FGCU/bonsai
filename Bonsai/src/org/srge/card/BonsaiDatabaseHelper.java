@@ -160,8 +160,11 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 				int ID = Integer.parseInt(wrapped.getString(wrapped.getColumnIndex("CARD_ID")));
 				String TERM = wrapped.getString(wrapped.getColumnIndex("TERM"));
 				String DEFN = wrapped.getString(wrapped.getColumnIndex("DEFN"));
-
-				allCardsFromDeck.add(new CardInfo(ID, TERM, DEFN, new DeckInfo()));
+				String ALT_DEFN1 = wrapped.getString(wrapped.getColumnIndex("ALT_DEFN1"));
+				String ALT_DEFN2 = wrapped.getString(wrapped.getColumnIndex("ALT_DEFN2"));
+				String ALT_DEFN3 = wrapped.getString(wrapped.getColumnIndex("ALT_DEFN3"));
+				
+				allCardsFromDeck.add(new CardInfo(ID, TERM, DEFN, ALT_DEFN1, ALT_DEFN2, ALT_DEFN3, new DeckInfo()));
 			} while (wrapped.moveToNext());
 		}
 

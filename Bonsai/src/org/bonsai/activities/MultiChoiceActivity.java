@@ -105,7 +105,7 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		//Create array List with Answers
 		ArrayList<String> text = new ArrayList<String>(4);
 		
-		text.addAll(dbHelper.getFakeAns(qid));
+		text.addAll(cards.get(qid).getFakeAnswers());
 		text.add(cards.get(qid).getQuestion());
 		
 		//Randomize Radio Text Array
