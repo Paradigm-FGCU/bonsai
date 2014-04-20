@@ -13,7 +13,9 @@ import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -131,6 +133,21 @@ public class ResultActivity extends CActionBarActivity {
 				dbHelper = new BonsaiDatabaseHelper(mContext);
 				dbHelper.updateDeckStats(deck.getDeckId(), deck.getQuizAverage(), deck.getQuizCount());
 				dbHelper.close();
+				
+	}
+	
+	public boolean onKeyDown(int keycode, KeyEvent event) {
+	    if (keycode == KeyEvent.KEYCODE_BACK) {
+	    	
+			// Start main Menu activity
+			Intent i = new Intent(ResultActivity.this,
+					MainMenuActivity.class);
+			startActivity(i);
+
+			// close this activity
+			finish();
+	    }
+	    return super.onKeyDown(keycode, event);
 	}
 	
 	@Override
