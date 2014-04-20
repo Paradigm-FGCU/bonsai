@@ -1,9 +1,6 @@
 package org.bonsai.activities;
 
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
 import org.bonsai.util.OnSwipeTouchListener;
 import org.srge.bonsai.R;
