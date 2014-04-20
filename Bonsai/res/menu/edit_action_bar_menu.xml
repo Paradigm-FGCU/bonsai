@@ -3,8 +3,8 @@
     xmlns:yourapp="http://schemas.android.com/apk/res-auto">
     
     
-    <item android:id="@+id/resources"
-          android:icon="@drawable/small_tile"
+    <item android:id="@+id/addCard"
+          android:icon="@drawable/blue_plus"
           android:title="@string/resources"
           yourapp:showAsAction="ifRoom"/>
 
