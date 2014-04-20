@@ -98,11 +98,11 @@ public class ResultActivity extends CActionBarActivity {
 			
 			String parText =String.format("Q%3d:%-14sAvg: %3.0f%%",qNum,cardCorrectness,cardCorrectPercent);
 			
-			String childText = String.format("Term:\n%s\n\n",cards.get(i).getQuestion());
-			if(!cards.get(i).getAnswer().equals(selectedAns[i])){
+			String childText = String.format("Term:\n%s\n\n",cards.get(i).getAnswer());
+			if(!cards.get(i).getQuestion().equals(selectedAns[i])){
 				childText += String.format("Your Answer:\n%s\n\n",selectedAns[i]);
 			}
-			childText += String.format("Correct Answer:\n%s\n\n",cards.get(i).getAnswer());
+			childText += String.format("Correct Answer:\n%s\n\n",cards.get(i).getQuestion());
 			
 			//input to Parent Child Arraylists
 			listDataHeader.add(parText);
