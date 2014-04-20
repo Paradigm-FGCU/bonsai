@@ -14,6 +14,7 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -35,18 +36,18 @@ public class MultiChoiceActivity extends CActionBarActivity {
 	ActionBar aBar;
 	boolean[] quizResults = new boolean[cards.size()];
 	String[] selectedAns = new String[cards.size()];
-	
+	private CountDownTimer mCountDown;
+	String timerText;
 	@Override
+	
 	protected void onCreate(Bundle savedInstanceState) {
+		//Sets Action Bar Title
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_multi);
 		
 		mContext = this.getApplicationContext();
 		dbHelper = new BonsaiDatabaseHelper(mContext);
-
-		
-		//quesList = RunningInfo.getMuiltiList();
-		
 		
 		//currentQ = quesList.get(qid);
 		txtQuestion = (TextView) findViewById(R.id.textView_Multi_Question);
@@ -57,11 +58,48 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		rdc = (RadioButton) findViewById(R.id.radio_Multi2);
 		rdd = (RadioButton) findViewById(R.id.radio_Multi3);
 		butNext = (Button) findViewById(R.id.button_multi);
+		
 		setQuestionView();
-		
-		//Sets Action Bar Title
 		aBar.setTitle("Bonsai: " + RunningInfo.getSelectedDeck().getDeckName() + " Quiz");
-		
+		//Timer for Quiz Mode
+		if (RunningInfo.getTimedQuiz()){
+			
+		mCountDown = new CountDownTimer((RunningInfo.getQuizTime()*1000), 1000) {
+
+		     public void onTick(long millisUntilFinished) {
+		    	
+		    	butNext.setText("Submit\nTime Left: " + millisUntilFinished / 1000+"s");
+		     }
+
+		     public void onFinish() {
+					
+		    	//Update cards score and # of times seen
+					selectedAns[qid] ="No Answer: Time Expired";
+					cards.get(qid).answeredIncorrect();
+					quizResults[qid]=false;
+										
+					if ((qid != (cards.size()-1))) {
+						qid++;	
+						setQuestionView();
+						mCountDown.start();
+					} else {
+						 Intent intent = new Intent(MultiChoiceActivity.this,ResultActivity.class); 
+						 Bundle b = new Bundle();
+						 b.putInt("score", score); //Your score
+						 b.putBooleanArray("quizResults",quizResults);
+						 b.putStringArray("selectedAns",selectedAns);
+						 intent.putExtras(b); //Put your score to your next Intent
+						 startActivity(intent); 
+						 finish();
+					}
+					
+		     }
+		     
+		  }.start();
+		}
+		else{
+			butNext.setText("Submit");
+		}
 		butNext.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -86,6 +124,9 @@ public class MultiChoiceActivity extends CActionBarActivity {
 				if ((qid != (cards.size()-1))) {
 					qid++;
 					setQuestionView();
+					if (RunningInfo.getTimedQuiz()){					
+					mCountDown.start();
+					}
 				} else {
 					 Intent intent = new Intent(MultiChoiceActivity.this,ResultActivity.class); 
 					 Bundle b = new Bundle();
@@ -101,6 +142,7 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		
 	}
 
+	
 	private void setQuestionView() {
 		//Create array List with Answers
 		ArrayList<String> text = new ArrayList<String>(4);
