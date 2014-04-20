@@ -30,7 +30,6 @@ public class EditDeckFragment extends Fragment{
 	private EditDeckActivity.SectionsPagerAdapter parent;
 	private TextView definitionEditText; 
 	private TextView termEditText; 
-	private TextView idTextView; 
 	private ArrayList<CardInfo> deck;
 
     public static final String ARG_SECTION_NUMBER = "section_number";
@@ -46,7 +45,33 @@ public class EditDeckFragment extends Fragment{
     	parent = RunningInfo.parent2;
     	
     }
+    
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	setText();
+    }
+    
+    public void setText(){
+    	String term = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion();
+        String definition = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer();
+        if(term == null) term = "";
+        if(definition ==null) definition = "";
+        setDefinition(definition);
+        setTerm(term);
+    }
+    
+    public void setTerm(String term){
+    	if(termEditText==null) return;
+    	termEditText.setText(term);
+    }
+    
+    public void setDefinition(String definition){
+    	if(definitionEditText==null) return;
+    	definitionEditText.setText(definition);
 
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
@@ -56,15 +81,33 @@ public class EditDeckFragment extends Fragment{
         
         termEditText = (EditText)rootView.findViewById(R.id.editable_term);
         definitionEditText = (EditText)rootView.findViewById(R.id.editable_definition);
-        idTextView = (TextView)rootView.findViewById(R.id.textViewID);
         
-        String term = deck.get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion();
-        String definition = deck.get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer();
-        if(term == null) term = "";
-        if(definition ==null) definition = "";
-        definitionEditText.setText(definition);
-        termEditText.setText(term);
-    
+        
+        
+        
+        final Button button_delete_card = (Button) rootView.findViewById(R.id.button_delete_card);
+        button_delete_card.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	AlertDialog.Builder builder = new AlertDialog.Builder(parent.activityParent);
+            	builder
+            	.setTitle("Deleting Card")
+            	.setMessage("Are You Sure?")
+            	.setIcon(android.R.drawable.ic_dialog_alert)
+            	.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            	    public void onClick(DialogInterface dialog, int which) {			      	
+            	    	parent.activityParent.deleteCard(deck.get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getId());
+            	    	setText();
+            	    	Toast.makeText(getActivity().getApplicationContext(),
+                				"Card Deleted", Toast.LENGTH_SHORT).show();
+            	    }
+            	})
+            	.setNegativeButton("No", null)						
+            	.show();
+            	
+            }
+        });
+        
+        
         final Button button_save_card = (Button) rootView.findViewById(R.id.button_save_card);
         button_save_card.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

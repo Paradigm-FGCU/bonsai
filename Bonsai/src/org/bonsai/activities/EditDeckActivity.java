@@ -29,7 +29,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-public class EditDeckActivity extends ActionBarActivity{
+public class EditDeckActivity extends CActionBarActivity{
 	SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
@@ -46,7 +46,7 @@ public class EditDeckActivity extends ActionBarActivity{
 
         android.app.ActionBar temp = getActionBar();
         temp.setTitle("Bonsai: Edit Deck");
-        
+        Log.w("from onCreate in Edit deck","initializing deck");
         newList = (ArrayList<CardInfo>)RunningInfo.getSelectedDeck().getCardList().clone();
         		
         // Create the adapter that will return a fragment for each of the three
@@ -56,6 +56,8 @@ public class EditDeckActivity extends ActionBarActivity{
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager_edit);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        
+        mViewPager.setOffscreenPageLimit(0);
         
         deckNameEditText = (EditText)findViewById(R.id.editable_deckname);
         deckNameEditText.setText(RunningInfo.getSelectedDeck().getDeckName());
@@ -94,6 +96,20 @@ public class EditDeckActivity extends ActionBarActivity{
 				"Deck Pushed", Toast.LENGTH_SHORT).show();
     }
     
+    public void deleteCard(int id){
+    	int i = 0;
+    	Log.w("from deleteCard in Edit deck","1");
+    	while(i<newList.size()){
+    		if(newList.get(i).getId()==id) break;
+    		i++;
+    	}
+    	newList.remove(i);
+    	mSectionsPagerAdapter.notifyDataSetChanged();
+    	mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter.activityParent = this;
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+    }
+    
     public void updateCard(CardInfo temp,int index){
     	newList.set(index,temp);
     }
@@ -113,7 +129,7 @@ public class EditDeckActivity extends ActionBarActivity{
 	        case R.id.addCard:
 	        	AlertDialog.Builder builder = new AlertDialog.Builder(EditDeckActivity.this);
             	builder
-            	.setTitle("Add Card")
+            	.setTitle("Add Card To End")
             	.setMessage("Are you sure?")
             	.setIcon(android.R.drawable.ic_dialog_alert)
             	.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -130,10 +146,8 @@ public class EditDeckActivity extends ActionBarActivity{
 	}
     
     public void addCard(){
-    	
     	newList.add(new CardInfo(newList.get(newList.size()-1).getId()+1,"","",newList.get(0).getParentDeck()));
     	mSectionsPagerAdapter.notifyDataSetChanged();
-    	mSectionsPagerAdapter.setPrimaryItem(mViewPager, newList.size()-1,mSectionsPagerAdapter.instantiateItem(mViewPager,newList.size()-1));
     }
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -144,7 +158,7 @@ public class EditDeckActivity extends ActionBarActivity{
     	
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
-            
+
         }
 
         @Override
@@ -165,7 +179,7 @@ public class EditDeckActivity extends ActionBarActivity{
 
         @Override
         public int getCount() {
-            return RunningInfo.getWorkingCardList().size();
+            return newList.size();
         }
 
         @Override

@@ -20,16 +20,6 @@
 	        android:text="@string/Term"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-	    <TextView
-	        android:id="@+id/textViewID"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/textView1"
-	        android:layout_alignParentTop="true"
-	        android:layout_marginTop="31dp"
-	        android:text="id"
-	        android:textAppearance="?android:attr/textAppearanceMedium" />
-
 	    <EditText
 	        android:id="@+id/editable_term"
 	        android:layout_width="wrap_content"
@@ -60,23 +50,26 @@
 	        android:inputType="textMultiLine" />
 
 	    <Button
-	        android:id="@+id/button_save_card"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_above="@+id/button_delete_card"
-	        android:layout_alignParentRight="true"
-	        android:layout_marginRight="20dp"
-	        android:background="@drawable/blue_button_9_patch"
-	        android:text="Save Card" />
-
-	    <Button
 	        android:id="@+id/button_delete_card"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_alignRight="@+id/button_save_card"
-	        android:layout_below="@+id/textViewID"
+	        android:layout_alignLeft="@+id/textView1"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginLeft="18dp"
+	        android:layout_marginTop="24dp"
 	        android:background="@drawable/blue_button_9_patch"
 	        android:text="Delete Card" />
+
+	    <Button
+	        android:id="@+id/button_save_card"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignBaseline="@+id/button_delete_card"
+	        android:layout_alignBottom="@+id/button_delete_card"
+	        android:layout_marginLeft="20dp"
+	        android:layout_toRightOf="@+id/button_delete_card"
+	        android:background="@drawable/blue_button_9_patch"
+	        android:text="Save Card" />
 
 	</RelativeLayout>
  </ScrollView>

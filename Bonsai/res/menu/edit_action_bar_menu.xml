@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto">
     
-	    <item android:id="@+id/addCard"
+    
+    <item android:id="@+id/addCard"
           android:icon="@drawable/blue_plus"
-          android:title="Add Card"
-          android:showAsAction="ifRoom"/>
-	    
+          android:title="@string/resources"
+          yourapp:showAsAction="ifRoom"/>
+
 </menu>
