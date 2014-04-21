@@ -35,15 +35,7 @@
         android:background="@drawable/blue_button_9_patch"
         android:textColor="#FFFFFF" />
     
-    <Button
-        android:id="@+id/button_edit_deck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/button_options"
-        android:text="@string/Edit_Deck" 
-        android:background="@drawable/blue_button_9_patch"
-        android:textColor="#FFFFFF" />
+    
 
     <Button
         android:id="@+id/button_Review_Mode"

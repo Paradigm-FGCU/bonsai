@@ -2,6 +2,7 @@ package org.srge.card;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import org.bonsai.activities.EditDeckActivity;
 import org.bonsai.activities.FlashActivity;
@@ -20,17 +21,17 @@ public class RunningInfo {
 	private static int cardOrder;
 	
 	
-	public static boolean updateCardOrder(int in){
-		cardOrder = in;
+	public static boolean updateCardOrder(){
 		if(workingCardList==null) return false;
-		switch(in){
+		switch(cardOrder){
 			case 0: workingCardList = (ArrayList<CardInfo>)selectedDeck.getCardList().clone();
 					break;
 					//TODO: set hardest first algo
 			case 1: workingCardList = (ArrayList<CardInfo>)selectedDeck.getCardList().clone();
+					workingCardList = CardSort.sortHardestFirst(workingCardList);
 					break;
 			case 2: workingCardList = (ArrayList<CardInfo>)selectedDeck.getCardList().clone();
-					Collections.shuffle(workingCardList);
+					Collections.shuffle(workingCardList, new Random(System.currentTimeMillis()));
 					break;
 		}
 		return true;
@@ -45,7 +46,10 @@ public class RunningInfo {
 	public static int getCardOrder() {
 		return cardOrder;
 	}
-
+	
+	public static void setCardOrder(int in){
+		cardOrder = in;
+	}
 
 	public static boolean questionAnswered(boolean correct, int id){
 		CardInfo temp = getCardById(id);
@@ -76,7 +80,6 @@ public class RunningInfo {
 	public static void setSelectedDeck(DeckInfo selectedDeck) {
 		RunningInfo.selectedDeck = selectedDeck;
 		RunningInfo.workingCardList = new ArrayList<CardInfo>();
-		updateCardOrder(cardOrder);
 	}
 	public static boolean getTimedQuiz() {
 		return timedQuiz;

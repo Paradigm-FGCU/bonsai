@@ -44,16 +44,15 @@ public class EditDeckFragment extends Fragment{
     }
     
     public void setText(){
-    	Log.w("settext","1");
     	String term = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion();
         String definition = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer();
-        Log.w("settext","2");
+
         if(term == null) term = "";
         if(definition ==null) definition = "";
-        Log.w("settext","3");
+
         setDefinition(definition);
         setTerm(term);
-        Log.w("settext","4");
+
     }
     
     public void setTerm(String term){
@@ -107,8 +106,8 @@ public class EditDeckFragment extends Fragment{
         final Button button_save_card = (Button) rootView.findViewById(R.id.button_save_card);
         button_save_card.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	String term = termEditText.getText().toString();
-            	String definition = definitionEditText.getText().toString();
+            	String term = definitionEditText.getText().toString();
+            	String definition = termEditText.getText().toString();
             	if(term==null){
         			Toast.makeText(getActivity().getApplicationContext(),
             				"Error: term text on card", Toast.LENGTH_SHORT).show();

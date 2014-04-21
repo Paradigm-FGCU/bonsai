@@ -5,6 +5,7 @@ import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -17,7 +18,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 //import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class QuizSettings extends CActionBarActivity{
+public class QuizSettings extends Activity{
 	private RadioGroup radioOrder;
 	private View radioTemp;
 	
@@ -56,7 +57,7 @@ public class QuizSettings extends CActionBarActivity{
 			    View radioTemp = radioOrder.findViewById(selectedId);
 			    int idx = radioOrder.indexOfChild(radioTemp);
 	
-				RunningInfo.updateCardOrder(idx);
+				RunningInfo.setCardOrder(idx);
 				
 			}
 

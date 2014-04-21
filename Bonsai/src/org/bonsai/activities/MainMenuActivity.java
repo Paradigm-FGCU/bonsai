@@ -7,11 +7,12 @@ import org.srge.card.RunningInfo;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainMenuActivity extends CActionBarActivity  {
+public class MainMenuActivity extends ActionBarActivity  {
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +26,14 @@ public class MainMenuActivity extends CActionBarActivity  {
         public void onClick(View v) {
         	
         	if(RunningInfo.getSelectedDeck()!=null){
+        		RunningInfo.updateCardOrder();
         		Intent intent = new Intent(v.getContext(),ReviewActivity.class);
             	startActivityForResult(intent,0);
         	}
         	else{
-        		Toast.makeText(getApplicationContext(),
-        				"Please Select A Deck", Toast.LENGTH_SHORT).show();
+        		Intent intent = new Intent(v.getContext(),
+						SelectDeckActivity.class);
+				startActivityForResult(intent, 0);
         	}
         }
     });
@@ -40,12 +43,14 @@ public class MainMenuActivity extends CActionBarActivity  {
         public void onClick(View v) {
         	
         	if(RunningInfo.getSelectedDeck()!=null){
+        		RunningInfo.updateCardOrder();
         		Intent intent = new Intent(v.getContext(),FlashActivity.class);
             	startActivityForResult(intent,0);
         	}
         	else{
-        		Toast.makeText(getApplicationContext(),
-        				"Please Select A Deck", Toast.LENGTH_SHORT).show();
+        		Intent intent = new Intent(v.getContext(),
+						SelectDeckActivity.class);
+				startActivityForResult(intent, 0);
         	}
         }
     });
@@ -55,12 +60,14 @@ public class MainMenuActivity extends CActionBarActivity  {
     button_multi.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
         	if(RunningInfo.getSelectedDeck()!=null){
+        		RunningInfo.updateCardOrder();
 	        	Intent intent = new Intent(v.getContext(),MultiChoiceActivity.class);
 	        	startActivityForResult(intent,0);
 	        }
 	    	else{
-	    		Toast.makeText(getApplicationContext(),
-	    				"Please Select A Deck", Toast.LENGTH_SHORT).show();
+	    		Intent intent = new Intent(v.getContext(),
+						SelectDeckActivity.class);
+				startActivityForResult(intent, 0);
 	    	}
         }
     });
@@ -74,18 +81,6 @@ public class MainMenuActivity extends CActionBarActivity  {
     });
     
     
-    final Button button_edit_deck = (Button) findViewById(R.id.button_edit_deck);
-    button_edit_deck.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-        	if(RunningInfo.getSelectedDeck()!=null){
-        		Intent intent = new Intent(v.getContext(),EditDeckActivity.class);
-	        	startActivityForResult(intent,0);
-	        }
-	    	else{
-	    		Toast.makeText(getApplicationContext(),
-	    				"Please Select A Deck", Toast.LENGTH_SHORT).show();
-	    	}
-        }
-    });
+    
 	}
 }
