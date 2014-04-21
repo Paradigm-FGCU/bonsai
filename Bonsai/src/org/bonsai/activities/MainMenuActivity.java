@@ -29,8 +29,9 @@ public class MainMenuActivity extends CActionBarActivity  {
             	startActivityForResult(intent,0);
         	}
         	else{
-        		Toast.makeText(getApplicationContext(),
-        				"Please Select A Deck", Toast.LENGTH_SHORT).show();
+        		Intent intent = new Intent(v.getContext(),
+						SelectDeckActivity.class);
+				startActivityForResult(intent, 0);
         	}
         }
     });
@@ -44,8 +45,9 @@ public class MainMenuActivity extends CActionBarActivity  {
             	startActivityForResult(intent,0);
         	}
         	else{
-        		Toast.makeText(getApplicationContext(),
-        				"Please Select A Deck", Toast.LENGTH_SHORT).show();
+        		Intent intent = new Intent(v.getContext(),
+						SelectDeckActivity.class);
+				startActivityForResult(intent, 0);
         	}
         }
     });
@@ -59,8 +61,9 @@ public class MainMenuActivity extends CActionBarActivity  {
 	        	startActivityForResult(intent,0);
 	        }
 	    	else{
-	    		Toast.makeText(getApplicationContext(),
-	    				"Please Select A Deck", Toast.LENGTH_SHORT).show();
+	    		Intent intent = new Intent(v.getContext(),
+						SelectDeckActivity.class);
+				startActivityForResult(intent, 0);
 	    	}
         }
     });
@@ -82,8 +85,9 @@ public class MainMenuActivity extends CActionBarActivity  {
 	        	startActivityForResult(intent,0);
 	        }
 	    	else{
-	    		Toast.makeText(getApplicationContext(),
-	    				"Please Select A Deck", Toast.LENGTH_SHORT).show();
+	    		Intent intent = new Intent(v.getContext(),
+						SelectDeckActivity.class);
+				startActivityForResult(intent, 0);
 	    	}
         }
     });
