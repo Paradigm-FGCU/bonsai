@@ -147,6 +147,16 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 
 	}
 	
+	public void deleteDeck(DeckInfo deck) {
+		ArrayList<CardInfo> cardList = deck.getCardList();
+		
+		for(CardInfo card:cardList) {
+			getWritableDatabase().delete("CARDS", "CARD_ID = ?", new String[] {String.valueOf(card.getId())});
+		}
+		getWritableDatabase().delete("DECKS", "DECK_ID = ?", new String[] {String.valueOf(deck.getDeckId())});
+
+	}
+	
 	public ArrayList<CardInfo> getAllCardsFromDeck(int id) {
 		ArrayList<CardInfo> allCardsFromDeck = new ArrayList<CardInfo>();
 
