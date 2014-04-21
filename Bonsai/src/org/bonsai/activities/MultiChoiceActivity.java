@@ -20,11 +20,11 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MultiChoiceActivity extends CActionBarActivity {
 	
 	ArrayList<CardInfo> cards = RunningInfo.getWorkingCardList();
-	//ArrayList<CardInfo> cards = RunningInfo.getSelectedDeck().getCardList();
 	int score = 0;
 	int qid = 0;
 	Context mContext;
@@ -38,6 +38,9 @@ public class MultiChoiceActivity extends CActionBarActivity {
 	String[] selectedAns = new String[cards.size()];
 	private CountDownTimer mCountDown;
 	String timerText;
+	int[] cardTime = new int[cards.size()+1];
+	int remainingTime=0;
+	
 	@Override
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,6 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		mContext = this.getApplicationContext();
 		dbHelper = new BonsaiDatabaseHelper(mContext);
 		
-		//currentQ = quesList.get(qid);
 		txtQuestion = (TextView) findViewById(R.id.textView_Multi_Question);
 		txtQuestionCount = (TextView) findViewById(R.id.quiz_Question_Count);
 		aBar = getActionBar();
@@ -58,7 +60,7 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		rdc = (RadioButton) findViewById(R.id.radio_Multi2);
 		rdd = (RadioButton) findViewById(R.id.radio_Multi3);
 		butNext = (Button) findViewById(R.id.button_multi);
-		
+		cardTime[cards.size()]=0;
 		setQuestionView();
 		aBar.setTitle("Bonsai: " + RunningInfo.getSelectedDeck().getDeckName() + " Quiz");
 		//Timer for Quiz Mode
@@ -67,7 +69,8 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		mCountDown = new CountDownTimer((RunningInfo.getQuizTime()*1000), 1000) {
 
 		     public void onTick(long millisUntilFinished) {
-		    	
+		    	remainingTime =(int) millisUntilFinished;
+		    	remainingTime = remainingTime /1000;
 		    	butNext.setText("Submit\nTime Left: " + millisUntilFinished / 1000+"s");
 		     }
 
@@ -77,9 +80,13 @@ public class MultiChoiceActivity extends CActionBarActivity {
 					selectedAns[qid] ="No Answer: Time Expired";
 					cards.get(qid).answeredIncorrect();
 					quizResults[qid]=false;
-										
+					cardTime[qid]=(RunningInfo.getQuizTime());	
+					cardTime[cards.size()] = cardTime[cards.size()] + cardTime[qid];
+					//Toast.makeText(getApplicationContext(),"Out of Time\nIncorrect", Toast.LENGTH_SHORT).show();
 					if ((qid != (cards.size()-1))) {
+						
 						qid++;	
+						
 						setQuestionView();
 						mCountDown.start();
 					} else {
@@ -103,8 +110,12 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		butNext.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mCountDown.cancel();
 				RadioGroup grp = (RadioGroup) findViewById(R.id.radioMulti);
-				
+				if (RunningInfo.getTimedQuiz()){
+				cardTime[qid]=(RunningInfo.getQuizTime()) - remainingTime;
+				cardTime[cards.size()] = cardTime[cards.size()] + cardTime[qid];
+				}
 				//Get radio button answer
 				RadioButton answer = (RadioButton) findViewById(grp
 						.getCheckedRadioButtonId());
@@ -115,10 +126,12 @@ public class MultiChoiceActivity extends CActionBarActivity {
 					score++;
 					cards.get(qid).answeredCorrect();
 					quizResults[qid]=true;
+					//Toast.makeText(getApplicationContext(),"Correct", Toast.LENGTH_SHORT).show();
 				}
 				else{
 					cards.get(qid).answeredIncorrect();
 					quizResults[qid]=false;
+					//Toast.makeText(getApplicationContext(),"Incorrect", Toast.LENGTH_SHORT).show();
 				}
 				
 				if ((qid != (cards.size()-1))) {
@@ -128,21 +141,24 @@ public class MultiChoiceActivity extends CActionBarActivity {
 					mCountDown.start();
 					}
 				} else {
+					
 					 Intent intent = new Intent(MultiChoiceActivity.this,ResultActivity.class); 
 					 Bundle b = new Bundle();
 					 b.putInt("score", score); //Your score
 					 b.putBooleanArray("quizResults",quizResults);
 					 b.putStringArray("selectedAns",selectedAns);
+					 if (RunningInfo.getTimedQuiz()){
+					 b.putIntArray("cardTime",cardTime);
+					 }
 					 intent.putExtras(b); //Put your score to your next Intent
 					 startActivity(intent); 
 					 finish();
 				}
 			}
-		});
-		
+		});		
+	
 	}
 
-	
 	private void setQuestionView() {
 		//Create array List with Answers
 		ArrayList<String> text = new ArrayList<String>(4);
@@ -159,8 +175,7 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		rda.setText(text.get(0));
 		rdb.setText(text.get(1));
 		rdc.setText(text.get(2));
-		rdd.setText(text.get(3));
-		
+		rdd.setText(text.get(3));		
 		txtQuestionCount.setText("Q: " + (qid+1) + "/" + cards.size());
 	}
 }
