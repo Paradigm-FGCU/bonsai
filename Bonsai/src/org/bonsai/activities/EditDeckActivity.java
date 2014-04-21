@@ -116,9 +116,10 @@ public class EditDeckActivity extends CActionBarActivity{
     		if(newList.get(i).getId()==id) break;
     		i++;
     	}
+    	int temp = newList.get(i).getId();
     	newList.remove(i);
 		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
-		dbHelper.deleteCard(i+1);
+		dbHelper.deleteCard(temp);
     	mSectionsPagerAdapter.notifyDataSetChanged();
     	//mSectionsPagerAdapter.setPrimaryItem(mViewPager, 0, mSectionsPagerAdapter.getItem(0));
     	
