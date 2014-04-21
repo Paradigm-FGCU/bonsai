@@ -104,7 +104,7 @@ public class EditDeckActivity extends CActionBarActivity{
 		RunningInfo.getSelectedDeck().getCardList().get(0);
 		//TODO
 		dbHelper.updateDeckName(RunningInfo.getSelectedDeck());
-		//dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
+		dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
     	Toast.makeText(getApplicationContext(),
 				"Deck Pushed", Toast.LENGTH_SHORT).show();
     }

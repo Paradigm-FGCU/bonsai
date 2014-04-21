@@ -124,7 +124,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		ArrayList<CardInfo> cardList = deck.getCardList();
 		
 		for(CardInfo card:cardList) {
-			updateCard(card.getId(), card.getAnswer(), card.getQuestion(), card.getNumberSeen(), card.getNumberCorrect(), 
+			updateCard(card.getId(), card.getQuestion(), card.getAnswer(), card.getNumberSeen(), card.getNumberCorrect(), 
 					card.getFakeAnswers());
 		}
 		
