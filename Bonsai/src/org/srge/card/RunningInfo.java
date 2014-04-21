@@ -2,6 +2,7 @@ package org.srge.card;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import org.bonsai.activities.EditDeckActivity;
 import org.bonsai.activities.FlashActivity;
@@ -30,7 +31,7 @@ public class RunningInfo {
 					workingCardList = CardSort.sortHardestFirst(workingCardList);
 					break;
 			case 2: workingCardList = (ArrayList<CardInfo>)selectedDeck.getCardList().clone();
-					Collections.shuffle(workingCardList);
+					Collections.shuffle(workingCardList, new Random(System.currentTimeMillis()));
 					break;
 		}
 		return true;
