@@ -57,7 +57,7 @@ public class EditDeckActivity extends CActionBarActivity{
         mViewPager = (ViewPager) findViewById(R.id.pager_edit);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         
-        mViewPager.setOffscreenPageLimit(0);
+        mViewPager.setOffscreenPageLimit(1);
         
         deckNameEditText = (EditText)findViewById(R.id.editable_deckname);
         deckNameEditText.setText(RunningInfo.getSelectedDeck().getDeckName());
