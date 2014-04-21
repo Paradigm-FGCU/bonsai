@@ -169,7 +169,9 @@ public class MultiChoiceActivity extends CActionBarActivity {
 			startActivity(i);
 
 			// close this activity
+			if (RunningInfo.getTimedQuiz()){
 			mCountDown.cancel();
+			}
 			finish();
 		}
 		return super.onKeyDown(keycode, event);
