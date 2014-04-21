@@ -82,7 +82,7 @@ public class MultiChoiceActivity extends CActionBarActivity {
 					quizResults[qid]=false;
 					cardTime[qid]=(RunningInfo.getQuizTime());	
 					cardTime[cards.size()] = cardTime[cards.size()] + cardTime[qid];
-					//Toast.makeText(getApplicationContext(),"Out of Time\nIncorrect", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),"Out of Time\nIncorrect", Toast.LENGTH_SHORT).show();
 					if ((qid != (cards.size()-1))) {
 						
 						qid++;	
@@ -126,12 +126,12 @@ public class MultiChoiceActivity extends CActionBarActivity {
 					score++;
 					cards.get(qid).answeredCorrect();
 					quizResults[qid]=true;
-					//Toast.makeText(getApplicationContext(),"Correct", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),"Correct", Toast.LENGTH_SHORT).show();
 				}
 				else{
 					cards.get(qid).answeredIncorrect();
 					quizResults[qid]=false;
-					//Toast.makeText(getApplicationContext(),"Incorrect", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),"Incorrect", Toast.LENGTH_SHORT).show();
 				}
 				
 				if ((qid != (cards.size()-1))) {
