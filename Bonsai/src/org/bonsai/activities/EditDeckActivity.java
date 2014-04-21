@@ -104,8 +104,12 @@ public class EditDeckActivity extends CActionBarActivity{
     	
 		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
 		dbHelper.updateDeckName(RunningInfo.getSelectedDeck());
+<<<<<<< HEAD
 		RunningInfo.getSelectedDeck().getCardList().get(0);
 		//dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
+=======
+		dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
+>>>>>>> branch 'master' of https://github.com/Paradigm-FGCU/bonsai.git
 		//TODO
     	Toast.makeText(getApplicationContext(),
 				"Deck Pushed", Toast.LENGTH_SHORT).show();

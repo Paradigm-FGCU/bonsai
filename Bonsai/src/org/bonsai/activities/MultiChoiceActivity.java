@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -110,9 +111,10 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		butNext.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mCountDown.cancel();
+				
 				RadioGroup grp = (RadioGroup) findViewById(R.id.radioMulti);
 				if (RunningInfo.getTimedQuiz()){
+				mCountDown.cancel();
 				cardTime[qid]=(RunningInfo.getQuizTime()) - remainingTime;
 				cardTime[cards.size()] = cardTime[cards.size()] + cardTime[qid];
 				}
@@ -158,7 +160,20 @@ public class MultiChoiceActivity extends CActionBarActivity {
 		});		
 	
 	}
+	
+	public boolean onKeyDown(int keycode, KeyEvent event) {
+		if (keycode == KeyEvent.KEYCODE_BACK) {
 
+			// Start main Menu activity
+			Intent i = new Intent( MultiChoiceActivity.this, MainMenuActivity.class);
+			startActivity(i);
+
+			// close this activity
+			mCountDown.cancel();
+			finish();
+		}
+		return super.onKeyDown(keycode, event);
+	}
 	private void setQuestionView() {
 		//Create array List with Answers
 		ArrayList<String> text = new ArrayList<String>(4);

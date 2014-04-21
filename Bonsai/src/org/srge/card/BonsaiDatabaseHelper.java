@@ -84,6 +84,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 
 	}
 	
+	
 	public int getDeckCount(int pos) {
 
 		Cursor crs = getReadableDatabase().query("DECKS", null, null, null,
@@ -97,6 +98,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 
 	}
 	
+	
 	public long updateDeckStats(int deckId, double qAverage, int qCount) {
 
 		ContentValues cv = new ContentValues();
@@ -106,6 +108,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		return getWritableDatabase().update("DECKS", cv, "DECK_ID = "+ deckId, null);
 		
 	}
+	
 
 	public long updateDeckName(DeckInfo deck) {
 		
@@ -116,21 +119,21 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		return getWritableDatabase().update("DECKS", cv, "DECK_ID = "+ deck.getDeckId(), null);
 	}
 	
+	
 	public void updateAllCards(DeckInfo deck) {
 		ArrayList<CardInfo> cardList = deck.getCardList();
 		
 		for(CardInfo card:cardList) {
-			updateCard(deck.getDeckId(), card.getAnswer(), card.getQuestion(), card.getNumberSeen(), card.getNumberCorrect(), 
+			updateCard(card.getId(), card.getAnswer(), card.getQuestion(), card.getNumberSeen(), card.getNumberCorrect(), 
 					card.getFakeAnswers());
 		}
 		
 	}
 
-	public long updateCard(int deckId, String term, String defn, int seen,
+	public long updateCard(int cardId, String term, String defn, int seen,
 			int correct, ArrayList<String> fakeAns) {
 
 		ContentValues cv = new ContentValues();
-		cv.put("DECK_ID", deckId);
 		cv.put("TERM", term);
 		cv.put("DEFN", defn);
 		cv.put("SEEN", seen);
@@ -139,7 +142,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		cv.put("ALT_DEFN2", fakeAns.get(1));
 		cv.put("ALT_DEFN3", fakeAns.get(2));
 
-		return getWritableDatabase().update("CARDS", cv, "DECK_ID = "+ deckId, null);
+		return getWritableDatabase().update("CARDS", cv, "CARD_ID = "+ cardId, null);
 
 	}
 	
