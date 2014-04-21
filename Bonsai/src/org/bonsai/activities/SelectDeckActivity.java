@@ -107,8 +107,8 @@ public class SelectDeckActivity extends CActionBarActivity {
 	
 	public void createDeck(){
 		ArrayList<CardInfo> tempList = new ArrayList<CardInfo>();
-		DeckInfo newDeck = new DeckInfo(dbHelper.getDecksList().size(),"",null,0.0,0);
-		tempList.add(new CardInfo(0,"","","","","",newDeck));
+		DeckInfo newDeck = new DeckInfo(dbHelper.getDecksList().size()+1,"",null,0.0,0);
+		tempList.add(new CardInfo(0,"","","fake 1","fake 2","fake 3",newDeck));
 		newDeck.setCardList(tempList);
 		RunningInfo.setSelectedDeck(newDeck);
 		Intent intent = new Intent(SelectDeckActivity.this,EditDeckActivity.class);

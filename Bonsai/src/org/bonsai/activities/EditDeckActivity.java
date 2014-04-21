@@ -46,7 +46,6 @@ public class EditDeckActivity extends CActionBarActivity{
 
         android.app.ActionBar temp = getActionBar();
         temp.setTitle("Bonsai: Edit Deck");
-        Log.w("from onCreate in Edit deck","initializing deck");
         newList = (ArrayList<CardInfo>)RunningInfo.getSelectedDeck().getCardList().clone();
         		
         // Create the adapter that will return a fragment for each of the three
@@ -84,7 +83,8 @@ public class EditDeckActivity extends CActionBarActivity{
     }
     
     public void deleteDeck(){
-    	
+    	Toast.makeText(getApplicationContext(),
+				"Not Implimented", Toast.LENGTH_SHORT).show();
     }
     
     public ArrayList<CardInfo> getDeck(){
@@ -98,18 +98,16 @@ public class EditDeckActivity extends CActionBarActivity{
     }
     
     private void updateDeck(){
+    	
     	RunningInfo.getSelectedDeck().setCardList(newList);
     	String readDeckName = deckNameEditText.getText().toString();
     	if(readDeckName!=null) RunningInfo.getSelectedDeck().setDeckName(readDeckName);
     	
 		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
 		dbHelper.updateDeckName(RunningInfo.getSelectedDeck());
-<<<<<<< HEAD
 		RunningInfo.getSelectedDeck().getCardList().get(0);
 		//dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
-=======
-		dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
->>>>>>> branch 'master' of https://github.com/Paradigm-FGCU/bonsai.git
+		//dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
 		//TODO
     	Toast.makeText(getApplicationContext(),
 				"Deck Pushed", Toast.LENGTH_SHORT).show();
@@ -117,7 +115,6 @@ public class EditDeckActivity extends CActionBarActivity{
     
     public void deleteCard(int id){
     	int i = 0;
-    	Log.w("from deleteCard in Edit deck","1");
     	while(i<newList.size()){
     		if(newList.get(i).getId()==id) break;
     		i++;
@@ -170,6 +167,11 @@ public class EditDeckActivity extends CActionBarActivity{
 	}
     
     public void addCard(){
+    	if(newList.size()>=50){
+    		Toast.makeText(getApplicationContext(),
+    				"Max Cards Reached", Toast.LENGTH_SHORT).show();
+    		return;
+    	}
     	newList.add(new CardInfo(newList.get(newList.size()-1).getId()+1,"","","","","",newList.get(0).getParentDeck()));
     	mSectionsPagerAdapter.notifyDataSetChanged();
     }
