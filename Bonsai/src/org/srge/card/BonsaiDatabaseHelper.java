@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 	private static final String DB = "bonsai.sqlite";
@@ -34,7 +35,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 
 	}
 
-	public long insertDeck(String deck) {
+	public long insertDeckName(String deck) {
 		ContentValues cv = new ContentValues();
 		cv.put("DECK_NAME", deck);
 		return getWritableDatabase().insert("DECKS", null, cv);
@@ -209,14 +210,10 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 
 	}
 	
-	public boolean deleteCard(String rowId) {
-	    return getWritableDatabase().delete("CARDS", "CARD_ID" + "=" + rowId, null) > 0;
+	public void deleteCard(int i) {
+		//Log.v("INT I: ", String.valueOf(i));
+	    getWritableDatabase().delete("CARDS", "CARD_ID = ?", new String[] {String.valueOf(i)});
 	}
-	
-	
-/*	public void editCard(String rowId) {
-		getWritableDatabase().update(table, values, whereClause, whereArgs);
-	}*/
 	
 	
 	public static class CardCursor extends CursorWrapper {

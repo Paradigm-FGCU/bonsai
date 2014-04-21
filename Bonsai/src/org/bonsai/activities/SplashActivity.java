@@ -114,13 +114,13 @@ public class SplashActivity extends Activity {
 		 */
 		if (dbHelper.getDecksList() == null) {
 
-			dbHelper.insertDeck("Organic Chemistry");
+			dbHelper.insertDeckName("Organic Chemistry");
 			for (int i = 0; i < chemDefs.length; i++) {
 				dbHelper.insertCard(1, chemTerms[i], chemDefs[i], 0, 0,
 						chemFakes[i][0], chemFakes[i][1], chemFakes[i][2]);
 			}
 
-			dbHelper.insertDeck("Biology");
+			dbHelper.insertDeckName("Biology");
 			for (int i = 0; i < bioDefs.length; i++) {
 				dbHelper.insertCard(2, bioTerms[i], bioDefs[i], 0, 0,
 						bioFakes[i][0], bioFakes[i][1], bioFakes[i][2]);

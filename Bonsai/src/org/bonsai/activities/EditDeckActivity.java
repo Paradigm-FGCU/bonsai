@@ -107,6 +107,7 @@ public class EditDeckActivity extends CActionBarActivity{
 		dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
     	Toast.makeText(getApplicationContext(),
 				"Deck Pushed", Toast.LENGTH_SHORT).show();
+    	dbHelper.close();
     }
     
     public void deleteCard(int id){
@@ -116,6 +117,8 @@ public class EditDeckActivity extends CActionBarActivity{
     		i++;
     	}
     	newList.remove(i);
+		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
+		dbHelper.deleteCard(i+1);
     	mSectionsPagerAdapter.notifyDataSetChanged();
     	//mSectionsPagerAdapter.setPrimaryItem(mViewPager, 0, mSectionsPagerAdapter.getItem(0));
     	
