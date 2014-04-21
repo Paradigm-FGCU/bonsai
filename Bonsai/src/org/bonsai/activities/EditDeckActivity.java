@@ -118,11 +118,11 @@ public class EditDeckActivity extends CActionBarActivity{
     	newList.remove(i);
     	mSectionsPagerAdapter.notifyDataSetChanged();
     	//mSectionsPagerAdapter.setPrimaryItem(mViewPager, 0, mSectionsPagerAdapter.getItem(0));
-    	/*
+    	
     	mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mSectionsPagerAdapter.activityParent = this;
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        */
+        
         
         
     }

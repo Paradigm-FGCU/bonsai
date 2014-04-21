@@ -40,7 +40,14 @@ public class EditDeckFragment extends Fragment{
     	
     }
     
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	setText();
+    }
+    
     public void setText(){
+    	if(getArguments().getInt(ARG_SECTION_NUMBER)-1>=parent.activityParent.getDeck().size()-1) return;
     	String term = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion();
         String definition = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer();
 
