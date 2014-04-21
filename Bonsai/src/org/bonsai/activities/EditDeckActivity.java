@@ -104,7 +104,7 @@ public class EditDeckActivity extends CActionBarActivity{
     	
 		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
 		dbHelper.updateDeckName(RunningInfo.getSelectedDeck());
-		//dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
+		dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
 		//TODO
     	Toast.makeText(getApplicationContext(),
 				"Deck Pushed", Toast.LENGTH_SHORT).show();
