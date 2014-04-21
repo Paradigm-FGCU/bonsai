@@ -1,7 +1,5 @@
 package org.bonsai.activities;
 
-import java.util.ArrayList;
-
 import org.bonsai.util.LoadingPhrases;
 import org.srge.bonsai.R;
 import org.srge.card.BonsaiDatabaseHelper;

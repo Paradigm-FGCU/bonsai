@@ -2,17 +2,14 @@ package org.bonsai.activities;
 
 import java.util.ArrayList;
 
-import org.bonsai.activities.FlashActivity.SectionsPagerAdapter;
 import org.srge.bonsai.R;
 import org.srge.card.CardInfo;
-import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

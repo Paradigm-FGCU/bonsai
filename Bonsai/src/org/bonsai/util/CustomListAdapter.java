@@ -12,13 +12,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+@SuppressWarnings("rawtypes")
 public class CustomListAdapter extends ArrayAdapter {
 
     private Context mContext;
     private int id;
     private List <String>items ;
 
-    public CustomListAdapter(Context context, int textViewResourceId , List<String> list ) 
+    @SuppressWarnings("unchecked")
+	public CustomListAdapter(Context context, int textViewResourceId , List<String> list ) 
     {
         super(context, textViewResourceId, list);           
         mContext = context;

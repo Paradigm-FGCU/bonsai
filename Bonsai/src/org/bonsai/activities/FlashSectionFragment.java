@@ -27,7 +27,9 @@ public class FlashSectionFragment extends Fragment {
 	private ImageView mKnowButton;
 	private ImageView mDontKnowButton;
 	private SectionsPagerAdapter parent;
+	@SuppressWarnings("unused")
 	private TextView definitionTextView; 
+	@SuppressWarnings("unused")
 	private TextView termTextView; 
 
     public static final String ARG_SECTION_NUMBER = "section_number";

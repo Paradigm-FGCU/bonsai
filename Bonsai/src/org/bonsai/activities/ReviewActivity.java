@@ -10,14 +10,7 @@ import org.srge.bonsai.R;
 import org.srge.card.CardInfo;
 import org.srge.card.RunningInfo;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
 public class ReviewActivity extends CActionBarActivity {
