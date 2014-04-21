@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
+import org.srge.card.BonsaiDatabaseHelper;
 import org.srge.card.CardInfo;
 import org.srge.card.RunningInfo;
 
@@ -61,18 +62,18 @@ public class EditDeckActivity extends CActionBarActivity{
         deckNameEditText = (EditText)findViewById(R.id.editable_deckname);
         deckNameEditText.setText(RunningInfo.getSelectedDeck().getDeckName());
         
-        final Button button_save_all = (Button) findViewById(R.id.edit_save_all);
-        button_save_all.setOnClickListener(new View.OnClickListener() {
+        final Button edit_delete_deck = (Button) findViewById(R.id.edit_delete_deck);
+        edit_delete_deck.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
             	AlertDialog.Builder builder = new AlertDialog.Builder(EditDeckActivity.this);
             	builder
-            	.setTitle("Saving")
-            	.setMessage("Save All Changes?")
+            	.setTitle("Delete")
+            	.setMessage("Are you sure you want to delete the deck?")
             	.setIcon(android.R.drawable.ic_dialog_alert)
             	.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             	    public void onClick(DialogInterface dialog, int which) {			      	
-            	    	updateDeck();
+            	    	deleteDeck();
             	    }
             	})
             	.setNegativeButton("No", null)						
@@ -82,15 +83,29 @@ public class EditDeckActivity extends CActionBarActivity{
         
     }
     
+    public void deleteDeck(){
+    	
+    }
+    
     public ArrayList<CardInfo> getDeck(){
     	return this.newList;
     }
     
+    @Override
+    public void onStop(){
+    	updateDeck();
+    	super.onStop();
+    }
+    
     private void updateDeck(){
     	RunningInfo.getSelectedDeck().setCardList(newList);
-    	//TODO update deck with database
     	String readDeckName = deckNameEditText.getText().toString();
     	if(readDeckName!=null) RunningInfo.getSelectedDeck().setDeckName(readDeckName);
+    	
+		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
+		dbHelper.updateDeckName(RunningInfo.getSelectedDeck());
+		//dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
+		//TODO
     	Toast.makeText(getApplicationContext(),
 				"Deck Pushed", Toast.LENGTH_SHORT).show();
     }
@@ -102,9 +117,9 @@ public class EditDeckActivity extends CActionBarActivity{
     		if(newList.get(i).getId()==id) break;
     		i++;
     	}
-    	//newList.remove(i);
-    	//mSectionsPagerAdapter.notifyDataSetChanged();
-    	mSectionsPagerAdapter.setPrimaryItem(mViewPager, 0, mSectionsPagerAdapter.getItem(0));
+    	newList.remove(i);
+    	mSectionsPagerAdapter.notifyDataSetChanged();
+    	//mSectionsPagerAdapter.setPrimaryItem(mViewPager, 0, mSectionsPagerAdapter.getItem(0));
     	/*
     	mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mSectionsPagerAdapter.activityParent = this;

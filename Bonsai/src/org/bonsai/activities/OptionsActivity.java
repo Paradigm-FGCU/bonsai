@@ -5,6 +5,7 @@ import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,9 +15,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class OptionsActivity extends CActionBarActivity {
-	
-	
+public class OptionsActivity extends Activity {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,7 +39,20 @@ public class OptionsActivity extends CActionBarActivity {
 			}
 		});
 		
-		
+		final Button button_edit_deck = (Button) findViewById(R.id.button_edit_deck);
+	    button_edit_deck.setOnClickListener(new View.OnClickListener() {
+	        public void onClick(View v) {
+	        	if(RunningInfo.getSelectedDeck()!=null){
+	        		Intent intent = new Intent(v.getContext(),EditDeckActivity.class);
+		        	startActivityForResult(intent,0);
+		        }
+		    	else{
+		    		Intent intent = new Intent(v.getContext(),
+							SelectDeckActivity.class);
+					startActivityForResult(intent, 0);
+		    	}
+	        }
+	    });
 		
 		final Switch mySwitch = (Switch)findViewById(R.id.repeatFlashCardToggle);
 		mySwitch.setChecked(RunningInfo.getFlashCardRepeat());
