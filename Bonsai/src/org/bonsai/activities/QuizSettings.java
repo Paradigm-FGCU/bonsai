@@ -1,6 +1,5 @@
 package org.bonsai.activities;
 
-import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
 
@@ -20,6 +19,7 @@ import android.widget.TextView;
 
 public class QuizSettings extends Activity{
 	private RadioGroup radioOrder;
+	@SuppressWarnings("unused")
 	private View radioTemp;
 	
 	

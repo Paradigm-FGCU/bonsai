@@ -11,22 +11,17 @@ import org.srge.card.RunningInfo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class EditDeckActivity extends CActionBarActivity{
@@ -39,7 +34,8 @@ public class EditDeckActivity extends CActionBarActivity{
     EditText deckNameEditText;
     ArrayList<CardInfo> newList;
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_deck);
@@ -47,6 +43,7 @@ public class EditDeckActivity extends CActionBarActivity{
         android.app.ActionBar temp = getActionBar();
         temp.setTitle("Bonsai: Edit Deck");
         Log.w("from onCreate in Edit deck","initializing deck");
+        
         newList = (ArrayList<CardInfo>)RunningInfo.getSelectedDeck().getCardList().clone();
         		
         // Create the adapter that will return a fragment for each of the three
@@ -105,7 +102,6 @@ public class EditDeckActivity extends CActionBarActivity{
 		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
 		dbHelper.updateDeckName(RunningInfo.getSelectedDeck());
 		dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
-		//TODO
     	Toast.makeText(getApplicationContext(),
 				"Deck Pushed", Toast.LENGTH_SHORT).show();
     }

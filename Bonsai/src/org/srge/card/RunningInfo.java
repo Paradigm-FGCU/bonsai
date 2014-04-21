@@ -21,12 +21,12 @@ public class RunningInfo {
 	private static int cardOrder;
 	
 	
+	@SuppressWarnings("unchecked")
 	public static boolean updateCardOrder(){
 		if(workingCardList==null) return false;
 		switch(cardOrder){
 			case 0: workingCardList = (ArrayList<CardInfo>)selectedDeck.getCardList().clone();
 					break;
-					//TODO: set hardest first algo
 			case 1: workingCardList = (ArrayList<CardInfo>)selectedDeck.getCardList().clone();
 					workingCardList = CardSort.sortHardestFirst(workingCardList);
 					break;

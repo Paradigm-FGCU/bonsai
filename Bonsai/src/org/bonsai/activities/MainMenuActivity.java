@@ -1,6 +1,5 @@
 package org.bonsai.activities;
 
-import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
 
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainMenuActivity extends ActionBarActivity  {
 	

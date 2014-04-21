@@ -1,6 +1,5 @@
 package org.bonsai.activities;
 
-import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
 import org.srge.card.RunningInfo;
 
