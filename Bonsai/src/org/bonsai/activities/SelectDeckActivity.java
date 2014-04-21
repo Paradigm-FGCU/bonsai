@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,12 +49,7 @@ public class SelectDeckActivity extends CActionBarActivity {
 
 		ListView listView = getListView();
 
-		deckNames = dbHelper.getDecksList();
-
-
-		
-		listAdapter = new CustomListAdapter(SelectDeckActivity.this , R.layout.custom_list , deckNames);
-		listView.setAdapter(listAdapter);
+		updateListView();
 				
 		
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -72,6 +68,14 @@ public class SelectDeckActivity extends CActionBarActivity {
 		
 		
 
+	}
+	
+	public void updateListView(){
+		ListView listView = getListView();
+		deckNames = dbHelper.getDecksList();
+
+		listAdapter = new CustomListAdapter(SelectDeckActivity.this , R.layout.custom_list , deckNames);
+		listView.setAdapter(listAdapter);
 	}
 	
 	@Override
@@ -106,13 +110,35 @@ public class SelectDeckActivity extends CActionBarActivity {
 	}
 	
 	public void createDeck(){
-		ArrayList<CardInfo> tempList = new ArrayList<CardInfo>();
-		DeckInfo newDeck = new DeckInfo(dbHelper.getDecksList().size()+1,"",null,0.0,0);
-		tempList.add(new CardInfo(0,"","","fake 1","fake 2","fake 3",newDeck));
-		newDeck.setCardList(tempList);
-		RunningInfo.setSelectedDeck(newDeck);
-		Intent intent = new Intent(SelectDeckActivity.this,EditDeckActivity.class);
-		startActivityForResult(intent, 0);
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+		alert.setTitle("Create Deck");
+		alert.setMessage("Enter a Name For the Deck");
+
+		// Set an EditText view to get user input 
+		final EditText input = new EditText(this);
+		alert.setView(input);
+
+		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+		public void onClick(DialogInterface dialog, int whichButton) {
+		  String value = input.getText().toString();
+		  	if(value.trim().length() ==0){ Toast.makeText(getApplicationContext(),
+					"Please Insert A Name", Toast.LENGTH_SHORT).show();
+		  	}
+			dbHelper.insertDeckName(value);
+			dbHelper.insertCard(dbHelper.getDecksList().size()+1, "term", "definition", 0, 0, "fake 1", "fake 2", "fake 3");
+			updateListView();
+		  }
+		});
+
+		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		  public void onClick(DialogInterface dialog, int whichButton) {
+		    // Canceled.
+		  }
+		});
+
+		alert.show();
+		
 	}
 	
 	protected ListView getListView() {

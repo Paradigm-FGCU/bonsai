@@ -47,7 +47,7 @@ public class EditDeckFragment extends Fragment{
     }
     
     public void setText(){
-    	if(getArguments().getInt(ARG_SECTION_NUMBER)-1>=parent.activityParent.getDeck().size()-1) return;
+    	if(getArguments().getInt(ARG_SECTION_NUMBER)-1>parent.activityParent.getDeck().size()-1) return;
     	String term = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion();
         String definition = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer();
 
@@ -112,12 +112,12 @@ public class EditDeckFragment extends Fragment{
             public void onClick(View v) {
             	String term = definitionEditText.getText().toString();
             	String definition = termEditText.getText().toString();
-            	if(term==null){
+            	if(definition.trim().length() == 0){
         			Toast.makeText(getActivity().getApplicationContext(),
             				"Error: term text on card", Toast.LENGTH_SHORT).show();
         			return;
         		}
-        		if(definition==null){
+        		if(term.trim().length() == 0){
         			Toast.makeText(getActivity().getApplicationContext(),
             				"Error: definition text on card", Toast.LENGTH_SHORT).show();
         			return;

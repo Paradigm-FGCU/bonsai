@@ -7,6 +7,7 @@ import org.bonsai.util.CActionBarActivity;
 import org.srge.bonsai.R;
 import org.srge.card.BonsaiDatabaseHelper;
 import org.srge.card.CardInfo;
+import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
 
 import android.app.AlertDialog;
@@ -33,7 +34,8 @@ public class EditDeckActivity extends CActionBarActivity{
     ViewPager mViewPager;
     EditText deckNameEditText;
     ArrayList<CardInfo> newList;
-
+    BonsaiDatabaseHelper dbHelper;
+    
     @SuppressWarnings("unchecked")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class EditDeckActivity extends CActionBarActivity{
 
         android.app.ActionBar temp = getActionBar();
         temp.setTitle("Bonsai: Edit Deck");
-
+        dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
         newList = (ArrayList<CardInfo>)RunningInfo.getSelectedDeck().getCardList().clone();
         		
         // Create the adapter that will return a fragment for each of the three
@@ -80,8 +82,10 @@ public class EditDeckActivity extends CActionBarActivity{
     }
     
     public void deleteDeck(){
-    	Toast.makeText(getApplicationContext(),
-				"Not Implimented", Toast.LENGTH_SHORT).show();
+    	updateDeck();
+    	dbHelper.deleteDeck(RunningInfo.getSelectedDeck());
+    	RunningInfo.setSelectedDeck(null);
+    	finish();
     }
     
     public ArrayList<CardInfo> getDeck(){
@@ -90,7 +94,8 @@ public class EditDeckActivity extends CActionBarActivity{
     
     @Override
     public void onStop(){
-    	updateDeck();
+    	DeckInfo temp = RunningInfo.getSelectedDeck();
+    	if(temp!=null && temp.getCardList()!=null && temp.getCardList().size()>0) updateDeck();
     	super.onStop();
     }
     
@@ -118,7 +123,7 @@ public class EditDeckActivity extends CActionBarActivity{
     	}
     	int temp = newList.get(i).getId();
     	newList.remove(i);
-		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
+		
 		dbHelper.deleteCard(temp);
     	mSectionsPagerAdapter.notifyDataSetChanged();
     	//mSectionsPagerAdapter.setPrimaryItem(mViewPager, 0, mSectionsPagerAdapter.getItem(0));
@@ -172,7 +177,8 @@ public class EditDeckActivity extends CActionBarActivity{
     				"Max Cards Reached", Toast.LENGTH_SHORT).show();
     		return;
     	}
-    	newList.add(new CardInfo(newList.get(newList.size()-1).getId()+1,"","","","","",newList.get(0).getParentDeck()));
+    	dbHelper.insertCard(RunningInfo.getSelectedDeck().getDeckId(), "term", "definition", 0, 0, "fake 1","fake 2", "fake 3");
+    	newList = dbHelper.getAllCardsFromDeck(RunningInfo.getSelectedDeck().getDeckId());
     	mSectionsPagerAdapter.notifyDataSetChanged();
     }
     /**
