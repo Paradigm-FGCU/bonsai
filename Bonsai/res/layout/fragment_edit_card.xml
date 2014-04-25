@@ -7,7 +7,7 @@
 	    <RelativeLayout
 	        android:id="@+id/layout"
 	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
+	        android:layout_height="wrap_content"
 	        android:gravity="center_vertical" >
 
 	    <TextView
@@ -28,7 +28,8 @@
 	        android:layout_alignLeft="@+id/textView1"
 	        android:layout_below="@+id/textView1"
 	        android:layout_marginTop="15dp"
-	        android:ems="10" />
+	        android:ems="10"
+	        android:inputType="text" />
 
 	    <TextView
 	        android:id="@+id/textView2"
@@ -59,7 +60,7 @@
 	        android:layout_marginLeft="18dp"
 	        android:layout_marginTop="24dp"
 	        android:background="@drawable/blue_button_9_patch"
-	        android:text="Delete Card" />
+	        android:text="@string/Delete_Card" />
 
 	    <Button
 	        android:id="@+id/button_save_card"
@@ -70,7 +71,47 @@
 	        android:layout_marginLeft="22dp"
 	        android:layout_toRightOf="@+id/button_delete_card"
 	        android:background="@drawable/blue_button_9_patch"
-	        android:text="Save Card" />
+	        android:text="@string/Save_Card" />
+	    
+	    <TextView
+	        android:id="@+id/textView3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/editable_definition"
+	        android:layout_below="@+id/editable_definition"
+	        android:layout_marginTop="43dp"
+	        android:text="@string/Incorrect_Quiz_Answers"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	    
+	    <EditText
+	        android:id="@+id/editable_fake1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textView2"
+	        android:layout_below="@+id/textView3"
+	        android:layout_marginTop="15dp"
+	        android:ems="12"
+	        android:inputType="textMultiLine" />
+	    
+	    <EditText
+	        android:id="@+id/editable_fake2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/editable_fake1"
+	        android:layout_below="@+id/editable_fake1"
+	        android:layout_marginTop="15dp"
+	        android:ems="12"
+	        android:inputType="textMultiLine" />
+	    
+	    <EditText
+	        android:id="@+id/editable_fake3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textView2"
+	        android:layout_below="@+id/editable_fake2"
+	        android:layout_marginTop="15dp"
+	        android:ems="12"
+	        android:inputType="textMultiLine" />
 
 	</RelativeLayout>
  </ScrollView>

@@ -64,5 +64,9 @@
        <string name="Term">Term:</string>
        <string name="Definition">Definition:</string>
        <string name="Edit_Deck">Edit Deck</string>
+       
+       <string name="Delete_Card">Delete Card:</string>
+       <string name="Save_Card">Save Card:</string>
+       <string name="Incorrect_Quiz_Answers">Incorrect Quiz Answers:</string>
       
 </resources>

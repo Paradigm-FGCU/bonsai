@@ -15,15 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class EditDeckFragment extends Fragment{
 
 	private EditDeckActivity.SectionsPagerAdapter parent;
-	private TextView definitionEditText; 
-	private TextView termEditText; 
+	private EditText definitionEditText; 
+	private EditText termEditText; 
+	private EditText fake1EditText; 
+	private EditText fake2EditText; 
+	private EditText fake3EditText; 
 	private ArrayList<CardInfo> deck;
 
     public static final String ARG_SECTION_NUMBER = "section_number";
@@ -48,14 +49,23 @@ public class EditDeckFragment extends Fragment{
     
     public void setText(){
     	if(getArguments().getInt(ARG_SECTION_NUMBER)-1>parent.activityParent.getDeck().size()-1) return;
-    	String term = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getQuestion();
-        String definition = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1).getAnswer();
+    	CardInfo card = parent.activityParent.getDeck().get(getArguments().getInt(ARG_SECTION_NUMBER)-1);
+    	String term = card.getQuestion();
+        String definition = card.getAnswer();
+        ArrayList<String> fakes = card.getFakeAnswers();
+        String fake1 = fakes.get(0);
+        String fake2 = fakes.get(1);
+        String fake3 = fakes.get(2);
 
         if(term == null) term = "";
         if(definition ==null) definition = "";
-
+        if(fake1 == null) fake1 = "";
+        if(fake2 == null) fake2 = "";
+        if(fake3 == null) fake3 = "";
+        
         setDefinition(definition);
         setTerm(term);
+        setFakeAnswers(fake1,fake2,fake3);
 
     }
     
@@ -70,6 +80,12 @@ public class EditDeckFragment extends Fragment{
 
     }
     
+    public void setFakeAnswers(String fake1, String fake2, String fake3){
+    	fake1EditText.setText(fake1);
+    	fake2EditText.setText(fake2);
+    	fake3EditText.setText(fake3);
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
@@ -77,11 +93,12 @@ public class EditDeckFragment extends Fragment{
         final View rootView = inflater.inflate(R.layout.fragment_edit_card, container, false);
         deck = parent.activityParent.getDeck();
         
-        RelativeLayout layout = (RelativeLayout)rootView.findViewById(R.id.layout);
+        termEditText = (EditText)rootView.findViewById(R.id.editable_term);
+        definitionEditText = (EditText)rootView.findViewById(R.id.editable_definition);
+        fake1EditText = (EditText)rootView.findViewById(R.id.editable_fake1);
+        fake2EditText = (EditText)rootView.findViewById(R.id.editable_fake2);
+        fake3EditText = (EditText)rootView.findViewById(R.id.editable_fake3);
         
-        termEditText = (EditText)layout.getChildAt(1);
-        definitionEditText = (EditText)layout.getChildAt(3);
-
         setText();
         
         final Button button_delete_card = (Button) rootView.findViewById(R.id.button_delete_card);
@@ -112,6 +129,10 @@ public class EditDeckFragment extends Fragment{
             public void onClick(View v) {
             	String term = definitionEditText.getText().toString();
             	String definition = termEditText.getText().toString();
+            	String fake1 = fake1EditText.getText().toString();
+            	String fake2 = fake2EditText.getText().toString();
+            	String fake3 = fake3EditText.getText().toString();
+            	
             	if(definition.trim().length() == 0){
         			Toast.makeText(getActivity().getApplicationContext(),
             				"Error: term text on card", Toast.LENGTH_SHORT).show();
@@ -122,10 +143,20 @@ public class EditDeckFragment extends Fragment{
             				"Error: definition text on card", Toast.LENGTH_SHORT).show();
         			return;
         		}
-        		CardInfo oldCard = deck.get(getArguments().getInt(ARG_SECTION_NUMBER)-1);
-        		CardInfo tempCard = new CardInfo(oldCard.getId(),definition,term,oldCard.getFakeAnswers().get(0),
-        									oldCard.getFakeAnswers().get(1),oldCard.getFakeAnswers().get(2),oldCard.getParentDeck());
-            	parent.activityParent.updateCard(tempCard,getArguments().getInt(ARG_SECTION_NUMBER)-1);
+        		if(fake1.trim().length()==0 || fake2.trim().length()==0 || fake3.trim().length()==0){
+        			Toast.makeText(getActivity().getApplicationContext(),
+            				"Error: fake answers on card", Toast.LENGTH_SHORT).show();
+        			return;
+        		}
+        		
+        		
+         		CardInfo oldCard = deck.get(getArguments().getInt(ARG_SECTION_NUMBER)-1);
+        		
+         		CardInfo tempCard = new CardInfo(oldCard.getId(),definition,term,fake1,
+        				fake2,fake3,oldCard.getParentDeck());
+            	
+        		parent.activityParent.updateCard(tempCard,getArguments().getInt(ARG_SECTION_NUMBER)-1);
+            	
             	Toast.makeText(getActivity().getApplicationContext(),
         				"Card Saved", Toast.LENGTH_SHORT).show();
             }
