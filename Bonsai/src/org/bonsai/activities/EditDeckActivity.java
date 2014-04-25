@@ -17,7 +17,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,6 +105,12 @@ public class EditDeckActivity extends CActionBarActivity{
     	if(readDeckName.trim().length()!=0) RunningInfo.getSelectedDeck().setDeckName(readDeckName);
 
 		//TODO
+
+    	if(readDeckName!=null) RunningInfo.getSelectedDeck().setDeckName(readDeckName);
+    	
+		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
+		RunningInfo.getSelectedDeck().getCardList().get(0);
+
 		dbHelper.updateDeckName(RunningInfo.getSelectedDeck());
 		dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
     	Toast.makeText(getApplicationContext(),

@@ -6,7 +6,6 @@ import org.bonsai.util.CActionBarActivity;
 import org.bonsai.util.CustomListAdapter;
 import org.srge.bonsai.R;
 import org.srge.card.BonsaiDatabaseHelper;
-import org.srge.card.CardInfo;
 import org.srge.card.DeckInfo;
 import org.srge.card.RunningInfo;
 
@@ -14,7 +13,6 @@ import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;

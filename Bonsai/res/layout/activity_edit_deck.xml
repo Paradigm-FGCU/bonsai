@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical" >
+    android:orientation="vertical" xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/textView1"
@@ -18,8 +18,9 @@
         android:id="@+id/editable_deckname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
         android:ems="10"
-        android:layout_below="@+id/textView1" >
+        tools:ignore="TextFields" >
 
         <requestFocus />
         
@@ -55,6 +56,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="14dp"
         android:background="@drawable/blue_button_9_patch"
-        android:text="Delete Deck" />
+        android:text="Delete Deck"
+        tools:ignore="HardcodedText" />
     
 </RelativeLayout>

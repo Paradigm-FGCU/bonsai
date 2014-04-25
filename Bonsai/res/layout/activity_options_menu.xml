@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background" >
+    android:background="@drawable/background" xmlns:tools="http://schemas.android.com/tools" tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/textView_seekbar_value"
@@ -72,7 +72,8 @@
        android:layout_marginTop="20dp"
        android:background="@drawable/blue_button_9_patch"
        android:text="Edit Selected Deck"
-       android:textColor="#FFFFFF" />
+       android:textColor="#FFFFFF"
+       tools:ignore="HardcodedText" />
 
    <Button
        android:id="@+id/button_quiz_settings"

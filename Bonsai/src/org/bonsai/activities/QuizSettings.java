@@ -15,7 +15,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
-//import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class QuizSettings extends Activity{
 	private RadioGroup radioOrder;
