@@ -103,10 +103,8 @@ public class EditDeckActivity extends CActionBarActivity{
     	
     	RunningInfo.getSelectedDeck().setCardList(newList);
     	String readDeckName = deckNameEditText.getText().toString();
-    	if(readDeckName!=null) RunningInfo.getSelectedDeck().setDeckName(readDeckName);
-    	
-		BonsaiDatabaseHelper dbHelper = new BonsaiDatabaseHelper(this.getApplicationContext());
-		RunningInfo.getSelectedDeck().getCardList().get(0);
+    	if(readDeckName.trim().length()!=0) RunningInfo.getSelectedDeck().setDeckName(readDeckName);
+
 		//TODO
 		dbHelper.updateDeckName(RunningInfo.getSelectedDeck());
 		dbHelper.updateAllCards(RunningInfo.getSelectedDeck());
