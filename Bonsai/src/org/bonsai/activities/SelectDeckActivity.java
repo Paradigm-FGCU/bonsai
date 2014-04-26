@@ -14,6 +14,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -54,13 +55,14 @@ public class SelectDeckActivity extends CActionBarActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 			    // When clicked, show a toast with the TextView text
-				String temp = "New active deck is: " + deckNames.get(position);
+				String temp = "New active deck is: " + dbHelper.getDeckName(position+1);
 			    Toast.makeText(getApplicationContext(),
 				temp, Toast.LENGTH_SHORT).show();
 
-			    DeckInfo selectedDeck = new DeckInfo(position+1, dbHelper.getDeckName(position), dbHelper.getAllCardsFromDeck(position+1),
+			    DeckInfo selectedDeck = new DeckInfo(position+1, dbHelper.getDeckName(position+1), dbHelper.getAllCardsFromDeck(position+1),
 			    		dbHelper.getDeckAverage(position+1), dbHelper.getDeckCount(position+1));
 			    RunningInfo.setSelectedDeck(selectedDeck);
+			    Log.v("Position: ",String.valueOf(position));
 			}
 		});
 		

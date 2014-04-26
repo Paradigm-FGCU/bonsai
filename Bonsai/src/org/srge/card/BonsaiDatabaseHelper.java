@@ -44,7 +44,7 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 		ArrayList<String> allDecks = new ArrayList<String>();
 
 		Cursor crs = getReadableDatabase().query("DECKS", null, null, null,
-				null, null, "DECK_ID" + " asc");
+				null, null, "DECK_ID = ?");
 
 		while (crs.moveToNext()) {
 			String uname = crs.getString(crs.getColumnIndex("DECK_NAME"));
@@ -59,14 +59,18 @@ public class BonsaiDatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	public String getDeckName(int pos) {
+		String deckName;
+		Cursor wrapped = getReadableDatabase().query("DECKS", null, // all
+				// columns
+				"DECK_ID" + " = ?", // look for a ID
+				new String[] { String.valueOf(pos) }, // with this value
+				null, // group by
+				null, // order by
+				null, // having
+				null); // limit 1 row
 
-		Cursor crs = getReadableDatabase().query("DECKS", null, null, null,
-				null, null, "DECK_ID" + "= " + pos);
-
-		crs.moveToNext();
-
-		String deckName = crs.getString(crs.getColumnIndex("DECK_NAME"));
-
+		wrapped.moveToFirst();
+		deckName = wrapped.getString(wrapped.getColumnIndex("DECK_NAME"));
 		return deckName;
 
 	}
